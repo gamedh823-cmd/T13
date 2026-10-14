@@ -5,24 +5,25 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>프롬프트 신호 점검기</title>
 <meta name="description" content="프롬프트를 붙여 넣으면 토론 지시·전문가 역할·다수 의견·구체적 설명 신호를 찾아, 논문 실험 수치로 정답률과 답 길이가 어떻게 달라지는지 알려 줍니다.">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 <main class="wrap">
 
-  <header class="top">
+  <header class="hero">
     <span class="badge">논문 기반 앱 · 마지막 과제 B</span>
-    <h1>프롬프트 신호 점검기</h1>
-    <p class="paper">
-      <span class="lbl">근거 논문</span>
-      <a href="https://gamedh823-cmd.github.io/T10/paper.pdf" target="_blank" rel="noopener">「프롬프트에 곁들인 신호는 AI의 답을 바꾸는가? — ChatGPT·Gemini·Claude 세 AI에 대한 반복 실험」</a>
-      (유지원, 2026)
-    </p>
+    <h1>프롬프트<br>신호 점검기</h1>
     <p class="who" id="one-line">
       <strong>이 앱은 ChatGPT·Gemini·Claude에 질문을 쓰는 사람을 돕습니다.</strong>
       프롬프트를 붙여 넣으면 그 안의 신호(토론 지시, 전문가 역할, 다수 의견, 구체적 설명)를 찾아,
       논문의 실험 수치로 “정답률이 오르는지, 답이 얼마나 길어지는지”를 알려 줍니다.
     </p>
+    <p class="paper">
+      <span class="lbl">근거 논문</span>
+      <a href="https://gamedh823-cmd.github.io/T10/paper.pdf" target="_blank" rel="noopener">「프롬프트에 곁들인 신호는 AI의 답을 바꾸는가? — ChatGPT·Gemini·Claude 세 AI에 대한 반복 실험」</a>
+      (유지원, 2026)
+    </p>
+    <ol class="steps"><li>프롬프트 붙여 넣기</li><li>AI 고르기</li><li>고친 문장 받기</li></ol>
   </header>
 
   <section class="card" aria-labelledby="s1">
@@ -78,7 +79,8 @@
     <p>만든 이: 유지원 · 코드와 사용법은 <a href="https://github.com/gamedh823-cmd/T13" target="_blank" rel="noopener">저장소</a>에 있습니다. 입력한 프롬프트는 저장하지 않으며, 3번 버튼을 누를 때만 서버로 보냅니다.</p>
   </footer>
 </main>
-<script src="core.js"></script>
-<script src="app.js"></script>
+<noscript><p class="err">자바스크립트가 꺼져 있어 점검 기능이 동작하지 않아요. 브라우저 설정에서 켜 주세요.</p></noscript>
+<script src="core.js?v=2"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>

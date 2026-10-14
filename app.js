@@ -1,6 +1,13 @@
 (function () {
   'use strict';
   var PSC = window.PSC;
+  if (!PSC) {
+    var warn = document.createElement('p');
+    warn.className = 'err';
+    warn.textContent = '점검 로직(core.js)을 불러오지 못했어요. Ctrl+F5로 새로고침하고, 파일로 열었다면 폴더 안의 core.js가 index.html 옆에 있는지 확인해 주세요.';
+    document.querySelector('.wrap').insertBefore(warn, document.querySelector('.wrap').firstChild);
+    return;
+  }
   var PROXY_URL = 'https://t13real.vercel.app/api/suggest';
   var EXAMPLES = [
     '두 명의 전문가 A와 B가 토론하는 형식으로 풀어 주세요. A가 먼저 풀고 B가 허점을 반박한 뒤 합의한 답을 내세요. 문제: 7의 222제곱을 13으로 나눈 나머지는?',
