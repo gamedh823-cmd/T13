@@ -302,7 +302,11 @@
     b.addEventListener('click', function () {
       $('prompt').value = EXAMPLES[Number(b.getAttribute('data-ex'))] || '';
       $('prompt').dispatchEvent(new Event('input'));
-      run();
+      // 예시는 입력칸만 채운다. 결과는 '점검하기'를 눌러야 나온다.
+      state.analysis = null;
+      showErr($('err'), '');
+      render();
+      $('prompt').focus();
     });
   });
 })();
