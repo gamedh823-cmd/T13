@@ -51,6 +51,16 @@ t('평범한 글의 "A는 B"는 토론으로 오인하지 않음', () => {
   assert.strictEqual(ids(C.analyze('a는 b보다 크다. 이 부등식을 증명해 줘')).length, 0);
 });
 
+t('선행 연구 기반 신호 3개 감지', () => {
+  assert.ok(ids(C.analyze('단계별로 생각해서 37 곱하기 43을 풀어 줘')).includes('cot'));
+  assert.ok(ids(C.analyze('예를 들어 입력: 사과 출력: apple. 이제 바나나를 번역해 줘')).includes('fewshot'));
+  assert.ok(ids(C.analyze('제 생각에는 이 정책이 맞는데 어떻게 생각해?')).includes('opinion'));
+});
+t('선행 연구 신호는 lit 표시가 있고 이번 실험 수치는 쓰지 않음', () => {
+  for (const id of ['cot', 'fewshot', 'opinion']) assert.strictEqual(C.finding(id).lit, true);
+  assert.strictEqual(C.finding('debate').lit, undefined);
+});
+
 // ---- 잘못된 입력에도 멈추지 않음 ----
 t('빈 문자열·공백·너무 짧은 입력', () => {
   for (const v of ['', '   ', '\n\n', 'a']) {

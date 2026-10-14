@@ -22,7 +22,7 @@ ChatGPT·Gemini·Claude에 질문을 쓰는 사람이 프롬프트를 붙여 넣
 | `index.html`, `style.css`, `app.js` | 화면 |
 | `core.js` | 신호 감지 규칙과 **논문 수치**(표 번호 주석). 수치는 여기에만 있음 |
 | `api/suggest.js` | 3번 기능용 Vercel 서버리스 프록시(Gemini 호출) |
-| `tests/core.test.js` | 논문 수치와 잘못된 입력 처리를 확인하는 테스트 19개 |
+| `tests/core.test.js` | 논문 수치와 잘못된 입력 처리를 확인하는 테스트 21개 |
 | `docs/제출문.md` | 확인 방법, AI와 나의 판단 |
 
 ## 테스트
@@ -31,7 +31,7 @@ ChatGPT·Gemini·Claude에 질문을 쓰는 사람이 프롬프트를 붙여 넣
 node tests/core.test.js
 ```
 
-Node 18 이상만 있으면 됩니다. `19개 모두 통과`가 나오면 통과입니다.
+Node 18 이상만 있으면 됩니다. `21개 모두 통과`가 나오면 통과입니다.
 
 ## 환경 변수 (3번 기능을 직접 배포할 때만)
 

@@ -51,12 +51,13 @@
     $('result').hidden = false;
     if (!a.signals.length) {
       box.appendChild(
-        el('div', 'none', '논문이 다룬 네 가지 신호(토론 지시, 전문가 역할, 다수 의견, 이미지 요청의 구체성)를 이 프롬프트에서 찾지 못했어요. 신호가 없는 질문은 논문이 비교한 기준(통제) 조건과 같습니다.')
+        el('div', 'none', '논문이 다룬 네 가지 신호(토론 지시, 전문가 역할, 다수 의견, 이미지 요청의 구체성)를 이 프롬프트에서 찾지 못했어요. 신호가 없는 질문은 논문이 비교한 기준(통제) 조건과 같습니다. 위의 예시 버튼으로 어떤 신호가 잡히는지 볼 수 있어요.')
       );
     }
     a.signals.forEach(function (s) {
       var f = PSC.finding(s.id);
       var card = el('div', 'sig');
+      if (f.lit) card.appendChild(el('span', 'tag', '선행 연구 기반 · 이번 실험 아님'));
       card.appendChild(el('h3', '', f.title));
       card.appendChild(el('p', 'found', '찾은 표현: “' + s.evidence + '”'));
       card.appendChild(el('p', 'verdict', f.verdict));

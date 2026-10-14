@@ -62,6 +62,9 @@
     debate: /(두|2)\s*명의?\s*(전문가|사람|AI)|토론|반박|찬반|논쟁|전문가\s*A\s*(와|과)\s*(전문가\s*)?B|debate|rebut|two experts?/i,
     persona: /(당신|너)(은|는)\s*[^.\n]{0,25}(전문가|경력|엔지니어|교수|박사|변호사|의사|선생)|\d+\s*년\s*(간\s*)?경력|전문가로서|you are an? [^.\n]{0,30}(expert|specialist|professor|engineer)/i,
     majority: /(대부분|다수|보통|일반적으로|많은)\s*(의\s*)?(사람|이|사람들)[^.\n]{0,12}(동의|생각|반대|찬성|느낄|말할|어떨)|다수\s*의견|most people|majority|what do (most|many) people/i,
+    cot: /단계별로|차근차근|step[- ]by[- ]step|풀이\s*과정|생각의?\s*과정|let'?s think/i,
+    fewshot: /예시\s*[:：]|예를\s*들어|입력\s*[:：][\s\S]{0,60}출력\s*[:：]|few[- ]shot|example\s*[:：]/i,
+    opinion: /(내|제)\s*생각(에는|은|으로는)|나는\s*[^.\n]{0,20}(맞|옳|그렇)다고\s*(생각|봐)|제\s*의견은|I (think|believe) /i,
     image: /포스터|이미지|그림|일러스트|로고|디자인|배너|썸네일|그려|poster|image|illustration|logo|banner|thumbnail/i
   };
   // 이미지 요청이 "구체적"인지 가늠하는 특징 5개. 논문의 조건 A(색·배치·문구·분위기까지 적음)를 흉내 낸 것.
@@ -116,6 +119,9 @@
     if ((ev = firstMatch(RULES.debate, text))) signals.push({ id: 'debate', evidence: ev });
     if ((ev = firstMatch(RULES.persona, text))) signals.push({ id: 'persona', evidence: ev });
     if ((ev = firstMatch(RULES.majority, text))) signals.push({ id: 'majority', evidence: ev });
+    if ((ev = firstMatch(RULES.cot, text))) signals.push({ id: 'cot', evidence: ev });
+    if ((ev = firstMatch(RULES.fewshot, text))) signals.push({ id: 'fewshot', evidence: ev });
+    if ((ev = firstMatch(RULES.opinion, text))) signals.push({ id: 'opinion', evidence: ev });
     if (RULES.image.test(text)) {
       var spec = specificity(text);
       if (spec.length >= SPECIFIC_MIN) {
@@ -215,6 +221,39 @@
           advice: '결과를 일관되게 만들고 싶다면 구체적 설명이 맞는 방법입니다. 서로 다른 시안이 필요하면 색·배치 중 일부를 비워 두세요.'
         };
       }
+      case 'cot':
+        return {
+          lit: true,
+          title: '풀이 과정 요구 (“단계별로 생각해 줘”)',
+          verdict: '선행 연구에서 추론이 좋아졌다고 보고된 방식이에요',
+          lines: [
+            '이번 논문은 이 신호를 따로 실험하지 않았습니다. 모든 조건에서 풀이 과정을 자유롭게 쓰게 했기 때문에 비교할 수 없었습니다.',
+            '선행 연구(Wei et al., 2022)는 풀이 과정을 쓰게 하는 chain-of-thought가 추론을 개선한다고 보고했습니다.'
+          ],
+          advice: '계산·논리 문제에서는 쓸 만한 신호로 알려져 있습니다. 다만 같은 문제를 풀 때 토론 지시처럼 답이 길어질 수 있습니다.'
+        };
+      case 'fewshot':
+        return {
+          lit: true,
+          title: '예시 제시 (few-shot)',
+          verdict: '선행 연구에서 과제 수행의 기본 방법으로 자리 잡은 방식이에요',
+          lines: [
+            '이번 논문의 텍스트 실험(H2~H4)은 예시를 넣지 않았습니다. 예시는 포스터 요청의 구체적 설명(H1)에서만 다루었습니다.',
+            '선행 연구(Brown et al., 2020)는 프롬프트에 예시를 주는 few-shot이 모델이 과제를 수행하는 기본 방법이 되었다고 보고했습니다.'
+          ],
+          advice: '예시를 주면 그 형식을 따라 하는 경향이 큽니다. 다양한 답을 원하면 예시를 두세 개 서로 다르게 주세요.'
+        };
+      case 'opinion':
+        return {
+          lit: true,
+          title: '내 의견을 먼저 밝힘 (“제 생각에는 …”)',
+          verdict: 'AI가 내 생각에 맞춰 줄 수 있어요 (아첨 경향)',
+          lines: [
+            '이번 논문은 내 의견을 먼저 밝히는 조건을 실험하지 않았습니다. 다수 의견 프레이밍(H2)만 다루었습니다.',
+            '선행 연구(Sharma et al., 2024)는 AI가 사용자의 견해에 맞추는 경향(아첨)이 있다고 보고했습니다.'
+          ],
+          advice: '객관적인 판단이 필요하면 내 의견을 빼고 물어보고, 반대 입장의 근거도 함께 요청해 보세요.'
+        };
       case 'vague': {
         var D2 = P.diversity;
         return {
@@ -246,6 +285,12 @@
       out.push('“대부분의 사람들은”을 빼고 “이 주장에 동의하나요? 근거 두 가지와 반대 의견 한 가지를 적어 줘”처럼 한 질문으로 묻어 보세요.');
     if (ids.indexOf('specific') >= 0)
       out.push('여러 시안이 필요하면 색 지시를 한 가지만 남기고 배치는 비워 두세요.');
+    if (ids.indexOf('cot') >= 0)
+      out.push('풀이 과정을 요구하면 계산·논리 문제에 도움이 된다고 알려져 있지만 답이 길어집니다. 결과만 필요하면 “마지막 줄에 정답만” 한 줄을 더하세요.');
+    if (ids.indexOf('fewshot') >= 0)
+      out.push('예시를 두세 개 서로 다르게 주면 하나의 형식에 갇히는 것을 줄일 수 있습니다.');
+    if (ids.indexOf('opinion') >= 0)
+      out.push('내 의견을 빼고 물은 뒤 “반대 입장의 근거도 알려 줘”를 덧붙여 AI가 내 생각에 맞추는 것을 줄여 보세요.');
     if (ids.indexOf('vague') >= 0)
       out.push('하나로 정할 단계라면 색(2가지), 배치(위·중앙·아래), 넣을 문구를 한 문장씩 더하세요.');
     if (!out.length)
@@ -256,7 +301,7 @@
   var api = {
     PAPER: PAPER,
     MAX_LEN: MAX_LEN,
-    SIGNAL_IDS: ['debate', 'persona', 'majority', 'specific', 'vague'],
+    SIGNAL_IDS: ['debate', 'persona', 'majority', 'specific', 'vague', 'cot', 'fewshot', 'opinion'],
     analyze: analyze,
     observedRatios: observedRatios,
     finding: finding,
