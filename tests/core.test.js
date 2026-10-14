@@ -61,6 +61,15 @@ t('선행 연구 신호는 lit 표시가 있고 이번 실험 수치는 쓰지 �
   assert.strictEqual(C.finding('debate').lit, undefined);
 });
 
+t('관대한 감지: 열린 추천 요청·내 의견·다수 표현', () => {
+  assert.ok(ids(C.analyze('게임동아리에서 할만한 행사 같은 거 추천해줘. 더 신박한 거 없나')).includes('brainstorm'));
+  assert.ok(ids(C.analyze('요즘 사람들은 이거 많이 쓰나? 내 생각엔 별로인 것 같은데')).includes('majority'));
+  assert.ok(ids(C.analyze('요즘 사람들은 이거 많이 쓰나? 내 생각엔 별로인 것 같은데')).includes('opinion'));
+});
+t('체크리스트는 8칸', () => {
+  assert.strictEqual(C.CHECKLIST.length, 8);
+});
+
 // ---- 잘못된 입력에도 멈추지 않음 ----
 t('빈 문자열·공백·너무 짧은 입력', () => {
   for (const v of ['', '   ', '\n\n', 'a']) {

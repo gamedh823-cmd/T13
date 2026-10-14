@@ -15,22 +15,27 @@ body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-
 .wrap{max-width:780px;margin:0 auto}
 
 /* 히어로 */
-.hero{margin:16px 0 8px;padding:clamp(22px,5vw,40px);border-radius:24px;color:#fff;
-  background:radial-gradient(120% 140% at 0% 0%,#3b6cff 0%,#1d4ed8 45%,#312e81 100%);box-shadow:var(--shadow)}
-.badge{display:inline-block;font-size:12.5px;font-weight:700;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);border-radius:99px;padding:4px 12px}
-h1{font-size:clamp(38px,9vw,64px);line-height:1.05;letter-spacing:-.04em;margin:16px 0 18px;font-weight:900}
-.who{margin:0;padding:16px 18px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:16px;font-size:16.5px;word-break:keep-all}
-.who strong{display:block;margin-bottom:4px;font-size:18px}
-.paper{margin:14px 0 0;font-size:13.5px;color:rgba(255,255,255,.85);word-break:keep-all}
-.paper a{color:#fff;text-decoration:underline;text-underline-offset:3px}
-.hero .lbl{color:rgba(255,255,255,.75)}
+body{background-image:radial-gradient(60% 40% at 15% -5%,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%),radial-gradient(50% 35% at 95% 5%,color-mix(in srgb,var(--accent2) 20%,transparent),transparent 70%);background-repeat:no-repeat}
+.hero{margin:0;padding:clamp(36px,8vw,76px) 0 clamp(14px,3vw,24px)}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);background:color-mix(in srgb,var(--card) 70%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:99px;padding:6px 14px}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent)}
+h1{font-size:clamp(46px,11vw,88px);line-height:1;letter-spacing:-.055em;margin:22px 0 22px;font-weight:900;color:var(--fg)}
+h1 .grad{background:linear-gradient(120deg,var(--accent) 0%,var(--accent2) 60%,#c026d3 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.who{margin:0;max-width:640px;font-size:clamp(16px,2.4vw,19px);line-height:1.7;color:var(--muted);word-break:keep-all}
+.who strong{display:block;margin-bottom:6px;font-size:clamp(19px,3vw,24px);letter-spacing:-.03em;color:var(--fg)}
+.paper{margin:18px 0 0;font-size:13.5px;color:var(--muted);word-break:keep-all;padding-left:14px;border-left:3px solid var(--line)}
+.paper a{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+.steps{display:flex;flex-wrap:wrap;gap:10px 18px;list-style:none;counter-reset:s;margin:26px 0 0;padding:0}
+.steps li{counter-increment:s;font-size:14px;font-weight:700;color:var(--fg);display:flex;align-items:center;gap:8px}
+.steps li::before{content:counter(s);display:inline-grid;place-items:center;width:24px;height:24px;border-radius:8px;background:var(--fg);color:var(--bg);font-size:12.5px}
+.lbl{color:rgba(255,255,255,.75)}
 .steps{display:flex;flex-wrap:wrap;gap:8px;list-style:none;counter-reset:s;margin:18px 0 0;padding:0}
 .steps li{counter-increment:s;font-size:13.5px;font-weight:700;background:rgba(255,255,255,.16);border-radius:99px;padding:5px 14px 5px 8px}
 .steps li::before{content:counter(s);display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#fff;color:#1d4ed8;margin-right:8px;font-size:12px}
 .lbl{font-size:12.5px;font-weight:700;color:var(--muted);margin-right:6px}
 
 /* 카드 */
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin:16px 0;box-shadow:var(--shadow)}
+.card{background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--line);border-radius:22px;padding:24px;margin:16px 0;box-shadow:var(--shadow)}
 h2{font-size:19px;margin:0 0 14px;letter-spacing:-.02em}
 h2 .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--on-accent);font-size:14px;margin-right:10px}
 h2.sec{margin:28px 4px 8px;font-size:17px;color:var(--muted)}
@@ -81,3 +86,10 @@ textarea:focus,input:focus,button:focus-visible{outline:3px solid color-mix(in s
 .foot{margin-top:30px;font-size:13.5px;color:var(--muted);word-break:keep-all}
 .foot a{color:var(--accent)}
 @media (max-width:520px){.bar{grid-template-columns:96px 1fr 60px}}
+
+.sum{margin:0 0 8px;font-weight:800;font-size:16px}
+.check{display:flex;flex-wrap:wrap;gap:8px}
+.ck{font-size:13.5px;font-weight:700;padding:6px 13px;border-radius:99px;border:1.5px solid var(--line);color:var(--muted);background:var(--card)}
+.ck.on{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent;color:var(--on-accent)}
+.ck.lit{border-style:dashed}
+.ck.on.lit{background:var(--soft);color:var(--accent);border:1.5px dashed var(--accent)}

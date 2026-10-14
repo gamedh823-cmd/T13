@@ -11,11 +11,11 @@
 <main class="wrap">
 
   <header class="hero">
-    <span class="badge">논문 기반 앱 · 마지막 과제 B</span>
-    <h1>프롬프트<br>신호 점검기</h1>
+    <span class="badge"><i></i>논문 기반 앱 · 마지막 과제 B</span>
+    <h1>프롬프트<br><span class="grad">신호</span> 점검기</h1>
     <p class="who" id="one-line">
       <strong>이 앱은 ChatGPT·Gemini·Claude에 질문을 쓰는 사람을 돕습니다.</strong>
-      프롬프트를 붙여 넣으면 그 안의 신호(토론 지시, 전문가 역할, 다수 의견, 구체적 설명)를 찾아,
+      프롬프트를 붙여 넣으면 그 안의 신호 8가지(토론 지시, 전문가 역할, 다수 의견, 이미지 구체성, 풀이 과정, 예시, 내 의견, 열린 추천)를 찾아,
       논문의 실험 수치로 “정답률이 오르는지, 답이 얼마나 길어지는지”를 알려 줍니다.
     </p>
     <p class="paper">
@@ -23,7 +23,7 @@
       <a href="https://gamedh823-cmd.github.io/T10/paper.pdf" target="_blank" rel="noopener">「프롬프트에 곁들인 신호는 AI의 답을 바꾸는가? — ChatGPT·Gemini·Claude 세 AI에 대한 반복 실험」</a>
       (유지원, 2026)
     </p>
-    <ol class="steps"><li>프롬프트 붙여 넣기</li><li>AI 고르기</li><li>고친 문장 받기</li></ol>
+    <ol class="steps"><li>프롬프트 붙여 넣기</li><li>신호 8가지 확인</li><li>고친 문장 받기</li></ol>
   </header>
 
   <section class="card" aria-labelledby="s1">
@@ -45,7 +45,7 @@
   </section>
 
   <section id="result" hidden aria-live="polite">
-    <h2 class="sec">점검 결과</h2>
+    <h2 class="sec">점검 결과 — 신호 8가지 체크</h2>
     <div id="signals"></div>
   </section>
 

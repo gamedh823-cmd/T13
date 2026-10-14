@@ -49,9 +49,27 @@
       return;
     }
     $('result').hidden = false;
+    var found = {};
+    a.signals.forEach(function (s) {
+      found[s.id] = true;
+    });
+    var grid = el('div', 'check');
+    var hit = 0;
+    PSC.CHECKLIST.forEach(function (c) {
+      var ids = c.ids || [c.id];
+      var on = ids.some(function (i) {
+        return found[i];
+      });
+      if (on) hit++;
+      var chip = el('span', 'ck' + (on ? ' on' : '') + (c.own ? '' : ' lit'), (on ? '✔ ' : '– ') + c.label);
+      grid.appendChild(chip);
+    });
+    box.appendChild(el('p', 'sum', PSC.CHECKLIST.length + '가지 신호 중 ' + hit + '가지가 이 프롬프트에 있어요'));
+    box.appendChild(grid);
+    box.appendChild(el('p', 'note', '진한 칸은 이번 논문이 직접 실험한 신호 4가지, 옅은 칸은 선행 연구에서 가져온 신호 4가지입니다.'));
     if (!a.signals.length) {
       box.appendChild(
-        el('div', 'none', '논문이 다룬 네 가지 신호(토론 지시, 전문가 역할, 다수 의견, 이미지 요청의 구체성)를 이 프롬프트에서 찾지 못했어요. 신호가 없는 질문은 논문이 비교한 기준(통제) 조건과 같습니다. 위의 예시 버튼으로 어떤 신호가 잡히는지 볼 수 있어요.')
+        el('div', 'none', '이 프롬프트에는 위 8가지 신호가 없어서, 논문이 비교한 기준(신호 없음) 조건과 같아요. 신호가 없는 건 나쁜 게 아니라 “곁들인 말 때문에 답이 달라질 일이 없다”는 뜻이에요. 위의 예시 버튼으로 각 신호가 어떻게 잡히는지 볼 수 있어요.')
       );
     }
     a.signals.forEach(function (s) {

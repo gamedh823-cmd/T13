@@ -59,12 +59,13 @@
   // ---- 신호 감지 규칙(정규식) ----------------------------------------------
   // 논문은 신호를 "프롬프트에 곁들인 말"로 정의했다. 여기서는 그 말이 들어 있는지만 본다.
   var RULES = {
-    debate: /(두|2)\s*명의?\s*(전문가|사람|AI)|토론|반박|찬반|논쟁|전문가\s*A\s*(와|과)\s*(전문가\s*)?B|debate|rebut|two experts?/i,
-    persona: /(당신|너)(은|는)\s*[^.\n]{0,25}(전문가|경력|엔지니어|교수|박사|변호사|의사|선생)|\d+\s*년\s*(간\s*)?경력|전문가로서|you are an? [^.\n]{0,30}(expert|specialist|professor|engineer)/i,
-    majority: /(대부분|다수|보통|일반적으로|많은)\s*(의\s*)?(사람|이|사람들)[^.\n]{0,12}(동의|생각|반대|찬성|느낄|말할|어떨)|다수\s*의견|most people|majority|what do (most|many) people/i,
-    cot: /단계별로|차근차근|step[- ]by[- ]step|풀이\s*과정|생각의?\s*과정|let'?s think/i,
-    fewshot: /예시\s*[:：]|예를\s*들어|입력\s*[:：][\s\S]{0,60}출력\s*[:：]|few[- ]shot|example\s*[:：]/i,
-    opinion: /(내|제)\s*생각(에는|은|으로는)|나는\s*[^.\n]{0,20}(맞|옳|그렇)다고\s*(생각|봐)|제\s*의견은|I (think|believe) /i,
+    debate: /(두|2)\s*명의?\s*(전문가|사람|AI)|토론|반박|찬반|논쟁|서로\s*(다른\s*)?(입장|의견)|장단점\s*(을\s*)?(비교|따져)|반대\s*입장|전문가\s*A\s*(와|과)\s*(전문가\s*)?B|debate|rebut|two experts?|pros and cons/i,
+    persona: /(당신|너|넌|네가)\s*(은|는|이)?\s*[^.\n]{0,25}(전문가|경력|엔지니어|교수|박사|변호사|의사|선생|멘토|컨설턴트|기획자|마케터)|\d+\s*년\s*(간\s*)?(차|경력)|전문가(로서|처럼|의\s*입장)|[가-힣A-Za-z ]{1,12}(처럼|입장에서)\s*(답|말|설명|조언|추천|생각)|역할(을)?\s*(맡|해)|you are an? [^.\n]{0,30}(expert|specialist|professor|engineer|consultant)|act as|as an? (expert|professional)/i,
+    majority: /(대부분|다수|보통|일반적으로|많은|다들|요즘|사람들)\s*(의\s*)?(사람|이|사람들|들)?[^.\n]{0,14}(동의|생각|반대|찬성|느낄|말할|어떨|많이|선호|좋아|하는|쓰는)|다수\s*의견|인기\s*(있는|많은)|트렌드|most people|majority|what do (most|many) people|popular/i,
+    cot: /단계별|차근차근|step[- ]by[- ]step|풀이|생각의?\s*과정|과정(을|도)\s*(설명|보여|써)|이유(를|도)\s*(설명|말|적)|근거(를|도)\s*(설명|들|말|적)|왜\s*그런|let'?s think|explain (your|the) (reasoning|steps)/i,
+    fewshot: /예시\s*[:：]|예\s*[:：)]|예를\s*들(어|면)|이런\s*식(으로)?|[\"“'][^\"”']{2,40}[\"”']\s*(처럼|같은\s*(식|느낌))|입력\s*[:：][\s\S]{0,60}출력\s*[:：]|few[- ]shot|example\s*[:：]|for example|such as/i,
+    opinion: /(내|제|나의)\s*(생각|의견|느낌|판단)(에는|은|으로는|엔|이)?|나는\s*[^.\n]{0,24}(같|맞|옳|그렇|좋)(다고|은데|아|다)|[가-힣 ]{1,20}인\s*것\s*같은데|아니지\s*않아|맞지\s*않아|I (think|believe|feel) |in my opinion/i,
+    brainstorm: /추천|아이디어|브레인스토밍|뭐\s*(할|하면|있)|할\s*만한|없을까|신박|색다른|참신|새로운\s*(거|것|방법)|recommend|ideas?|brainstorm|suggest/i,
     image: /포스터|이미지|그림|일러스트|로고|디자인|배너|썸네일|그려|poster|image|illustration|logo|banner|thumbnail/i
   };
   // 이미지 요청이 "구체적"인지 가늠하는 특징 5개. 논문의 조건 A(색·배치·문구·분위기까지 적음)를 흉내 낸 것.
@@ -122,6 +123,7 @@
     if ((ev = firstMatch(RULES.cot, text))) signals.push({ id: 'cot', evidence: ev });
     if ((ev = firstMatch(RULES.fewshot, text))) signals.push({ id: 'fewshot', evidence: ev });
     if ((ev = firstMatch(RULES.opinion, text))) signals.push({ id: 'opinion', evidence: ev });
+    if ((ev = firstMatch(RULES.brainstorm, text))) signals.push({ id: 'brainstorm', evidence: ev });
     if (RULES.image.test(text)) {
       var spec = specificity(text);
       if (spec.length >= SPECIFIC_MIN) {
@@ -221,6 +223,17 @@
           advice: '결과를 일관되게 만들고 싶다면 구체적 설명이 맞는 방법입니다. 서로 다른 시안이 필요하면 색·배치 중 일부를 비워 두세요.'
         };
       }
+      case 'brainstorm':
+        return {
+          lit: true,
+          title: '열린 추천·아이디어 요청 (“뭐 할 만한 거 없을까?”)',
+          verdict: '조건을 적을수록 답이 비슷해지고, 비울수록 다양해져요 (이미지 실험에서 유추)',
+          lines: [
+            '이번 논문은 글로 된 아이디어 요청을 직접 실험하지 않았습니다.',
+            '다만 포스터 실험(H1)에서 구체적으로 설명할수록 같은 요청의 결과가 서로 비슷해졌습니다(색 다양성 ChatGPT 0.448 → 0.113). 아이디어 요청에도 같은 경향이 있을지는 확인되지 않았습니다.'
+          ],
+          advice: '다양한 후보가 필요하면 조건을 최소로 두고 여러 번 물어보고, 하나로 좁힐 때는 예산·인원·기간 같은 조건을 넣으세요.'
+        };
       case 'cot':
         return {
           lit: true,
@@ -285,6 +298,8 @@
       out.push('“대부분의 사람들은”을 빼고 “이 주장에 동의하나요? 근거 두 가지와 반대 의견 한 가지를 적어 줘”처럼 한 질문으로 묻어 보세요.');
     if (ids.indexOf('specific') >= 0)
       out.push('여러 시안이 필요하면 색 지시를 한 가지만 남기고 배치는 비워 두세요.');
+    if (ids.indexOf('brainstorm') >= 0)
+      out.push('아이디어를 넓게 받으려면 조건을 비워 두고 “서로 다른 5가지”를 요청하고, 고른 뒤에 예산·인원·기간으로 좁히세요.');
     if (ids.indexOf('cot') >= 0)
       out.push('풀이 과정을 요구하면 계산·논리 문제에 도움이 된다고 알려져 있지만 답이 길어집니다. 결과만 필요하면 “마지막 줄에 정답만” 한 줄을 더하세요.');
     if (ids.indexOf('fewshot') >= 0)
@@ -301,7 +316,18 @@
   var api = {
     PAPER: PAPER,
     MAX_LEN: MAX_LEN,
-    SIGNAL_IDS: ['debate', 'persona', 'majority', 'specific', 'vague', 'cot', 'fewshot', 'opinion'],
+    SIGNAL_IDS: ['debate', 'persona', 'majority', 'specific', 'vague', 'cot', 'fewshot', 'opinion', 'brainstorm'],
+    // 화면의 체크리스트용: 'vague'는 'specific'과 같은 칸(이미지 요청의 구체성)을 쓴다.
+    CHECKLIST: [
+      { id: 'debate', label: '토론 지시', own: true },
+      { id: 'persona', label: '전문가 역할', own: true },
+      { id: 'majority', label: '다수 의견', own: true },
+      { id: 'image', label: '이미지 요청 구체성', own: true, ids: ['specific', 'vague'] },
+      { id: 'cot', label: '풀이 과정 요구' },
+      { id: 'fewshot', label: '예시 제시' },
+      { id: 'opinion', label: '내 의견 먼저' },
+      { id: 'brainstorm', label: '열린 추천 요청' }
+    ],
     analyze: analyze,
     observedRatios: observedRatios,
     finding: finding,
