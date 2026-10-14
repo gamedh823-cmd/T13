@@ -163,3 +163,32 @@ textarea:focus,input:focus,button:focus-visible{outline:3px solid color-mix(in s
 .eyebrow{display:inline-block;margin:0 0 8px;font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--accent);background:color-mix(in srgb,var(--card) 70%,transparent);border-radius:99px;padding:3px 12px}
 .card.main .btn:not(.primary){background:var(--card)}
 .llm .fx{background:var(--card);border-color:color-mix(in srgb,var(--accent) 30%,transparent)}
+
+/* 여백 넓히기 */
+body{line-height:1.7}
+.hero{padding-top:clamp(44px,9vw,88px);padding-bottom:44px;margin-bottom:44px}
+h1{margin:28px 0 30px}
+.who{line-height:1.85}
+.who strong{margin-bottom:12px}
+.hero a.paper{margin-top:34px}
+.steps{margin-top:34px;gap:12px 26px}
+.card{margin:36px 0;padding:clamp(24px,4.5vw,36px)}
+.card h2{margin-bottom:22px}
+h2.sec{margin:52px 4px 14px}
+.row{margin-top:20px;gap:12px 14px}
+textarea{min-height:150px;padding:16px 18px}
+.sig{margin:20px 0;padding:22px 24px}
+.sig ul{margin-bottom:14px}
+.sig li{margin:7px 0}
+.sig .advice{padding:14px 16px}
+.check{gap:10px}
+.sum{margin-bottom:14px}
+.rules li{margin:12px 0}
+.card.main{padding:clamp(26px,5vw,40px)}
+.llm{margin-top:28px}
+.llm .dxl{margin-top:24px}
+.llm .fx{padding:22px 24px;margin-bottom:20px}
+.foot{margin-top:56px;line-height:1.8}
+.foot p{margin:0 0 14px}
+.note{margin-top:14px}
+body{padding-bottom:80px}

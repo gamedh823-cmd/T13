@@ -4,6 +4,12 @@ AI에게 질문을 쓰는 사람이 프롬프트를 붙여 넣으면, 그 안의
 
 근거 논문: 「프롬프트에 곁들인 신호는 AI의 답을 바꾸는가? — ChatGPT·Gemini·Claude 세 AI에 대한 반복 실험」 (유지원, 2026) — https://gamedh823-cmd.github.io/T10/paper.pdf
 
+## 화면
+
+| 첫 화면 (논문 제목·한 문장·입력) | AI 제안 (진단과 고친 프롬프트) |
+|---|---|
+| ![첫 화면](docs/screens/01_%EC%B2%AB%ED%99%94%EB%A9%B4.png) | ![AI 제안](docs/screens/02_AI%EC%A0%9C%EC%95%88.png) |
+
 - 공개 URL: https://gamedh823-cmd.github.io/T13/ (로그인 없음)
 - 대체 URL: https://t13real.vercel.app/
 
