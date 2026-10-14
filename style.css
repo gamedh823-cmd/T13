@@ -65,13 +65,14 @@ textarea:focus,input:focus,button:focus-visible{outline:3px solid color-mix(in s
 .sig .advice{margin:0;padding:10px 14px;background:var(--bg);border-radius:10px;font-size:14.5px}
 .none{background:var(--card);border:1.5px dashed var(--line);border-radius:16px;padding:18px 20px;color:var(--muted);word-break:keep-all}
 .bars{margin-top:16px}
-.bar{display:grid;grid-template-columns:132px 1fr 72px;gap:10px;align-items:center;margin:9px 0;font-size:14px}
+.bar{display:grid;grid-template-columns:100px 1fr 72px;gap:10px;align-items:center;margin:9px 0;font-size:14px}
 .track{background:var(--bg);border-radius:8px;height:22px;overflow:hidden}
 .fill{display:block;height:100%;border-radius:8px;background:color-mix(in srgb,var(--accent) 30%,transparent);min-width:3px;transition:width .35s}
 .bar.on .fill{background:linear-gradient(90deg,var(--accent),var(--accent2))}
 .bar.on{font-weight:800}
 .bar .v{text-align:right;font-variant-numeric:tabular-nums}
 .note{font-size:13.5px;color:var(--muted);margin:8px 0 0}
+.lead{margin:0 0 6px;font-weight:600;word-break:keep-all}
 .big{font-size:17.5px;font-weight:700;margin:16px 0 0;word-break:keep-all}
 .rules{margin:0 0 6px;padding-left:20px;font-size:15px}
 .rules li{margin:7px 0}

@@ -38,11 +38,6 @@
 
   $('scope').textContent = PSC.PAPER.scope;
 
-  function selectedAi() {
-    var r = document.querySelector('input[name=ai]:checked');
-    return r ? r.value : 'chatgpt';
-  }
-
   function render() {
     var a = state.analysis;
     var box = $('signals');
@@ -75,7 +70,6 @@
     });
     if (a.truncated) box.appendChild(el('p', 'note', '입력이 ' + PSC.MAX_LEN + '자를 넘어 앞부분만 점검했어요.'));
 
-    $('len-card').hidden = false;
     $('sug-card').hidden = false;
     renderLength();
     var ul2 = $('rules');
@@ -89,47 +83,37 @@
   function renderLength() {
     var a = state.analysis;
     var out = $('len-out');
+    var card = $('len-card');
     clear(out);
-    showErr($('len-err'), '');
     if (!a || !a.ok) return;
-    var ids = a.signals.map(function (s) {
+    var o = PSC.observedRatios(a.signals.map(function (s) {
       return s.id;
-    });
-    var e = PSC.estimateLength(selectedAi(), ids, $('base').value);
-    if (!e.ok) {
-      showErr($('len-err'), e.error);
-      return;
-    }
-    var max = Math.max(e.bars.C, e.bars.P, e.bars.D, 1);
-    var names = { C: '신호 없음', P: '전문가 역할', D: '토론 지시' };
+    }));
+    // 토론·역할 신호가 없으면 논문에 관찰값이 없으므로 예측하지 않고 카드를 숨긴다.
+    card.hidden = !o;
+    $('n3').textContent = o ? '3' : '2';
+    if (!o) return;
+    var label = o.condition === 'D' ? '토론 지시를 넣었더니' : '전문가 역할을 넣었더니';
+    out.appendChild(el('p', 'lead', label + ', 같은 문제의 답 글자 수가 신호 없을 때보다 이렇게 달라졌어요 (조건당 10문제 평균).'));
+    var max = Math.max.apply(null, o.rows.map(function (r) { return r.ratio; }).concat([1]));
     var bars = el('div', 'bars');
-    ['C', 'P', 'D'].forEach(function (k) {
-      var row = el('div', 'bar' + (k === e.condition ? ' on' : ''));
-      row.appendChild(el('span', '', names[k] + (k === e.condition ? ' (내 프롬프트)' : '')));
+    o.rows.forEach(function (r) {
+      var row = el('div', 'bar on');
+      row.appendChild(el('span', '', r.name));
       var track = el('span', 'track');
       var fill = el('span', 'fill');
-      fill.style.width = Math.max(1, Math.round((e.bars[k] / max) * 100)) + '%';
+      fill.style.width = Math.max(3, Math.round((r.ratio / max) * 100)) + '%';
       track.appendChild(fill);
       row.appendChild(track);
-      row.appendChild(el('span', 'v', e.bars[k].toLocaleString('ko-KR') + '자'));
+      row.appendChild(el('span', 'v', r.ratio.toFixed(2) + '배'));
       bars.appendChild(row);
+      var det = el('p', 'note', r.name + ': 평균 ' + Math.round(r.from).toLocaleString('ko-KR') + '자 → ' + Math.round(r.to).toLocaleString('ko-KR') + '자, 정답 ' + r.correctFrom + '/10 → ' + r.correctTo + '/10');
+      det.style.margin = '0 0 4px 0';
+      bars.appendChild(det);
     });
     out.appendChild(bars);
-    var name = PSC.PAPER.ais[e.ai].name;
-    out.appendChild(
-      el(
-        'p',
-        'big',
-        name + '에게 보내면 답이 약 ' + e.estimate.toLocaleString('ko-KR') + '자로 예상돼요' +
-          (e.ratio > 1.05 ? ' (신호 없는 질문의 ' + e.ratio.toFixed(1) + '배).' : ' (길이는 거의 그대로).')
-      )
-    );
-    var c = PSC.PAPER.correct[e.ai];
-    out.appendChild(
-      el('p', 'note', name + '의 정답 수(10문제): 신호 없음 ' + c.C + ', 역할 ' + c.P + ', 토론 ' + c.D + '. 신호가 정답률을 올린다는 증거는 이번 실험에서 나오지 않았습니다.')
-    );
-    if (e.untestedCombo) out.appendChild(el('p', 'note', '토론 지시와 전문가 역할을 함께 쓴 조합은 실험하지 않아, 토론 수치만 적용했습니다.'));
-    if (!e.userBase) out.appendChild(el('p', 'note', '막대는 논문의 계산·세기 문제 평균 길이 기준입니다. 평소 답 길이를 넣으면 그 길이에 배율을 곱합니다.'));
+    out.appendChild(el('p', 'note', '이것은 내 질문의 답 길이를 맞히는 예측이 아니라, 논문의 계산·세기 문제 실험에서 관찰된 값입니다. 다른 종류의 질문에서는 달라질 수 있어요.'));
+    if (o.untestedCombo) out.appendChild(el('p', 'note', '토론 지시와 전문가 역할을 함께 쓴 조합은 실험하지 않아, 토론 수치만 보여 줍니다.'));
   }
 
   function run() {
@@ -210,8 +194,4 @@
       run();
     });
   });
-  document.querySelectorAll('input[name=ai]').forEach(function (r) {
-    r.addEventListener('change', renderLength);
-  });
-  $('base').addEventListener('input', renderLength);
 })();

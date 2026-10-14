@@ -50,22 +50,12 @@
   </section>
 
   <section class="card" id="len-card" hidden aria-labelledby="s2">
-    <h2 id="s2"><span class="n">2</span> 어느 AI에게 보낼지 고르면 예상 답 길이를 봅니다</h2>
-    <div class="row" role="radiogroup" aria-label="AI 선택">
-      <label class="radio"><input type="radio" name="ai" value="chatgpt" checked> ChatGPT</label>
-      <label class="radio"><input type="radio" name="ai" value="gemini"> Gemini</label>
-      <label class="radio"><input type="radio" name="ai" value="claude"> Claude</label>
-    </div>
-    <div class="row">
-      <label for="base">평소 이 AI의 답 길이(글자 수, 비워 두면 논문 평균)</label>
-      <input id="base" type="text" inputmode="numeric" placeholder="예: 300" maxlength="7" autocomplete="off">
-    </div>
-    <p class="err" id="len-err" role="alert" hidden></p>
+    <h2 id="s2"><span class="n">2</span> 논문에서는 답이 얼마나 달라졌나</h2>
     <div id="len-out"></div>
   </section>
 
   <section class="card" id="sug-card" hidden aria-labelledby="s3">
-    <h2 id="s3"><span class="n">3</span> 더 나은 프롬프트 제안 받기</h2>
+    <h2 id="s3"><span class="n" id="n3">3</span> 더 나은 프롬프트 제안 받기</h2>
     <ul id="rules" class="rules"></ul>
     <div class="row">
       <button class="btn" id="ask" type="button">AI에게 고친 프롬프트 받기</button>

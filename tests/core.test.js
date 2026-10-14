@@ -76,26 +76,22 @@ t('제어문자·HTML·이모지가 섞여도 예외 없음', () => {
   assert.ok(r.ok);
 });
 
-// ---- 예상 길이 ----
-t('예상 길이: 토론이면 논문 비율만큼 늘어남 (Claude, 평소 300자)', () => {
-  const e = C.estimateLength('claude', ['debate'], 300);
-  assert.ok(e.ok);
-  assert.strictEqual(e.condition, 'D');
-  assert.strictEqual(e.estimate, Math.round((300 * 1483.0) / 273.6));
+// ---- 관찰된 길이 배율 ----
+t('배율: 토론이면 논문 비율(3.4/4.3/5.4)을 그대로 돌려줌', () => {
+  const o = C.observedRatios(['debate']);
+  assert.strictEqual(o.condition, 'D');
+  assert.deepStrictEqual(o.rows.map((r) => r.ratio.toFixed(1)), ['3.4', '4.3', '5.4']);
 });
-t('예상 길이: 평소 길이를 안 쓰면 논문 평균 사용', () => {
-  const e = C.estimateLength('gemini', [], '');
-  assert.ok(e.ok);
-  assert.strictEqual(e.estimate, 433);
+t('배율: 전문가 역할이면 P 조건', () => {
+  assert.strictEqual(C.observedRatios(['persona']).condition, 'P');
 });
-t('예상 길이: 잘못된 숫자·AI는 오류 메시지', () => {
-  assert.strictEqual(C.estimateLength('claude', [], 'abc').ok, false);
-  assert.strictEqual(C.estimateLength('claude', [], -5).ok, false);
-  assert.strictEqual(C.estimateLength('claude', [], 1e9).ok, false);
-  assert.strictEqual(C.estimateLength('nope', [], 100).ok, false);
+t('배율: 토론·역할 신호가 없으면 null (예측하지 않음)', () => {
+  assert.strictEqual(C.observedRatios([]), null);
+  assert.strictEqual(C.observedRatios(['majority', 'specific']), null);
+  assert.strictEqual(C.observedRatios(undefined), null);
 });
-t('예상 길이: 토론+역할 조합은 안 해 본 조합으로 표시', () => {
-  assert.strictEqual(C.estimateLength('claude', ['debate', 'persona'], 100).untestedCombo, true);
+t('배율: 토론+역할 조합은 안 해 본 조합으로 표시', () => {
+  assert.strictEqual(C.observedRatios(['debate', 'persona']).untestedCombo, true);
 });
 
 // ---- 문장 생성 ----

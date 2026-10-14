@@ -128,36 +128,21 @@
   }
 
   /**
-   * 예상 응답 길이. 논문에서 같은 문제를 신호 없이/전문가 역할/토론 지시로 풀었을 때의
-   * 글자 수 평균 비율을 평소 길이에 곱한다. base가 없으면 논문 평균(통제)을 쓴다.
+   * 논문에서 관찰된 응답 길이 배율. "예측"이 아니라 계산·세기 문제 10개(모델·조건당 10회)에서
+   * 신호 없는 조건 대비 평균 글자 수가 몇 배였는지를 그대로 보여 준다.
+   * 토론·전문가 역할 신호가 없으면 null (관찰된 변화가 없는 상황).
    */
-  function estimateLength(aiKey, signalIds, base) {
-    var L = PAPER.length[aiKey];
-    if (!L) return { ok: false, error: '알 수 없는 AI입니다.' };
-    var b = Number(base);
-    var userBase = false;
-    if (base !== undefined && base !== null && String(base).trim() !== '') {
-      if (!isFinite(b) || b < 1 || b > 100000) {
-        return { ok: false, error: '평소 답 길이는 1~100000 사이 숫자(글자 수)로 적어 주세요.' };
-      }
-      userBase = true;
-    } else {
-      b = L.C;
-    }
+  function observedRatios(signalIds) {
     var ids = signalIds || [];
-    // 토론과 전문가 역할이 함께 있는 조합은 실험하지 않았다. 토론 비율만 쓰고 표시한다.
-    var cond = ids.indexOf('debate') >= 0 ? 'D' : ids.indexOf('persona') >= 0 ? 'P' : 'C';
-    var ratio = L[cond] / L.C;
+    var cond = ids.indexOf('debate') >= 0 ? 'D' : ids.indexOf('persona') >= 0 ? 'P' : null;
+    if (!cond) return null;
     return {
-      ok: true,
-      ai: aiKey,
       condition: cond,
-      base: b,
-      userBase: userBase,
-      ratio: ratio,
-      estimate: Math.round(b * ratio),
-      bars: { C: Math.round(b), P: Math.round((b * L.P) / L.C), D: Math.round((b * L.D) / L.C) },
-      untestedCombo: ids.indexOf('debate') >= 0 && ids.indexOf('persona') >= 0
+      untestedCombo: ids.indexOf('debate') >= 0 && ids.indexOf('persona') >= 0,
+      rows: Object.keys(PAPER.length).map(function (k) {
+        var L = PAPER.length[k];
+        return { ai: k, name: PAPER.ais[k].name, from: L.C, to: L[cond], ratio: L[cond] / L.C, correctFrom: PAPER.correct[k].C, correctTo: PAPER.correct[k][cond] };
+      })
     };
   }
 
@@ -273,7 +258,7 @@
     MAX_LEN: MAX_LEN,
     SIGNAL_IDS: ['debate', 'persona', 'majority', 'specific', 'vague'],
     analyze: analyze,
-    estimateLength: estimateLength,
+    observedRatios: observedRatios,
     finding: finding,
     ruleSuggestions: ruleSuggestions
   };
