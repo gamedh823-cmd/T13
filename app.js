@@ -45,7 +45,6 @@
     if (!a || !a.ok) {
       $('result').hidden = true;
       $('len-card').hidden = true;
-      $('gap-card').hidden = true;
       $('sug-card').hidden = true;
       return;
     }
@@ -91,7 +90,6 @@
     if (a.truncated) box.appendChild(el('p', 'note', '입력이 ' + PSC.MAX_LEN + '자를 넘어 앞부분만 점검했어요.'));
 
     $('sug-card').hidden = false;
-    renderGaps();
     renderLength();
     renumber();
     var ul2 = $('rules');
@@ -108,57 +106,6 @@
       var n = c.querySelector('h2 .n');
       if (n && !c.hidden) n.textContent = String(i++);
     });
-  }
-
-  function renderGaps() {
-    var a = state.analysis;
-    var wrap = $('gap-fields');
-    clear(wrap);
-    $('copied').textContent = '';
-    var list = a && a.ok ? PSC.gaps(a.text) : [];
-    $('gap-card').hidden = !(a && a.ok);
-    if (!(a && a.ok)) return;
-    var answers = {};
-    function update() {
-      $('built').value = PSC.buildPrompt(a.text, answers);
-    }
-    if (!list.length) {
-      wrap.appendChild(el('div', 'none', '상황·조건·형식·기준이 이미 잘 들어 있는 질문이에요. 그대로 보내도 좋고, 아래에 완성된 프롬프트를 복사해 쓸 수 있어요.'));
-    }
-    list.forEach(function (g) {
-      var box = el('div', 'gap');
-      var id = 'gap-' + g.id;
-      var lab = el('label', '', g.label + ' — ' + g.q);
-      lab.setAttribute('for', id);
-      var inp = document.createElement('input');
-      inp.type = 'text';
-      inp.id = id;
-      inp.maxLength = 300;
-      inp.placeholder = g.ph;
-      inp.autocomplete = 'off';
-      inp.addEventListener('input', function () {
-        answers[g.id] = inp.value;
-        update();
-      });
-      box.appendChild(lab);
-      box.appendChild(inp);
-      wrap.appendChild(box);
-    });
-    update();
-  }
-
-  function copyBuilt() {
-    var ta = $('built');
-    var done = function (ok) {
-      $('copied').textContent = ok ? '복사했어요. AI 채팅창에 붙여 넣으세요.' : '복사에 실패했어요. 글상자를 직접 선택해 복사해 주세요.';
-    };
-    if (!ta.value) return done(false);
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(ta.value).then(function () { done(true); }, function () { done(false); });
-    } else {
-      ta.select();
-      try { done(document.execCommand('copy')); } catch (e) { done(false); }
-    }
   }
 
   function renderLength() {
@@ -289,7 +236,6 @@
   }
 
   $('run').addEventListener('click', run);
-  $('copy').addEventListener('click', copyBuilt);
   $('ask').addEventListener('click', ask);
   $('prompt').addEventListener('input', function () {
     var n = this.value.length;

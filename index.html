@@ -23,7 +23,7 @@
       <a href="https://gamedh823-cmd.github.io/T10/paper.pdf" target="_blank" rel="noopener">「프롬프트에 곁들인 신호는 AI의 답을 바꾸는가? — ChatGPT·Gemini·Claude 세 AI에 대한 반복 실험」</a>
       (유지원, 2026)
     </p>
-    <ol class="steps"><li>프롬프트 붙여 넣기</li><li>신호 8가지 확인</li><li>빠진 정보 채우기</li></ol>
+    <ol class="steps"><li>프롬프트 붙여 넣기</li><li>신호 8가지 확인</li><li>고친 프롬프트 받기</li></ol>
   </header>
 
   <section class="card entry" aria-labelledby="s1">
@@ -47,19 +47,6 @@
   <section id="result" hidden aria-live="polite">
     <h2 class="sec">점검 결과 — 신호 8가지 체크</h2>
     <div id="signals"></div>
-  </section>
-
-  <section class="card" id="gap-card" hidden aria-labelledby="s-gap">
-    <h2 id="s-gap"><span class="n">2</span> 질문을 더 구체적으로 — 빠진 정보 채우기</h2>
-    <p class="lead">원하는 답에 가까워지려면 아래 정보가 있으면 좋아요. 아는 칸만 채우면 됩니다.</p>
-    <div id="gap-fields"></div>
-    <h3 class="mini">완성된 프롬프트</h3>
-    <textarea id="built" rows="6" readonly aria-label="완성된 프롬프트"></textarea>
-    <div class="row">
-      <button class="btn primary" id="copy" type="button">복사하기</button>
-      <span class="hint" id="copied" aria-live="polite"></span>
-    </div>
-    <p class="note">이 단계는 논문의 수치가 아니라 일반적인 프롬프트 작성 요령입니다. 근거는 포스터 실험(H1)에서 구체적으로 설명할수록 결과가 일관됐다는 관찰과, 프롬프트 형식의 차이가 결과를 크게 바꿀 수 있다는 선행 연구(Sclar et al., 2024)뿐이고, 채운 질문이 더 좋은 답을 낸다는 것은 이 논문이 검증하지 않았습니다.</p>
   </section>
 
   <section class="card" id="len-card" hidden aria-labelledby="s2">

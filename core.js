@@ -308,6 +308,11 @@
       out.push('내 의견을 빼고 물은 뒤 “반대 입장의 근거도 알려 줘”를 덧붙여 AI가 내 생각에 맞추는 것을 줄여 보세요.');
     if (ids.indexOf('vague') >= 0)
       out.push('하나로 정할 단계라면 색(2가지), 배치(위·중앙·아래), 넣을 문구를 한 문장씩 더하세요.');
+    var miss = gaps(analysis.text).map(function (g) {
+      return g.label;
+    });
+    if (miss.length)
+      out.push('질문에 빠진 정보: ' + miss.join(', ') + '. 아는 것만 한 줄씩 더하면 AI가 방향을 덜 헤매고 원하는 답에 가까워집니다.');
     if (!out.length)
       out.push('논문이 다룬 네 가지 신호가 없는 깔끔한 프롬프트입니다. 목적(무엇을, 어떤 형식으로)이 한 문장에 들어 있는지만 확인하세요.');
     return out;
@@ -337,18 +342,6 @@
     });
   }
 
-  /** 원문 아래에 사용자가 채운 칸을 붙여 새 프롬프트를 만든다. 빈 칸은 무시한다. */
-  function buildPrompt(original, answers) {
-    var text = clean(typeof original === 'string' ? original : '');
-    var lines = [];
-    GAPS.forEach(function (g) {
-      var v = answers && typeof answers[g.id] === 'string' ? clean(answers[g.id]).slice(0, 300) : '';
-      if (v) lines.push('- ' + g.key + ': ' + v);
-    });
-    if (!text) return '';
-    return lines.length ? text + '\n\n[추가 정보]\n' + lines.join('\n') : text;
-  }
-
   var api = {
     PAPER: PAPER,
     MAX_LEN: MAX_LEN,
@@ -366,7 +359,6 @@
     ],
     analyze: analyze,
     gaps: gaps,
-    buildPrompt: buildPrompt,
     observedRatios: observedRatios,
     finding: finding,
     ruleSuggestions: ruleSuggestions

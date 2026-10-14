@@ -82,15 +82,9 @@ t('빠진 정보: 조건·형식이 있으면 그 칸은 빠짐', () => {
 t('빠진 정보: 이상한 입력은 빈 배열', () => {
   for (const v of [null, undefined, 5, {}, '', '  ']) assert.deepStrictEqual(C.gaps(v), []);
 });
-t('프롬프트 만들기: 채운 칸만 붙고 빈 칸·긴 값·이상한 입력은 안전', () => {
-  const p = C.buildPrompt('행사 추천해줘', { context: '게임 동아리', format: '표로 5개', constraints: '   ' });
-  assert.ok(p.startsWith('행사 추천해줘\n\n[추가 정보]'));
-  assert.ok(p.includes('- 상황: 게임 동아리') && p.includes('- 형식: 표로 5개'));
-  assert.ok(!p.includes('조건'));
-  assert.strictEqual(C.buildPrompt('원문', {}), '원문');
-  assert.strictEqual(C.buildPrompt('', { context: 'x' }), '');
-  assert.strictEqual(C.buildPrompt(null, null), '');
-  assert.ok(C.buildPrompt('q', { goal: 'a'.repeat(5000) }).length < 400);
+t('규칙 제안에 빠진 정보 안내가 들어감', () => {
+  const r = C.ruleSuggestions(C.analyze('행사 추천해줘'));
+  assert.ok(r.some((x) => x.startsWith('질문에 빠진 정보')));
 });
 
 // ---- 잘못된 입력에도 멈추지 않음 ----

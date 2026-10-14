@@ -98,12 +98,6 @@ textarea:focus,input:focus,button:focus-visible{outline:3px solid color-mix(in s
 .hero{border-bottom:1px solid var(--line);margin-bottom:28px;padding-bottom:32px}
 .card.main{border:2px solid var(--accent);box-shadow:0 0 0 6px color-mix(in srgb,var(--accent) 10%,transparent),0 18px 40px rgba(29,78,216,.14);background:var(--card)}
 .lead{margin:0 0 6px;font-weight:600;word-break:keep-all}
-.gap{margin:12px 0}
-.gap label{display:block;font-size:14.5px;font-weight:700;margin-bottom:6px;color:var(--fg)}
-.gap input[type=text]{max-width:none}
-.mini{font-size:15px;margin:18px 0 8px;color:var(--muted)}
-#built{background:var(--soft);font-size:15px}
-
 /* 입력 카드는 가볍게, 메인(AI 제안) 카드를 크게 */
 .card.entry{border:1.5px solid color-mix(in srgb,var(--accent) 45%,var(--line))}
 .card.main{padding:30px clamp(20px,4vw,36px);border:2px solid var(--accent);position:relative;overflow:hidden;
