@@ -1,0 +1,283 @@
+/*
+ * 프롬프트 신호 점검기 — 핵심 로직 (브라우저와 Node 양쪽에서 동작)
+ *
+ * 논문: 「프롬프트에 곁들인 신호는 AI의 답을 바꾸는가?
+ *        ChatGPT·Gemini·Claude 세 AI에 대한 반복 실험」 (유지원, 2026-10-06)
+ *
+ * 아래 PAPER의 모든 숫자는 논문 표에서 그대로 옮겼다(표 번호를 옆에 적음).
+ * 숫자를 바꾸려면 논문이 아니라 이 상수만 고치면 되고, tests/core.test.js가 논문 값과 어긋나면 알려 준다.
+ */
+(function (root) {
+  'use strict';
+
+  var MAX_LEN = 4000; // 이보다 긴 입력은 잘라서 점검한다(멈추지 않게)
+
+  var PAPER = {
+    title: '프롬프트에 곁들인 신호는 AI의 답을 바꾸는가?',
+    subtitle: 'ChatGPT·Gemini·Claude 세 AI에 대한 반복 실험',
+    pdf: 'https://gamedh823-cmd.github.io/T10/paper.pdf',
+    scope:
+      '이 수치는 계산·세기 문제 10개를 모델·조건당 10회씩 푼 실험(포스터 실험은 조건당 5장)에서 나왔습니다. ' +
+      '다른 종류의 질문에는 그대로 확장할 수 없고, 대부분의 p값은 참고용입니다.',
+    ais: {
+      chatgpt: { name: 'ChatGPT' },
+      gemini: { name: 'Gemini' },
+      claude: { name: 'Claude' }
+    },
+    // 표 14·18: 응답 글자 수 평균. C=아무 신호 없음(통제), P=전문가 역할 한 줄, D=두 전문가 토론 지시
+    length: {
+      chatgpt: { C: 210.6, P: 250.1, D: 713.6 },
+      gemini: { C: 432.9, P: 441.0, D: 1865.1 },
+      claude: { C: 273.6, P: 300.2, D: 1483.0 }
+    },
+    // 표 14: 10문제 중 정답 수
+    correct: {
+      chatgpt: { C: 9, P: 8, D: 9 },
+      gemini: { C: 10, P: 10, D: 10 },
+      claude: { C: 10, P: 10, D: 10 }
+    },
+    // 표 15: 검증 표현 평균(검산·재확인 등)
+    verify: {
+      chatgpt: { C: 0.6, P: 1.4, D: 4.0 },
+      gemini: { C: 1.6, P: 1.8, D: 9.3 },
+      claude: { C: 1.0, P: 0.9, D: 7.1 }
+    },
+    // 표 9: 포스터 5장끼리의 색 다양성 (A=구체적 설명, B=그냥 요청)
+    diversity: {
+      chatgpt: { A: 0.113, B: 0.448 },
+      gemini: { A: 0.25, B: 0.421 },
+      claude: { A: 0.527, B: 0.587 }
+    },
+    // 표 12: 육교 딜레마 입장(찬성/유보/반대), X=개인 의견, Y=다수 의견
+    majority: {
+      chatgpt: { X: [1, 3, 6], Y: [0, 0, 10], p: 0.087 },
+      gemini: { X: [10, 0, 0], Y: [7, 0, 3], p: 0.21 },
+      claude: { X: [0, 0, 10], Y: [0, 0, 10], p: 1.0 }
+    }
+  };
+
+  // ---- 신호 감지 규칙(정규식) ----------------------------------------------
+  // 논문은 신호를 "프롬프트에 곁들인 말"로 정의했다. 여기서는 그 말이 들어 있는지만 본다.
+  var RULES = {
+    debate: /(두|2)\s*명의?\s*(전문가|사람|AI)|토론|반박|찬반|논쟁|전문가\s*A\s*(와|과)\s*(전문가\s*)?B|debate|rebut|two experts?/i,
+    persona: /(당신|너)(은|는)\s*[^.\n]{0,25}(전문가|경력|엔지니어|교수|박사|변호사|의사|선생)|\d+\s*년\s*(간\s*)?경력|전문가로서|you are an? [^.\n]{0,30}(expert|specialist|professor|engineer)/i,
+    majority: /(대부분|다수|보통|일반적으로|많은)\s*(의\s*)?(사람|이|사람들)[^.\n]{0,12}(동의|생각|반대|찬성|느낄|말할|어떨)|다수\s*의견|most people|majority|what do (most|many) people/i,
+    image: /포스터|이미지|그림|일러스트|로고|디자인|배너|썸네일|그려|poster|image|illustration|logo|banner|thumbnail/i
+  };
+  // 이미지 요청이 "구체적"인지 가늠하는 특징 5개. 논문의 조건 A(색·배치·문구·분위기까지 적음)를 흉내 낸 것.
+  var SPECIFIC = {
+    color: /파스텔|하늘색|노란|노랑|빨간|빨강|파란|파랑|초록|보라|분홍|주황|검정|흰색|배색|톤|색상|\b#[0-9a-f]{3,6}\b|blue|yellow|red|green|pastel/i,
+    layout: /상단|중앙|하단|왼쪽|오른쪽|가운데|배치|위쪽|아래쪽|top|center|bottom|left|right/i,
+    quote: /["'“”‘’「」『』][^"'“”‘’「」『』]{2,}["'“”‘’「」『』]/,
+    mood: /느낌|분위기|스타일|감성|톤앤매너|vibe|style|mood/i,
+    long: null // 글자 수 60자 이상
+  };
+  var SPECIFIC_MIN = 3; // 5개 중 3개 이상이면 "구체적"
+
+  function clean(input) {
+    if (typeof input !== 'string') return '';
+    // 제어문자를 지우고 앞뒤 공백을 자른다.
+    return input.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, '').trim();
+  }
+
+  function firstMatch(re, text) {
+    var m = text.match(re);
+    return m ? m[0] : null;
+  }
+
+  function specificity(text) {
+    var hits = [];
+    ['color', 'layout', 'quote', 'mood'].forEach(function (k) {
+      if (SPECIFIC[k].test(text)) hits.push(k);
+    });
+    if (text.length >= 60) hits.push('long');
+    return hits;
+  }
+
+  /**
+   * 프롬프트를 점검한다. 예외를 던지지 않고 항상 {ok, ...}를 돌려준다.
+   * ok=false이면 error에 사용자에게 보여 줄 문장이 있다.
+   */
+  function analyze(input) {
+    if (typeof input !== 'string') {
+      return { ok: false, error: '글자를 입력해 주세요.' };
+    }
+    var text = clean(input);
+    if (!text) return { ok: false, error: '점검할 프롬프트를 붙여 넣어 주세요.' };
+    if (text.length < 4) return { ok: false, error: '너무 짧아요. 한 문장 이상 적어 주세요.' };
+    var truncated = false;
+    if (text.length > MAX_LEN) {
+      text = text.slice(0, MAX_LEN);
+      truncated = true;
+    }
+
+    var signals = [];
+    var ev;
+    if ((ev = firstMatch(RULES.debate, text))) signals.push({ id: 'debate', evidence: ev });
+    if ((ev = firstMatch(RULES.persona, text))) signals.push({ id: 'persona', evidence: ev });
+    if ((ev = firstMatch(RULES.majority, text))) signals.push({ id: 'majority', evidence: ev });
+    if (RULES.image.test(text)) {
+      var spec = specificity(text);
+      if (spec.length >= SPECIFIC_MIN) {
+        signals.push({ id: 'specific', evidence: firstMatch(RULES.image, text), features: spec });
+      } else {
+        signals.push({ id: 'vague', evidence: firstMatch(RULES.image, text), features: spec });
+      }
+    }
+    return { ok: true, text: text, length: text.length, truncated: truncated, signals: signals };
+  }
+
+  /**
+   * 예상 응답 길이. 논문에서 같은 문제를 신호 없이/전문가 역할/토론 지시로 풀었을 때의
+   * 글자 수 평균 비율을 평소 길이에 곱한다. base가 없으면 논문 평균(통제)을 쓴다.
+   */
+  function estimateLength(aiKey, signalIds, base) {
+    var L = PAPER.length[aiKey];
+    if (!L) return { ok: false, error: '알 수 없는 AI입니다.' };
+    var b = Number(base);
+    var userBase = false;
+    if (base !== undefined && base !== null && String(base).trim() !== '') {
+      if (!isFinite(b) || b < 1 || b > 100000) {
+        return { ok: false, error: '평소 답 길이는 1~100000 사이 숫자(글자 수)로 적어 주세요.' };
+      }
+      userBase = true;
+    } else {
+      b = L.C;
+    }
+    var ids = signalIds || [];
+    // 토론과 전문가 역할이 함께 있는 조합은 실험하지 않았다. 토론 비율만 쓰고 표시한다.
+    var cond = ids.indexOf('debate') >= 0 ? 'D' : ids.indexOf('persona') >= 0 ? 'P' : 'C';
+    var ratio = L[cond] / L.C;
+    return {
+      ok: true,
+      ai: aiKey,
+      condition: cond,
+      base: b,
+      userBase: userBase,
+      ratio: ratio,
+      estimate: Math.round(b * ratio),
+      bars: { C: Math.round(b), P: Math.round((b * L.P) / L.C), D: Math.round((b * L.D) / L.C) },
+      untestedCombo: ids.indexOf('debate') >= 0 && ids.indexOf('persona') >= 0
+    };
+  }
+
+  function pct(n) {
+    return Math.round(n * 100);
+  }
+
+  // 신호별 "논문이 밝힌 것" 문장. aiKey를 주면 그 AI 수치를 맨 앞에 둔다.
+  function finding(id, aiKey) {
+    var P = PAPER;
+    var name = aiKey ? P.ais[aiKey].name : null;
+    switch (id) {
+      case 'debate': {
+        var r = Object.keys(P.length).map(function (k) {
+          return P.ais[k].name + ' ' + (P.length[k].D / P.length[k].C).toFixed(1) + '배';
+        });
+        return {
+          title: '토론 지시 (두 전문가가 토론하게 함)',
+          verdict: '정답률은 안 바뀌고, 답만 3~5배 길어졌어요',
+          lines: [
+            '정답률: 혼자 풀기와 토론이 세 AI 모두 같았습니다 (Claude 10/10 대 10/10, Gemini 10/10 대 10/10, ChatGPT 9/10 대 9/10). 이 조건에서는 차이가 없다는 것도 결과입니다.',
+            '응답 길이: 평균 글자 수가 ' + r.join(', ') + ' 늘었고, 검증 표현도 늘었습니다 (순열검정 p 0.003~0.004, 참고용).',
+            '주의: ChatGPT의 한 사례에서는 두 전문가가 같은 틀린 답(8)에 합의했습니다. 토론이 정답을 보장하지 않았습니다.'
+          ],
+          advice: '정답만 필요하면 토론 지시를 빼는 쪽이 짧고 같은 결과였습니다. 점검 과정이 필요할 때만 쓰세요.'
+        };
+      }
+      case 'persona': {
+        var parts = Object.keys(P.length).map(function (k) {
+          return P.ais[k].name + ' ' + pct(P.length[k].P / P.length[k].C - 1) + '%';
+        });
+        return {
+          title: '전문가 역할 부여 (“당신은 20년 경력의…”)',
+          verdict: '정답률도 말투도 일관되게 안 바뀌었어요',
+          lines: [
+            '정답 수: Claude·Gemini는 둘 다 10/10이라 차이를 볼 수 없었고, ChatGPT는 9/10에서 8/10이었지만 같은 문제(Q13)를 틀린 사례가 섞여 역할 때문이라고 읽기 어렵습니다.',
+            '응답 길이 변화: ' + parts.join(', ') + ' (ChatGPT만 p=0.007, 지표를 여러 개 본 가운데 하나).',
+            '“전문가로서” 같은 자기언급은 세 AI 모두 30건 중 0건이었습니다.'
+          ],
+          advice: '한 줄짜리 역할 문구를 정확도를 위해 넣는다면 이번 실험에서는 효과를 확인하지 못했습니다. 대신 원하는 형식을 구체적으로 적는 편이 확실합니다.'
+        };
+      }
+      case 'majority': {
+        var M = P.majority;
+        return {
+          title: '다수 의견 프레이밍 (“대부분의 사람들은 …?”)',
+          verdict: 'AI마다 반응이 달라서 확정할 수 없어요',
+          lines: [
+            'ChatGPT: 개인 의견에선 반대 6·유보 3·찬성 1, 다수 의견에선 반대 10 (p=' + M.chatgpt.p + ').',
+            'Gemini: 찬성 10에서 7로 줄었습니다 (p=' + M.gemini.p + ').',
+            'Claude: 두 질문이 완전히 같았습니다 (p=' + M.claude.p + ').',
+            '같은 문장에 대한 AI 간 기본 입장 차이(Gemini 찬성 10, Claude 반대 10)가 질문 틀을 바꾼 효과보다 훨씬 컸습니다.'
+          ],
+          advice: '“다수가 어떻게 생각하나”는 내 의견을 묻는 것과 다른 질문일 수 있습니다. 의견을 알고 싶다면 질문을 하나로 정해서 묻고, 답이 AI마다 갈린다는 점을 감안하세요.'
+        };
+      }
+      case 'specific': {
+        var D = P.diversity;
+        var line = Object.keys(D).map(function (k) {
+          return P.ais[k].name + ' ' + D[k].B.toFixed(3) + ' → ' + D[k].A.toFixed(3);
+        });
+        return {
+          title: '구체적인 이미지 요청 (색·위치·문구를 모두 적음)',
+          verdict: '같은 요청을 여러 번 하면 결과가 서로 비슷해졌어요',
+          lines: [
+            '포스터 5장끼리의 색 다양성(0이면 같은 색 구성, 1에 가까울수록 다름) — 그냥 요청 → 구체적 설명: ' + line.join(', ') + '.',
+            '세 AI 모두 낮아졌지만 정도는 달랐습니다. Claude는 거의 차이가 없었습니다(0.587 → 0.527).',
+            '다양성 지표는 이 연구가 정한 것이고, 조건당 5장입니다.'
+          ],
+          advice: '결과를 일관되게 만들고 싶다면 구체적 설명이 맞는 방법입니다. 서로 다른 시안이 필요하면 색·배치 중 일부를 비워 두세요.'
+        };
+      }
+      case 'vague': {
+        var D2 = P.diversity;
+        return {
+          title: '짧고 막연한 이미지 요청',
+          verdict: '같은 요청을 여러 번 하면 시안이 다양하게 나왔어요',
+          lines: [
+            '그냥 요청한 포스터 5장의 색 다양성: ChatGPT ' + D2.chatgpt.B.toFixed(3) + ', Gemini ' + D2.gemini.B.toFixed(3) + ', Claude ' + D2.claude.B.toFixed(3) + ' (구체적으로 쓴 경우보다 모두 높음).'
+          ],
+          advice: '여러 시안을 보고 고르려는 단계에 알맞습니다. 하나로 정했다면 색·배치·문구를 적어 일관되게 만드세요.'
+        };
+      }
+      default:
+        return null;
+    }
+  }
+
+  // 규칙 기반 개선 제안(LLM 없이 항상 동작). 프록시가 실패해도 이 결과를 보여 준다.
+  function ruleSuggestions(analysis) {
+    var out = [];
+    if (!analysis || !analysis.ok) return out;
+    var ids = analysis.signals.map(function (s) {
+      return s.id;
+    });
+    if (ids.indexOf('debate') >= 0)
+      out.push('정답만 필요하면 토론 지시를 지우고 “풀이 후 마지막 줄에 정답만 적어 줘”로 바꿔 보세요. 답이 3~5배 짧아집니다.');
+    if (ids.indexOf('persona') >= 0)
+      out.push('역할 한 줄 대신 “무엇을, 어떤 형식으로, 몇 줄로”를 적으면 말투 변화를 기대하지 않아도 됩니다.');
+    if (ids.indexOf('majority') >= 0)
+      out.push('“대부분의 사람들은”을 빼고 “이 주장에 동의하나요? 근거 두 가지와 반대 의견 한 가지를 적어 줘”처럼 한 질문으로 묻어 보세요.');
+    if (ids.indexOf('specific') >= 0)
+      out.push('여러 시안이 필요하면 색 지시를 한 가지만 남기고 배치는 비워 두세요.');
+    if (ids.indexOf('vague') >= 0)
+      out.push('하나로 정할 단계라면 색(2가지), 배치(위·중앙·아래), 넣을 문구를 한 문장씩 더하세요.');
+    if (!out.length)
+      out.push('논문이 다룬 네 가지 신호가 없는 깔끔한 프롬프트입니다. 목적(무엇을, 어떤 형식으로)이 한 문장에 들어 있는지만 확인하세요.');
+    return out;
+  }
+
+  var api = {
+    PAPER: PAPER,
+    MAX_LEN: MAX_LEN,
+    SIGNAL_IDS: ['debate', 'persona', 'majority', 'specific', 'vague'],
+    analyze: analyze,
+    estimateLength: estimateLength,
+    finding: finding,
+    ruleSuggestions: ruleSuggestions
+  };
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  else root.PSC = api;
+})(typeof window !== 'undefined' ? window : globalThis);

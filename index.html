@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>프롬프트 신호 점검기</title>
+<meta name="description" content="프롬프트를 붙여 넣으면 토론 지시·전문가 역할·다수 의견·구체적 설명 신호를 찾아, 논문 실험 수치로 정답률과 답 길이가 어떻게 달라지는지 알려 줍니다.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap">
+
+  <header class="top">
+    <span class="badge">논문 기반 앱 · 마지막 과제 B</span>
+    <h1>프롬프트 신호 점검기</h1>
+    <p class="paper">
+      <span class="lbl">근거 논문</span>
+      <a href="https://gamedh823-cmd.github.io/T10/paper.pdf" target="_blank" rel="noopener">「프롬프트에 곁들인 신호는 AI의 답을 바꾸는가? — ChatGPT·Gemini·Claude 세 AI에 대한 반복 실험」</a>
+      (유지원, 2026)
+    </p>
+    <p class="who" id="one-line">
+      <strong>이 앱은 ChatGPT·Gemini·Claude에 질문을 쓰는 사람을 돕습니다.</strong>
+      프롬프트를 붙여 넣으면 그 안의 신호(토론 지시, 전문가 역할, 다수 의견, 구체적 설명)를 찾아,
+      논문의 실험 수치로 “정답률이 오르는지, 답이 얼마나 길어지는지”를 알려 줍니다.
+    </p>
+  </header>
+
+  <section class="card" aria-labelledby="s1">
+    <h2 id="s1"><span class="n">1</span> 프롬프트를 붙여 넣고 점검하기</h2>
+    <label class="sr" for="prompt">점검할 프롬프트</label>
+    <textarea id="prompt" rows="5" maxlength="6000" placeholder="AI에게 보내려던 프롬프트를 여기에 붙여 넣으세요. 개인정보나 비밀번호는 넣지 마세요."></textarea>
+    <div class="row">
+      <span class="lbl">예시로 해 보기</span>
+      <button class="chip" type="button" data-ex="0">토론 지시</button>
+      <button class="chip" type="button" data-ex="1">전문가 역할</button>
+      <button class="chip" type="button" data-ex="2">다수 의견</button>
+      <button class="chip" type="button" data-ex="3">포스터 요청</button>
+    </div>
+    <div class="row">
+      <button class="btn primary" id="run" type="button">점검하기</button>
+      <span class="count" id="count" aria-live="polite"></span>
+    </div>
+    <p class="err" id="err" role="alert" hidden></p>
+  </section>
+
+  <section id="result" hidden aria-live="polite">
+    <h2 class="sec">점검 결과</h2>
+    <div id="signals"></div>
+  </section>
+
+  <section class="card" id="len-card" hidden aria-labelledby="s2">
+    <h2 id="s2"><span class="n">2</span> 어느 AI에게 보낼지 고르면 예상 답 길이를 봅니다</h2>
+    <div class="row" role="radiogroup" aria-label="AI 선택">
+      <label class="radio"><input type="radio" name="ai" value="chatgpt" checked> ChatGPT</label>
+      <label class="radio"><input type="radio" name="ai" value="gemini"> Gemini</label>
+      <label class="radio"><input type="radio" name="ai" value="claude"> Claude</label>
+    </div>
+    <div class="row">
+      <label for="base">평소 이 AI의 답 길이(글자 수, 비워 두면 논문 평균)</label>
+      <input id="base" type="text" inputmode="numeric" placeholder="예: 300" maxlength="7" autocomplete="off">
+    </div>
+    <p class="err" id="len-err" role="alert" hidden></p>
+    <div id="len-out"></div>
+  </section>
+
+  <section class="card" id="sug-card" hidden aria-labelledby="s3">
+    <h2 id="s3"><span class="n">3</span> 더 나은 프롬프트 제안 받기</h2>
+    <ul id="rules" class="rules"></ul>
+    <div class="row">
+      <button class="btn" id="ask" type="button">AI에게 고친 프롬프트 받기</button>
+      <span class="hint">논문 요약과 함께 Gemini에게 묻습니다. 실패하면 위 규칙 제안만 보입니다.</span>
+    </div>
+    <div id="llm" class="llm" hidden></div>
+  </section>
+
+  <footer class="foot">
+    <p><strong>이 수치를 믿어도 되는 범위</strong> — <span id="scope"></span></p>
+    <p>만든 이: 유지원 · 코드와 사용법은 <a href="https://github.com/gamedh823-cmd/T13" target="_blank" rel="noopener">저장소</a>에 있습니다. 입력한 프롬프트는 저장하지 않으며, 3번 버튼을 누를 때만 서버로 보냅니다.</p>
+  </footer>
+</main>
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
