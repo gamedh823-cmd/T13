@@ -125,3 +125,9 @@ textarea:focus,input:focus,button:focus-visible{outline:3px solid color-mix(in s
 .hero .who{margin-left:auto;margin-right:auto}
 .hero .steps{justify-content:center}
 .hero .paper{text-align:left;margin-left:0;margin-right:0}
+
+/* 설명 문장: 데스크톱에서는 정확히 두 줄 */
+.hero .who{max-width:none;font-size:clamp(14px,2.3vw,15.5px)}
+.hero .who strong{font-size:clamp(19px,3vw,24px)}
+.who .ln{display:block}
+@media (min-width:700px){.who .ln{white-space:nowrap}}
