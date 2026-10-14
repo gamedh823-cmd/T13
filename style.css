@@ -150,3 +150,16 @@ textarea:focus,input:focus,button:focus-visible{outline:3px solid color-mix(in s
 .card.main .rules{font-size:15px}
 .card.main .btn{font-size:15.5px;padding:12px 26px}
 .eyebrow{display:none}
+
+/* 메인 카드: 연한 파스텔 배경으로 강조 (선·띠 없음) */
+.card.main{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 11%,var(--card)) 0%,color-mix(in srgb,var(--accent2) 14%,var(--card)) 55%,color-mix(in srgb,#ec4899 9%,var(--card)) 100%);
+  border:1px solid color-mix(in srgb,var(--accent) 18%,var(--line));
+  box-shadow:0 10px 30px color-mix(in srgb,var(--accent) 10%,transparent);
+  padding:clamp(22px,4vw,32px)}
+.card.main h2{font-size:clamp(21px,3.6vw,25px);letter-spacing:-.03em}
+.card.main h2 .n{width:32px;height:32px;font-size:15px}
+.card.main .rules{font-size:16px}
+.eyebrow{display:inline-block;margin:0 0 8px;font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--accent);background:color-mix(in srgb,var(--card) 70%,transparent);border-radius:99px;padding:3px 12px}
+.card.main .btn:not(.primary){background:var(--card)}
+.llm .fx{background:var(--card);border-color:color-mix(in srgb,var(--accent) 30%,transparent)}
