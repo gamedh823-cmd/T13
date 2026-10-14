@@ -141,3 +141,12 @@ textarea:focus,input:focus,button:focus-visible{outline:3px solid color-mix(in s
 
 /* 입력 카드: 파란 테두리 제거(다른 카드와 동일) */
 .card.entry{border:1px solid var(--line)}
+
+/* 메인 카드: 튀는 테두리·띠·그림자 제거, 일반 카드와 같은 톤 */
+.card.main{border:1px solid var(--line);box-shadow:var(--shadow);padding:24px;overflow:visible}
+.card.main::before{display:none}
+.card.main h2{font-size:19px;margin-bottom:14px}
+.card.main h2 .n{width:28px;height:28px;font-size:14px}
+.card.main .rules{font-size:15px}
+.card.main .btn{font-size:15.5px;padding:12px 26px}
+.eyebrow{display:none}
