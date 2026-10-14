@@ -313,6 +313,42 @@
     return out;
   }
 
+  // ---- 질문 구체화 가이드 ---------------------------------------------------
+  // 논문 수치가 아니라 일반적인 프롬프트 작성 요령이다. 근거는 두 가지뿐이다:
+  // (1) 포스터 실험(H1): 구체적으로 설명할수록 같은 요청의 결과가 일관됐다.
+  // (2) 선행 연구(Sclar et al., 2024): 프롬프트 형식의 사소한 차이가 결과를 크게 바꿀 수 있다.
+  var GAPS = [
+    { id: 'context', key: '상황', label: '상황·대상', q: '누가, 어떤 상황에서 쓰나요?', ph: '예: 대학 게임 동아리, 부원 20명, 초보도 참여', re: /우리|저는|제가|내가|나는|동아리|학교|회사|팀|상황|배경|대상|초보|학생|직장|고객|친구|가족|사용자|for (a|an|my|our)/i },
+    { id: 'goal', key: '원하는 결과', label: '원하는 결과', q: '답으로 정확히 무엇을 얻고 싶나요?', ph: '예: 이번 학기에 열 행사 3개와 각각의 진행 방식', re: /알려|추천|만들|써\s*줘|작성|설명|정리|요약|비교|풀어|계산|번역|구해|해\s*줘|해\s*주세요|\?|tell me|write|explain|list/i, minLen: 25 },
+    { id: 'constraints', key: '조건', label: '조건·제약', q: '지켜야 할 조건이 있나요? (예산·인원·기간·장소 등)', ph: '예: 예산 10만 원 이하, 3주 안에, 교내에서', re: /예산|인원|기간|시간|장소|조건|제한|이하|이상|까지|안에|\d+\s*(명|원|일|주|분|시간|개월)|within|budget|deadline/i },
+    { id: 'format', key: '형식', label: '답의 형식', q: '답을 어떤 모양으로 받고 싶나요?', ph: '예: 표로, 항목마다 한 줄 설명, 총 5개', re: /줄|문장|표|목록|리스트|단계|글자|개조식|형식|분량|\d+\s*(개|가지|줄|문장|자)|bullet|table|json|format/i },
+    { id: 'criteria', key: '고르는 기준', label: '고르는 기준', q: '여러 후보 중 무엇을 가장 중요하게 보나요?', ph: '예: 참여하기 쉬운 것, 준비가 적은 것 우선', re: /기준|우선|중요|가장|제일|장단점|비교|고려|특히|priority|criteria/i }
+  ];
+
+  /** 빠진 정보 목록. 항상 배열을 돌려주고, 입력이 이상하면 빈 배열이다. */
+  function gaps(input) {
+    var text = clean(typeof input === 'string' ? input : '');
+    if (text.length < 4) return [];
+    return GAPS.filter(function (g) {
+      if (g.minLen && text.length < g.minLen) return true;
+      return !g.re.test(text);
+    }).map(function (g) {
+      return { id: g.id, key: g.key, label: g.label, q: g.q, ph: g.ph };
+    });
+  }
+
+  /** 원문 아래에 사용자가 채운 칸을 붙여 새 프롬프트를 만든다. 빈 칸은 무시한다. */
+  function buildPrompt(original, answers) {
+    var text = clean(typeof original === 'string' ? original : '');
+    var lines = [];
+    GAPS.forEach(function (g) {
+      var v = answers && typeof answers[g.id] === 'string' ? clean(answers[g.id]).slice(0, 300) : '';
+      if (v) lines.push('- ' + g.key + ': ' + v);
+    });
+    if (!text) return '';
+    return lines.length ? text + '\n\n[추가 정보]\n' + lines.join('\n') : text;
+  }
+
   var api = {
     PAPER: PAPER,
     MAX_LEN: MAX_LEN,
@@ -329,6 +365,8 @@
       { id: 'brainstorm', label: '열린 추천 요청' }
     ],
     analyze: analyze,
+    gaps: gaps,
+    buildPrompt: buildPrompt,
     observedRatios: observedRatios,
     finding: finding,
     ruleSuggestions: ruleSuggestions

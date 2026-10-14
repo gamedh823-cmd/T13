@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>프롬프트 신호 점검기</title>
-<meta name="description" content="프롬프트를 붙여 넣으면 토론 지시·전문가 역할·다수 의견·구체적 설명 신호를 찾아, 논문 실험 수치로 정답률과 답 길이가 어떻게 달라지는지 알려 줍니다.">
+<meta name="description" content="프롬프트를 붙여 넣으면 신호 8가지가 답에 주는 영향을 논문 결과로 짚어 주고, 빠진 정보를 채워 더 구체적인 질문으로 고치도록 돕습니다.">
 <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
@@ -14,19 +14,19 @@
     <span class="badge"><i></i>논문 기반 앱 · 마지막 과제 B</span>
     <h1>프롬프트<br><span class="grad">신호</span> 점검기</h1>
     <p class="who" id="one-line">
-      <strong>이 앱은 ChatGPT·Gemini·Claude에 질문을 쓰는 사람을 돕습니다.</strong>
-      프롬프트를 붙여 넣으면 그 안의 신호 8가지(토론 지시, 전문가 역할, 다수 의견, 이미지 구체성, 풀이 과정, 예시, 내 의견, 열린 추천)를 찾아,
-      논문의 실험 수치로 “정답률이 오르는지, 답이 얼마나 길어지는지”를 알려 줍니다.
+      <strong>이 앱은 AI에게 질문을 쓰는 사람이 원하는 답을 얻도록 돕습니다.</strong>
+      프롬프트를 붙여 넣으면 그 안의 신호 8가지가 답에 어떤 영향을 주는지 논문 결과로 짚어 주고,
+      빠진 정보를 채워 더 구체적인 질문으로 고치는 방향을 잡아 줍니다.
     </p>
     <p class="paper">
       <span class="lbl">근거 논문</span>
       <a href="https://gamedh823-cmd.github.io/T10/paper.pdf" target="_blank" rel="noopener">「프롬프트에 곁들인 신호는 AI의 답을 바꾸는가? — ChatGPT·Gemini·Claude 세 AI에 대한 반복 실험」</a>
       (유지원, 2026)
     </p>
-    <ol class="steps"><li>프롬프트 붙여 넣기</li><li>신호 8가지 확인</li><li>고친 문장 받기</li></ol>
+    <ol class="steps"><li>프롬프트 붙여 넣기</li><li>신호 8가지 확인</li><li>빠진 정보 채우기</li></ol>
   </header>
 
-  <section class="card" aria-labelledby="s1">
+  <section class="card entry" aria-labelledby="s1">
     <h2 id="s1"><span class="n">1</span> 프롬프트를 붙여 넣고 점검하기</h2>
     <label class="sr" for="prompt">점검할 프롬프트</label>
     <textarea id="prompt" rows="5" maxlength="6000" placeholder="AI에게 보내려던 프롬프트를 여기에 붙여 넣으세요. 개인정보나 비밀번호는 넣지 마세요."></textarea>
@@ -49,13 +49,27 @@
     <div id="signals"></div>
   </section>
 
+  <section class="card" id="gap-card" hidden aria-labelledby="s-gap">
+    <h2 id="s-gap"><span class="n">2</span> 질문을 더 구체적으로 — 빠진 정보 채우기</h2>
+    <p class="lead">원하는 답에 가까워지려면 아래 정보가 있으면 좋아요. 아는 칸만 채우면 됩니다.</p>
+    <div id="gap-fields"></div>
+    <h3 class="mini">완성된 프롬프트</h3>
+    <textarea id="built" rows="6" readonly aria-label="완성된 프롬프트"></textarea>
+    <div class="row">
+      <button class="btn primary" id="copy" type="button">복사하기</button>
+      <span class="hint" id="copied" aria-live="polite"></span>
+    </div>
+    <p class="note">이 단계는 논문의 수치가 아니라 일반적인 프롬프트 작성 요령입니다. 근거는 포스터 실험(H1)에서 구체적으로 설명할수록 결과가 일관됐다는 관찰과, 프롬프트 형식의 차이가 결과를 크게 바꿀 수 있다는 선행 연구(Sclar et al., 2024)뿐이고, 채운 질문이 더 좋은 답을 낸다는 것은 이 논문이 검증하지 않았습니다.</p>
+  </section>
+
   <section class="card" id="len-card" hidden aria-labelledby="s2">
     <h2 id="s2"><span class="n">2</span> 논문에서는 답이 얼마나 달라졌나</h2>
     <div id="len-out"></div>
   </section>
 
-  <section class="card" id="sug-card" hidden aria-labelledby="s3">
-    <h2 id="s3"><span class="n" id="n3">3</span> 더 나은 프롬프트 제안 받기</h2>
+  <section class="card main" id="sug-card" hidden aria-labelledby="s3">
+    <p class="eyebrow">핵심 결과</p>
+    <h2 id="s3"><span class="n">4</span> 더 나은 프롬프트 제안 받기</h2>
     <ul id="rules" class="rules"></ul>
     <div class="row">
       <button class="btn" id="ask" type="button">AI에게 고친 프롬프트 받기</button>

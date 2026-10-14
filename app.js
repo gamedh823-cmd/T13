@@ -45,6 +45,7 @@
     if (!a || !a.ok) {
       $('result').hidden = true;
       $('len-card').hidden = true;
+      $('gap-card').hidden = true;
       $('sug-card').hidden = true;
       return;
     }
@@ -90,13 +91,74 @@
     if (a.truncated) box.appendChild(el('p', 'note', '입력이 ' + PSC.MAX_LEN + '자를 넘어 앞부분만 점검했어요.'));
 
     $('sug-card').hidden = false;
+    renderGaps();
     renderLength();
+    renumber();
     var ul2 = $('rules');
     clear(ul2);
     PSC.ruleSuggestions(a).forEach(function (t) {
       ul2.appendChild(el('li', '', t));
     });
     $('llm').hidden = true;
+  }
+
+  function renumber() {
+    var i = 1;
+    document.querySelectorAll('.card').forEach(function (c) {
+      var n = c.querySelector('h2 .n');
+      if (n && !c.hidden) n.textContent = String(i++);
+    });
+  }
+
+  function renderGaps() {
+    var a = state.analysis;
+    var wrap = $('gap-fields');
+    clear(wrap);
+    $('copied').textContent = '';
+    var list = a && a.ok ? PSC.gaps(a.text) : [];
+    $('gap-card').hidden = !(a && a.ok);
+    if (!(a && a.ok)) return;
+    var answers = {};
+    function update() {
+      $('built').value = PSC.buildPrompt(a.text, answers);
+    }
+    if (!list.length) {
+      wrap.appendChild(el('div', 'none', '상황·조건·형식·기준이 이미 잘 들어 있는 질문이에요. 그대로 보내도 좋고, 아래에 완성된 프롬프트를 복사해 쓸 수 있어요.'));
+    }
+    list.forEach(function (g) {
+      var box = el('div', 'gap');
+      var id = 'gap-' + g.id;
+      var lab = el('label', '', g.label + ' — ' + g.q);
+      lab.setAttribute('for', id);
+      var inp = document.createElement('input');
+      inp.type = 'text';
+      inp.id = id;
+      inp.maxLength = 300;
+      inp.placeholder = g.ph;
+      inp.autocomplete = 'off';
+      inp.addEventListener('input', function () {
+        answers[g.id] = inp.value;
+        update();
+      });
+      box.appendChild(lab);
+      box.appendChild(inp);
+      wrap.appendChild(box);
+    });
+    update();
+  }
+
+  function copyBuilt() {
+    var ta = $('built');
+    var done = function (ok) {
+      $('copied').textContent = ok ? '복사했어요. AI 채팅창에 붙여 넣으세요.' : '복사에 실패했어요. 글상자를 직접 선택해 복사해 주세요.';
+    };
+    if (!ta.value) return done(false);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(ta.value).then(function () { done(true); }, function () { done(false); });
+    } else {
+      ta.select();
+      try { done(document.execCommand('copy')); } catch (e) { done(false); }
+    }
   }
 
   function renderLength() {
@@ -110,7 +172,6 @@
     }));
     // 토론·역할 신호가 없으면 논문에 관찰값이 없으므로 예측하지 않고 카드를 숨긴다.
     card.hidden = !o;
-    $('n3').textContent = o ? '3' : '2';
     if (!o) return;
     var label = o.condition === 'D' ? '토론 지시를 넣었더니' : '전문가 역할을 넣었더니';
     out.appendChild(el('p', 'lead', label + ', 같은 문제의 답 글자 수가 신호 없을 때보다 이렇게 달라졌어요 (조건당 10문제 평균).'));
@@ -149,6 +210,35 @@
     $('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  // 응답이 "1) 한 줄 진단 … 2) 고친 프롬프트 …" 꼴이면 둘로 나눠 보여 주고, 아니면 통째로 보여 준다.
+  function showLlm(out, text) {
+    clear(out);
+    var m = String(text).split(/\n?\s*2\)\s*고친\s*프롬프트\s*[:：]?\s*/);
+    if (m.length >= 2 && m[1].trim()) {
+      var dx = m[0].replace(/^\s*1\)\s*한\s*줄\s*진단\s*[:：]?\s*/, '').trim();
+      var fx = m.slice(1).join(' ').trim();
+      if (dx) {
+        out.appendChild(el('p', 'dxl', '한 줄 진단'));
+        out.appendChild(el('p', 'dx', dx));
+      }
+      out.appendChild(el('p', 'dxl', '이렇게 고쳐 보세요'));
+      out.appendChild(el('p', 'fx', fx));
+      var b = el('button', 'btn primary', '고친 프롬프트 복사');
+      b.type = 'button';
+      b.addEventListener('click', function () {
+        var done = function (ok) {
+          b.textContent = ok ? '복사했어요' : '복사 실패: 직접 선택해 주세요';
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(fx).then(function () { done(true); }, function () { done(false); });
+        } else done(false);
+      });
+      out.appendChild(b);
+    } else {
+      out.appendChild(el('p', 'fx', String(text)));
+    }
+  }
+
   function ask() {
     var a = state.analysis;
     var out = $('llm');
@@ -156,7 +246,8 @@
     if (!a || !a.ok) return;
     btn.disabled = true;
     out.hidden = false;
-    out.textContent = '묻는 중… (최대 20초)';
+    clear(out);
+    out.appendChild(el('p', 'dx', '묻는 중… (최대 20초)'));
     var ctrl = new AbortController();
     var timer = setTimeout(function () {
       ctrl.abort();
@@ -179,7 +270,7 @@
       })
       .then(function (r) {
         if (r.ok && r.body && r.body.text) {
-          out.textContent = r.body.text;
+          showLlm(out, r.body.text);
           return;
         }
         var why = (r.body && r.body.error) || '';
@@ -198,6 +289,7 @@
   }
 
   $('run').addEventListener('click', run);
+  $('copy').addEventListener('click', copyBuilt);
   $('ask').addEventListener('click', ask);
   $('prompt').addEventListener('input', function () {
     var n = this.value.length;

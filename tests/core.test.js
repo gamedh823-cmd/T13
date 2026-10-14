@@ -70,6 +70,29 @@ t('체크리스트는 8칸', () => {
   assert.strictEqual(C.CHECKLIST.length, 8);
 });
 
+// ---- 질문 구체화 ----
+t('빠진 정보: 막연한 질문은 여러 칸이 비어 있다고 나옴', () => {
+  const g = C.gaps('행사 추천해줘').map((x) => x.id);
+  assert.ok(g.includes('context') && g.includes('constraints') && g.includes('format'));
+});
+t('빠진 정보: 조건·형식이 있으면 그 칸은 빠짐', () => {
+  const g = C.gaps('우리 동아리(부원 20명)에서 예산 10만 원 이하로 열 행사를 표로 5개 추천해줘. 참여하기 쉬운 걸 가장 중요하게 봐줘.').map((x) => x.id);
+  assert.deepStrictEqual(g, []);
+});
+t('빠진 정보: 이상한 입력은 빈 배열', () => {
+  for (const v of [null, undefined, 5, {}, '', '  ']) assert.deepStrictEqual(C.gaps(v), []);
+});
+t('프롬프트 만들기: 채운 칸만 붙고 빈 칸·긴 값·이상한 입력은 안전', () => {
+  const p = C.buildPrompt('행사 추천해줘', { context: '게임 동아리', format: '표로 5개', constraints: '   ' });
+  assert.ok(p.startsWith('행사 추천해줘\n\n[추가 정보]'));
+  assert.ok(p.includes('- 상황: 게임 동아리') && p.includes('- 형식: 표로 5개'));
+  assert.ok(!p.includes('조건'));
+  assert.strictEqual(C.buildPrompt('원문', {}), '원문');
+  assert.strictEqual(C.buildPrompt('', { context: 'x' }), '');
+  assert.strictEqual(C.buildPrompt(null, null), '');
+  assert.ok(C.buildPrompt('q', { goal: 'a'.repeat(5000) }).length < 400);
+});
+
 // ---- 잘못된 입력에도 멈추지 않음 ----
 t('빈 문자열·공백·너무 짧은 입력', () => {
   for (const v of ['', '   ', '\n\n', 'a']) {
