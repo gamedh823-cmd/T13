@@ -119,3 +119,9 @@ textarea:focus,input:focus,button:focus-visible{outline:3px solid color-mix(in s
 .llm .dx{margin:0;font-size:16px;word-break:keep-all}
 .llm .fx{margin:0 0 14px;padding:18px 20px;border-radius:16px;font-size:clamp(17px,2.6vw,20px);line-height:1.7;font-weight:700;letter-spacing:-.02em;word-break:keep-all;
   background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 12%,var(--card)),color-mix(in srgb,var(--accent2) 14%,var(--card)));border:1.5px solid color-mix(in srgb,var(--accent) 45%,transparent)}
+
+/* 히어로 가운데 정렬 (근거 논문 줄만 왼쪽 정렬 유지) */
+.hero{text-align:center}
+.hero .who{margin-left:auto;margin-right:auto}
+.hero .steps{justify-content:center}
+.hero .paper{text-align:left;margin-left:0;margin-right:0}
