@@ -87,6 +87,26 @@ t('규칙 제안에 빠진 정보 안내가 들어감', () => {
   assert.ok(r.some((x) => x.startsWith('질문에 빠진 정보')));
 });
 
+// ---- 부정 표현 (동료 피드백) ----
+t('"토론하지 말고"는 토론 지시로 세지 않고 건너뛴 표현으로 기록', () => {
+  const r = C.analyze('토론하지 말고 7의 222제곱을 13으로 나눈 나머지만 알려줘');
+  assert.ok(!ids(r).includes('debate'));
+  assert.ok(r.skipped.some((s) => s.id === 'debate'));
+});
+t('부정 표현 여러 형태: 없이·빼고·제외·don\'t', () => {
+  for (const q of ['토론 없이 답만 줘', '반박은 빼고 답만 알려줘', '전문가 역할은 제외하고 알려줘', "don't debate, just answer 2+2"]) {
+    const r = C.analyze(q);
+    assert.ok(r.signals.every((s) => s.id !== 'debate' && s.id !== 'persona'), q);
+  }
+});
+t('부정이 아닌 토론 지시는 그대로 감지', () => {
+  assert.ok(ids(C.analyze('두 전문가가 토론해서 풀어 줘')).includes('debate'));
+  assert.ok(ids(C.analyze('토론 형식으로 풀어 주세요')).includes('debate'));
+});
+t('토론 지시가 한 번 부정되고 한 번 쓰이면 쓰인 쪽을 감지', () => {
+  assert.ok(ids(C.analyze('길게 토론하지 말고, 대신 두 명의 전문가가 토론하듯 풀어 줘')).includes('debate'));
+});
+
 // ---- 잘못된 입력에도 멈추지 않음 ----
 t('빈 문자열·공백·너무 짧은 입력', () => {
   for (const v of ['', '   ', '\n\n', 'a']) {

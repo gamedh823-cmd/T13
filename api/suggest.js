@@ -7,7 +7,7 @@ const ALLOWED_ORIGINS = [
   'https://t13real.vercel.app'
 ];
 const SIGNALS = ['debate', 'persona', 'majority', 'specific', 'vague', 'cot', 'fewshot', 'opinion', 'brainstorm'];
-const MAX_PROMPT = 1500; // 글자
+const MAX_PROMPT = 4000; // 글자 (화면의 점검 한도 core.js MAX_LEN과 같게 맞춤)
 const WINDOW_MS = 60 * 1000;
 const MAX_PER_WINDOW = 5; // IP당 분당 5회 (서버가 살아 있는 동안만 세는 대략적 제한)
 const hits = new Map();

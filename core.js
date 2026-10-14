@@ -84,9 +84,32 @@
     return input.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, '').trim();
   }
 
-  function firstMatch(re, text) {
-    var m = text.match(re);
-    return m ? m[0] : null;
+  // "토론하지 말고", "토론 없이", "don't debate"처럼 신호를 빼 달라는 표현이 붙어 있는지 본다.
+  var NEG_AFTER = /^[^.\n]{0,12}?(하지\s*(말|마|않|맙)|말고|말아|빼고|빼\s*줘|빼\s*주|제외|필요\s*(없|하지)|안\s*(해|써|쓰)|금지|없이)/;
+  var NEG_BEFORE = /(없이|빼고|제외|no|without|don'?t|do not|never)\s*$/i;
+
+  function isNegated(text, idx, len) {
+    var after = text.slice(idx + len, idx + len + 16);
+    var before = text.slice(Math.max(0, idx - 10), idx);
+    return NEG_AFTER.test(after) || NEG_BEFORE.test(before);
+  }
+
+  // 부정되지 않은 첫 일치를 돌려준다. 부정돼서 건너뛴 표현은 skipped에 모은다.
+  function firstMatch(re, text, skipped, id) {
+    var g = new RegExp(re.source, re.flags.indexOf('g') >= 0 ? re.flags : re.flags + 'g');
+    var m;
+    while ((m = g.exec(text)) !== null) {
+      if (m[0] === '') {
+        g.lastIndex++;
+        continue;
+      }
+      if (skipped && isNegated(text, m.index, m[0].length)) {
+        skipped.push({ id: id, text: m[0].trim() });
+        continue;
+      }
+      return m[0];
+    }
+    return null;
   }
 
   function specificity(text) {
@@ -116,14 +139,15 @@
     }
 
     var signals = [];
+    var skipped = [];
     var ev;
-    if ((ev = firstMatch(RULES.debate, text))) signals.push({ id: 'debate', evidence: ev });
-    if ((ev = firstMatch(RULES.persona, text))) signals.push({ id: 'persona', evidence: ev });
-    if ((ev = firstMatch(RULES.majority, text))) signals.push({ id: 'majority', evidence: ev });
-    if ((ev = firstMatch(RULES.cot, text))) signals.push({ id: 'cot', evidence: ev });
-    if ((ev = firstMatch(RULES.fewshot, text))) signals.push({ id: 'fewshot', evidence: ev });
-    if ((ev = firstMatch(RULES.opinion, text))) signals.push({ id: 'opinion', evidence: ev });
-    if ((ev = firstMatch(RULES.brainstorm, text))) signals.push({ id: 'brainstorm', evidence: ev });
+    if ((ev = firstMatch(RULES.debate, text, skipped, 'debate'))) signals.push({ id: 'debate', evidence: ev });
+    if ((ev = firstMatch(RULES.persona, text, skipped, 'persona'))) signals.push({ id: 'persona', evidence: ev });
+    if ((ev = firstMatch(RULES.majority, text, skipped, 'majority'))) signals.push({ id: 'majority', evidence: ev });
+    if ((ev = firstMatch(RULES.cot, text, skipped, 'cot'))) signals.push({ id: 'cot', evidence: ev });
+    if ((ev = firstMatch(RULES.fewshot, text, skipped, 'fewshot'))) signals.push({ id: 'fewshot', evidence: ev });
+    if ((ev = firstMatch(RULES.opinion, text, skipped, 'opinion'))) signals.push({ id: 'opinion', evidence: ev });
+    if ((ev = firstMatch(RULES.brainstorm, text, skipped, 'brainstorm'))) signals.push({ id: 'brainstorm', evidence: ev });
     if (RULES.image.test(text)) {
       var spec = specificity(text);
       if (spec.length >= SPECIFIC_MIN) {
@@ -132,7 +156,7 @@
         signals.push({ id: 'vague', evidence: firstMatch(RULES.image, text), features: spec });
       }
     }
-    return { ok: true, text: text, length: text.length, truncated: truncated, signals: signals };
+    return { ok: true, text: text, length: text.length, truncated: truncated, signals: signals, skipped: skipped };
   }
 
   /**

@@ -67,6 +67,17 @@
     box.appendChild(el('p', 'sum', PSC.CHECKLIST.length + '가지 신호 중 ' + hit + '가지가 이 프롬프트에 있어요'));
     box.appendChild(grid);
     box.appendChild(el('p', 'note', '진한 칸은 이번 논문이 직접 실험한 신호 4가지, 옅은 칸은 선행 연구에서 가져온 신호 4가지입니다.'));
+    if (a.skipped && a.skipped.length) {
+      var seen = {};
+      var parts = [];
+      a.skipped.forEach(function (k) {
+        if (!seen[k.text]) {
+          seen[k.text] = 1;
+          parts.push('“' + k.text + '”');
+        }
+      });
+      box.appendChild(el('p', 'note', '빼 달라는 표현이 붙어 있어 신호로 세지 않았어요: ' + parts.join(', ')));
+    }
     if (!a.signals.length) {
       box.appendChild(
         el('div', 'none', '이 프롬프트에는 위 8가지 신호가 없어서, 논문이 비교한 기준(신호 없음) 조건과 같아요. 신호가 없는 건 나쁜 게 아니라 “곁들인 말 때문에 답이 달라질 일이 없다”는 뜻이에요. 위의 예시 버튼으로 각 신호가 어떻게 잡히는지 볼 수 있어요.')
@@ -203,7 +214,7 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        prompt: a.text.slice(0, 1500),
+        prompt: a.text,
         signals: a.signals.map(function (s) {
           return s.id;
         })
