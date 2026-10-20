@@ -22,7 +22,9 @@ val_unseen = [r for r in train_all if r['split'] == 'val_unseen']
 # 직접 쓴 문장(extra_handwritten)과 Workbench 문장(workbench_clean)은 있으면 학습에 더한다. --no-extra 로 빼고 비교할 수 있다.
 val_hand = []
 if '--no-extra' not in sys.argv:
-    for fn in ('extra_handwritten.jsonl', 'workbench_clean.jsonl'):
+    for fn in ('extra_handwritten.jsonl', 'extra_hard.jsonl', 'workbench_clean.jsonl'):
+        if fn == 'extra_hard.jsonl' and '--no-hard' in sys.argv:
+            continue
         p = os.path.join(HERE, 'data', fn)
         if os.path.exists(p):
             rows = load_jsonl(p)
@@ -105,4 +107,9 @@ model = {
 }
 with io.open(os.path.join(HERE, 'model.json'), 'w', encoding='utf-8', newline='\n') as f:
     json.dump(model, f, ensure_ascii=False, separators=(',', ':'))
+# 로컬 파일(index.html을 더블클릭)로 열어도 모델을 읽을 수 있게 같은 내용을 JS 파일로도 저장한다.
+with io.open(os.path.join(HERE, 'model.js'), 'w', encoding='utf-8', newline='\n') as f:
+    f.write('window.PSC_MODEL=')
+    json.dump(model, f, ensure_ascii=False, separators=(',', ':'))
+    f.write(';\n')
 print('\nmodel.json 저장: %.0f KB, 어휘 %d개' % (os.path.getsize(os.path.join(HERE, 'model.json')) / 1024, len(vocab)))

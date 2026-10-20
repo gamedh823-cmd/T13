@@ -88,7 +88,7 @@
       var card = el('div', 'sig');
       if (f.lit) card.appendChild(el('span', 'tag', '선행 연구 기반 · 이번 실험 아님'));
       card.appendChild(el('h3', '', f.title));
-      card.appendChild(el('p', 'found', '찾은 표현: “' + s.evidence + '”'));
+      card.appendChild(el('p', 'found', s.evidence ? '찾은 표현: “' + s.evidence + '”' : '문장 전체의 맥락으로 판단했어요 (학습한 모델)'));
       card.appendChild(el('p', 'verdict', f.verdict));
       var ul = el('ul');
       f.lines.forEach(function (l) {
@@ -157,6 +157,7 @@
   function run() {
     showErr($('err'), '');
     var a = PSC.analyze($('prompt').value);
+    if (a.ok && window.PSCML && window.PSC_MODEL) a = window.PSCML.combine(a, window.PSC_MODEL);
     if (!a.ok) {
       state.analysis = null;
       showErr($('err'), a.error);

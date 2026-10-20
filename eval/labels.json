@@ -816,5 +816,161 @@
   "kind": "mention",
   "text": "예시라는 단어의 영어 표현은 뭐야?",
   "signals": []
+ },
+ {
+  "id": "L097",
+  "split": "dev",
+  "kind": "hard",
+  "text": "엑셀에서 중복값 지우는 방법이 없을까?",
+  "signals": []
+ },
+ {
+  "id": "L098",
+  "split": "dev",
+  "kind": "hard",
+  "text": "영어 단어 빨리 외우는 새로운 방법 알려줘",
+  "signals": []
+ },
+ {
+  "id": "L099",
+  "split": "dev",
+  "kind": "hard",
+  "text": "이 보고서를 더 잘 구성할 방법 없을까?",
+  "signals": []
+ },
+ {
+  "id": "L100",
+  "split": "dev",
+  "kind": "hard",
+  "text": "추천 시스템이 어떻게 동작하는지 설명해 줘",
+  "signals": []
+ },
+ {
+  "id": "L101",
+  "split": "holdout",
+  "kind": "hard",
+  "text": "노트북이 자꾸 꺼지는데 어떻게 하면 좋을까?",
+  "signals": []
+ },
+ {
+  "id": "L102",
+  "split": "dev",
+  "kind": "hard",
+  "text": "프린터를 연결하는 다른 방법은 없어?",
+  "signals": []
+ },
+ {
+  "id": "L103",
+  "split": "dev",
+  "kind": "hard",
+  "text": "아이디어 노트 앱 사용법 알려 줘",
+  "signals": []
+ },
+ {
+  "id": "L104",
+  "split": "dev",
+  "kind": "hard",
+  "text": "프로그램을 새로운 버전으로 올리는 방법 알려 줘",
+  "signals": []
+ },
+ {
+  "id": "L105",
+  "split": "dev",
+  "kind": "hard",
+  "text": "회의를 더 효율적으로 하는 방법이 있을까?",
+  "signals": []
+ },
+ {
+  "id": "L106",
+  "split": "holdout",
+  "kind": "hard",
+  "text": "추천서 양식이 어떻게 생겼는지 알려 줘",
+  "signals": []
+ },
+ {
+  "id": "L107",
+  "split": "dev",
+  "kind": "hard",
+  "text": "브레인스토밍이 무슨 뜻이야?",
+  "signals": []
+ },
+ {
+  "id": "L108",
+  "split": "dev",
+  "kind": "hard",
+  "text": "이 코드 속도를 개선할 방법 있어?",
+  "signals": []
+ },
+ {
+  "id": "L109",
+  "split": "dev",
+  "kind": "hard",
+  "text": "동아리 MT 때 할 만한 게임 뭐 있을까?",
+  "signals": [
+   "brainstorm"
+  ]
+ },
+ {
+  "id": "L110",
+  "split": "dev",
+  "kind": "hard",
+  "text": "발표 주제로 뭐가 좋을지 몇 개만 알려 줘",
+  "signals": [
+   "brainstorm"
+  ]
+ },
+ {
+  "id": "L111",
+  "split": "holdout",
+  "kind": "hard",
+  "text": "고양이 이름 후보 좀 지어 줘",
+  "signals": [
+   "brainstorm"
+  ]
+ },
+ {
+  "id": "L112",
+  "split": "dev",
+  "kind": "hard",
+  "text": "주말에 데이트 갈 만한 곳 추천해 줘",
+  "signals": [
+   "brainstorm"
+  ]
+ },
+ {
+  "id": "L113",
+  "split": "dev",
+  "kind": "hard",
+  "text": "친구 생일선물로 뭐가 좋을지 몇 가지만 골라 줘",
+  "signals": [
+   "brainstorm"
+  ]
+ },
+ {
+  "id": "L114",
+  "split": "dev",
+  "kind": "hard",
+  "text": "What should I name my dog? Give me a few options.",
+  "signals": [
+   "brainstorm"
+  ]
+ },
+ {
+  "id": "L115",
+  "split": "dev",
+  "kind": "hard",
+  "text": "새로 시작해 볼 취미 뭐 있을까?",
+  "signals": [
+   "brainstorm"
+  ]
+ },
+ {
+  "id": "L116",
+  "split": "holdout",
+  "kind": "hard",
+  "text": "점심에 먹을 만한 메뉴 몇 개만 골라 줘",
+  "signals": [
+   "brainstorm"
+  ]
  }
 ]

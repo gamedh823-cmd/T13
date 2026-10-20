@@ -55,7 +55,39 @@
     return out;
   }
 
-  var api = { predict: predict, charWbNgrams: charWbNgrams };
+  var THRESHOLD = 0.4; // 이 값 이상이면 신호로 본다. 오탐(엉뚱한 신호)을 줄이려고 개발용 라벨에서 정밀도가 높은 쪽을 골랐다.
+
+  /**
+   * 규칙 분석 결과(analysis)에 학습 모델의 판단을 입힌다.
+   * 모델이 없거나 이상하면 규칙 결과를 그대로 돌려준다(앱이 멈추지 않게).
+   * 모델이 찾은 신호는 "찾은 표현"이 없으면 evidence를 null로 둔다(화면에서 따로 설명).
+   */
+  function combine(analysis, model, thr) {
+    if (!analysis || !analysis.ok || !model) return analysis;
+    var t = typeof thr === 'number' ? thr : THRESHOLD;
+    var p = predict(model, analysis.text);
+    var ids = Object.keys(p);
+    if (!ids.length) return analysis;
+    var byRule = {};
+    analysis.signals.forEach(function (s) {
+      byRule[s.id] = s;
+    });
+    var out = [];
+    ids.forEach(function (id) {
+      if (p[id] >= t) out.push({ id: id, evidence: byRule[id] ? byRule[id].evidence : null, prob: p[id], features: byRule[id] && byRule[id].features });
+    });
+    // 이미지 요청은 구체적(specific)과 막연함(vague) 중 하나만 남긴다.
+    var sp = out.filter(function (s) { return s.id === 'specific'; })[0];
+    var vg = out.filter(function (s) { return s.id === 'vague'; })[0];
+    if (sp && vg) out = out.filter(function (s) { return s !== (sp.prob >= vg.prob ? vg : sp); });
+    var res = {};
+    Object.keys(analysis).forEach(function (k) { res[k] = analysis[k]; });
+    res.signals = out;
+    res.engine = 'model';
+    return res;
+  }
+
+  var api = { predict: predict, charWbNgrams: charWbNgrams, combine: combine, THRESHOLD: THRESHOLD };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.PSCML = api;
 })(typeof window !== 'undefined' ? window : globalThis);
