@@ -19,6 +19,20 @@ def load_jsonl(p):
 train_all = load_jsonl(os.path.join(HERE, 'data', 'train.jsonl'))
 train = [r for r in train_all if r['split'] == 'train']
 val_unseen = [r for r in train_all if r['split'] == 'val_unseen']
+# 직접 쓴 문장(extra_handwritten)과 Workbench 문장(workbench_clean)은 있으면 학습에 더한다. --no-extra 로 빼고 비교할 수 있다.
+val_hand = []
+if '--no-extra' not in sys.argv:
+    for fn in ('extra_handwritten.jsonl', 'workbench_clean.jsonl'):
+        p = os.path.join(HERE, 'data', fn)
+        if os.path.exists(p):
+            rows = load_jsonl(p)
+            train += [r for r in rows if r['split'] == 'train']
+            val_hand += [r for r in rows if r['split'] == 'val_hand']
+else:
+    p = os.path.join(HERE, 'data', 'extra_handwritten.jsonl')
+    if os.path.exists(p):
+        val_hand = [r for r in load_jsonl(p) if r['split'] == 'val_hand']
+print('학습 문장 %d개' % len(train))
 labels = json.load(io.open(os.path.join(HERE, '..', 'eval', 'labels.json'), encoding='utf-8'))
 human_dev = [r for r in labels if r['split'] == 'dev']
 
@@ -38,7 +52,7 @@ for j, s in enumerate(SIGNALS):
     models.append(m)
 
 
-def predict(rows, thr=0.5):
+def predict(rows, thr=0.5):  # noqa
     X = vec.transform([r['text'] for r in rows])
     P = np.column_stack([m.predict_proba(X)[:, 1] for m in models])
     return P, (P >= thr).astype(int)
@@ -65,8 +79,11 @@ def report(name, rows, thr=0.5):
     return pred
 
 
-report('학습에서 못 본 표현(val_unseen)', val_unseen)
-pred = report('사람이 검토하는 평가용 라벨 dev', human_dev)
+THR = float(sys.argv[sys.argv.index('--thr') + 1]) if '--thr' in sys.argv else 0.5
+report('학습에서 못 본 표현(val_unseen)', val_unseen, THR)
+if val_hand:
+    report('직접 쓴 새 말투(val_hand, 학습에 안 씀)', val_hand, THR)
+pred = report('사람이 검토하는 평가용 라벨 dev', human_dev, THR)
 
 if '--errors' in sys.argv:
     y = Y(human_dev)

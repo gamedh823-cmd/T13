@@ -1,0 +1,291 @@
+{"text": "이 문제를 풀 때 한 명은 풀이를 쓰고 다른 한 명은 틀린 데를 찾아내는 식으로 둘이 주고받게 해줘", "signals": ["debate"], "kind": "hand", "id": "H0001", "split": "train"}
+{"text": "찬성파랑 반대파가 맞붙는 토론처럼 전기차 보조금 문제를 정리해줘", "signals": ["debate"], "kind": "hand", "id": "H0002", "split": "train"}
+{"text": "갑과 을이 서로 주장을 펼치고 반박하는 형식으로 이 계약 조건을 검토해줘", "signals": ["debate"], "kind": "hand", "id": "H0003", "split": "train"}
+{"text": "Let two experts argue opposite sides of this question and then tell me who wins.", "signals": ["debate"], "kind": "hand", "id": "H0004", "split": "train"}
+{"text": "이 아이디어에 대해 비판하는 사람과 옹호하는 사람이 번갈아 말하는 대화를 만들어줘", "signals": ["debate"], "kind": "hand", "id": "H0005", "split": "val_hand"}
+{"text": "시뮬레이션 토론 해줘. 주제: 학교에서 휴대폰 금지해야 하는가", "signals": ["debate"], "kind": "hand", "id": "H0006", "split": "train"}
+{"text": "두 명의 면접관이 서로 다른 의견으로 내 답변을 평가하다가 결국 합의하게 해줘", "signals": ["debate"], "kind": "hand", "id": "H0007", "split": "train"}
+{"text": "이 코드 설계가 맞는지 개발자 A는 찬성, 개발자 B는 반대로 토론시켜줘", "signals": ["debate"], "kind": "hand", "id": "H0008", "split": "train"}
+{"text": "악마의 변호인 역할을 하는 AI와 내 편을 드는 AI가 논쟁하게 해줘", "signals": ["debate"], "kind": "hand", "id": "H0009", "split": "train"}
+{"text": "Simulate a debate between a skeptic and an enthusiast about remote work.", "signals": ["debate"], "kind": "hand", "id": "H0010", "split": "val_hand"}
+{"text": "서로 의견이 다른 두 교수가 이 이론을 놓고 설전을 벌이는 장면으로 설명해줘", "signals": ["debate"], "kind": "hand", "id": "H0011", "split": "train"}
+{"text": "한 번 이 주장에 대한 찬반 논쟁을 쭉 돌려보고 마지막에 정리해줘", "signals": ["debate"], "kind": "hand", "id": "H0012", "split": "train"}
+{"text": "답을 내기 전에 두 가지 관점이 충돌하게 해서 허점을 찾게 해줘", "signals": ["debate"], "kind": "hand", "id": "H0013", "split": "train"}
+{"text": "A팀 B팀으로 나눠서 서로 논리를 공격하는 방식으로 진행해줘", "signals": ["debate"], "kind": "hand", "id": "H0014", "split": "train"}
+{"text": "두 사람이 각자 다른 결론을 주장하다가 점점 의견을 좁혀 가는 대화로 설명해줘", "signals": ["debate"], "kind": "hand", "id": "H0015", "split": "val_hand"}
+{"text": "토론 형식이면 더 좋겠어. 찬성 근거 셋 반대 근거 셋 서로 반박하는 걸로", "signals": ["debate"], "kind": "hand", "id": "H0016", "split": "train"}
+{"text": "검사와 변호사가 법정에서 공방을 벌이는 것처럼 이 사례를 분석해줘", "signals": ["debate"], "kind": "hand", "id": "H0017", "split": "train"}
+{"text": "내가 틀렸다고 가정하고 반박하는 쪽과 내가 맞다는 쪽이 싸우게 해줘", "signals": ["debate"], "kind": "hand", "id": "H0018", "split": "train"}
+{"text": "두 AI가 서로 답을 검증하며 대립하다가 합의된 값만 내놔줘", "signals": ["debate"], "kind": "hand", "id": "H0019", "split": "train"}
+{"text": "이 정책의 장점을 말하는 쪽과 단점을 말하는 쪽의 논쟁을 한 편 써줘", "signals": ["debate"], "kind": "hand", "id": "H0020", "split": "val_hand"}
+{"text": "Have a prosecutor and a defense attorney argue this case back and forth.", "signals": ["debate"], "kind": "hand", "id": "H0021", "split": "train"}
+{"text": "둘이 의견이 갈리는 부분을 직접 따져가며 토론해서 결론 내줘", "signals": ["debate"], "kind": "hand", "id": "H0022", "split": "train"}
+{"text": "찬반을 번갈아 주장하는 대화체로 부탁해요", "signals": ["debate"], "kind": "hand", "id": "H0023", "split": "train"}
+{"text": "서로 반대 입장에 서서 상대 논리의 약점을 하나씩 짚어 주는 대화로 만들어주세요", "signals": ["debate"], "kind": "hand", "id": "H0024", "split": "train"}
+{"text": "This is a two-agent task: one proposes, the other critiques, then they agree.", "signals": ["debate"], "kind": "hand", "id": "H0025", "split": "val_hand"}
+{"text": "한 사람이 설명하면 다른 사람이 계속 딴지를 거는 방식으로 이해시켜줘", "signals": ["debate"], "kind": "hand", "id": "H0026", "split": "train"}
+{"text": "논쟁 구도로 만들어줘. 낙관론자 vs 비관론자", "signals": ["debate"], "kind": "hand", "id": "H0027", "split": "train"}
+{"text": "회의에서 부장님은 찬성하고 대리님은 반대하는 장면으로 이 안건을 검토해줘", "signals": ["debate"], "kind": "hand", "id": "H0028", "split": "train"}
+{"text": "두 전문가가 서로 의견을 반박하면서 최종 권장안을 만드는 식으로 부탁드립니다", "signals": ["debate"], "kind": "hand", "id": "H0029", "split": "train"}
+{"text": "지금부터 넌 베테랑 소아과 의사야. 아이가 열이 날 때 어떻게 해야 하는지 알려줘", "signals": ["persona"], "kind": "hand", "id": "H0030", "split": "val_hand"}
+{"text": "당신은 20년차 인사팀장입니다. 제 이력서를 평가해 주세요", "signals": ["persona"], "kind": "hand", "id": "H0031", "split": "train"}
+{"text": "너는 까칠한 편집장이야. 이 기사 초안을 냉정하게 고쳐줘", "signals": ["persona"], "kind": "hand", "id": "H0032", "split": "train"}
+{"text": "Pretend you are a senior security auditor reviewing this login flow.", "signals": ["persona"], "kind": "hand", "id": "H0033", "split": "train"}
+{"text": "저는 지금 면접을 준비 중이에요. 면접관이 되어서 질문해주세요", "signals": ["persona"], "kind": "hand", "id": "H0034", "split": "train"}
+{"text": "역할 설정: 중학교 수학 선생님. 설명은 쉽게 해줘", "signals": ["persona"], "kind": "hand", "id": "H0035", "split": "val_hand"}
+{"text": "넌 이제부터 여행 가이드야. 교토 2박 3일 코스 짜줘", "signals": ["persona"], "kind": "hand", "id": "H0036", "split": "train"}
+{"text": "You are a patient kindergarten teacher. Explain why the sky is blue.", "signals": ["persona"], "kind": "hand", "id": "H0037", "split": "train"}
+{"text": "세무사처럼 답해줘. 프리랜서 종합소득세 신고는 어떻게 해?", "signals": ["persona"], "kind": "hand", "id": "H0038", "split": "train"}
+{"text": "너는 스타트업 CTO라고 생각하고 이 기술 스택을 평가해줘", "signals": ["persona"], "kind": "hand", "id": "H0039", "split": "train"}
+{"text": "당신은 세계적인 요리 연구가입니다. 파스타 면 삶는 비법을 알려주세요", "signals": ["persona"], "kind": "hand", "id": "H0040", "split": "val_hand"}
+{"text": "너 시니어 UX 디자이너잖아. 이 화면 흐름 어디가 불편한지 말해줘", "signals": ["persona"], "kind": "hand", "id": "H0041", "split": "train"}
+{"text": "기자의 입장에서 이 보도자료를 어떻게 쓸지 알려줘", "signals": ["persona"], "kind": "hand", "id": "H0042", "split": "train"}
+{"text": "Act as an experienced Python mentor and review my code.", "signals": ["persona"], "kind": "hand", "id": "H0043", "split": "train"}
+{"text": "너는 헬스 트레이너야. 초보자용 주 3회 루틴 짜줘", "signals": ["persona"], "kind": "hand", "id": "H0044", "split": "train"}
+{"text": "카운슬러가 되어 내 고민을 들어주고 조언해줘", "signals": ["persona"], "kind": "hand", "id": "H0045", "split": "val_hand"}
+{"text": "법률 전문가로서 이 약관에서 위험한 조항을 짚어줘", "signals": ["persona"], "kind": "hand", "id": "H0046", "split": "train"}
+{"text": "너의 역할은 영어 회화 파트너야. 카페 주문 상황으로 대화하자", "signals": ["persona"], "kind": "hand", "id": "H0047", "split": "train"}
+{"text": "저는 초등학생이고 당신은 과학 박사님이에요. 쉽게 설명해 주세요", "signals": ["persona"], "kind": "hand", "id": "H0048", "split": "train"}
+{"text": "넌 유능한 비서야. 내일 일정 정리해줘", "signals": ["persona"], "kind": "hand", "id": "H0049", "split": "train"}
+{"text": "As a professional copywriter, write a tagline for my bakery.", "signals": ["persona"], "kind": "hand", "id": "H0050", "split": "val_hand"}
+{"text": "이 분야 최고 권위자라고 생각하고 답변해줘", "signals": ["persona"], "kind": "hand", "id": "H0051", "split": "train"}
+{"text": "소믈리에처럼 설명해줘. 이 와인 어떤 음식이랑 어울려?", "signals": ["persona"], "kind": "hand", "id": "H0052", "split": "train"}
+{"text": "너는 시험 출제위원이야. 이 단원에서 나올 만한 문제를 내줘", "signals": ["persona"], "kind": "hand", "id": "H0053", "split": "train"}
+{"text": "전문 번역가의 시각으로 이 문장의 뉘앙스를 설명해줘", "signals": ["persona"], "kind": "hand", "id": "H0054", "split": "train"}
+{"text": "Take the role of a strict code reviewer.", "signals": ["persona"], "kind": "hand", "id": "H0055", "split": "val_hand"}
+{"text": "당신은 15년 경력의 물리치료사입니다. 허리 통증 스트레칭을 알려주세요", "signals": ["persona"], "kind": "hand", "id": "H0056", "split": "train"}
+{"text": "요즘 20대는 결혼에 대해 어떻게 생각해? 대체로 긍정적이야?", "signals": ["majority"], "kind": "hand", "id": "H0057", "split": "train"}
+{"text": "사람들 대부분이 아이폰이 더 낫다고 생각해?", "signals": ["majority"], "kind": "hand", "id": "H0058", "split": "train"}
+{"text": "한국 직장인 다수는 주 4일제에 찬성하는 편인가요?", "signals": ["majority"], "kind": "hand", "id": "H0059", "split": "train"}
+{"text": "Do most people actually enjoy working from home?", "signals": ["majority"], "kind": "hand", "id": "H0060", "split": "val_hand"}
+{"text": "이거 나만 그런 거야 아니면 다들 그렇게 느껴? 월요일이 제일 싫은 거", "signals": ["majority"], "kind": "hand", "id": "H0061", "split": "train"}
+{"text": "일반 대중은 AI가 일자리를 뺏을 거라고 믿고 있어?", "signals": ["majority"], "kind": "hand", "id": "H0062", "split": "train"}
+{"text": "보통 사람들은 연봉이랑 워라밸 중에 뭘 더 중요하게 여겨?", "signals": ["majority"], "kind": "hand", "id": "H0063", "split": "train"}
+{"text": "세상 사람들 대부분은 이 영화를 명작이라고 봐?", "signals": ["majority"], "kind": "hand", "id": "H0064", "split": "train"}
+{"text": "대다수 학부모는 사교육에 어떤 입장이야?", "signals": ["majority"], "kind": "hand", "id": "H0065", "split": "val_hand"}
+{"text": "여론조사에서는 이 법안에 찬성이 더 많아?", "signals": ["majority"], "kind": "hand", "id": "H0066", "split": "train"}
+{"text": "What is the general public opinion on nuclear energy?", "signals": ["majority"], "kind": "hand", "id": "H0067", "split": "train"}
+{"text": "다들 이 가격이면 비싸다고 생각해? 객관적인 평균 반응이 궁금해", "signals": ["majority"], "kind": "hand", "id": "H0068", "split": "train"}
+{"text": "대부분의 개발자들이 선호하는 에디터는 뭐야?", "signals": ["majority"], "kind": "hand", "id": "H0069", "split": "train"}
+{"text": "일반적인 시선으로 볼 때 이런 행동은 무례한 걸로 여겨져?", "signals": ["majority"], "kind": "hand", "id": "H0070", "split": "val_hand"}
+{"text": "대중적으로는 이 정책 평가가 어때?", "signals": ["majority"], "kind": "hand", "id": "H0071", "split": "train"}
+{"text": "Most people I know hate this feature. Is that how the majority feels?", "signals": ["majority"], "kind": "hand", "id": "H0072", "split": "train"}
+{"text": "사람들 의견이 어느 쪽으로 기울어 있는지 알려줘. 비건 식단에 대해서", "signals": ["majority"], "kind": "hand", "id": "H0073", "split": "train"}
+{"text": "지금 한국 사회에서 다수의 생각은 어디에 가까워?", "signals": ["majority"], "kind": "hand", "id": "H0074", "split": "train"}
+{"text": "많은 사람이 동의하는 편이야 아니면 반대가 많아?", "signals": ["majority"], "kind": "hand", "id": "H0075", "split": "val_hand"}
+{"text": "대다수의 의견을 알고 싶은데, 반려동물 안락사에 대해 어떻게 생각한대?", "signals": ["majority"], "kind": "hand", "id": "H0076", "split": "train"}
+{"text": "이 질문에 대한 통념은 뭐야? 다들 그렇게 믿는 거 맞아?", "signals": ["majority"], "kind": "hand", "id": "H0077", "split": "train"}
+{"text": "전체적으로 소비자 반응이 좋은 편이었어?", "signals": ["majority"], "kind": "hand", "id": "H0078", "split": "train"}
+{"text": "정답만 말하지 말고 어떻게 풀었는지 한 줄씩 적어줘. 3x+7=25", "signals": ["cot"], "kind": "hand", "id": "H0079", "split": "train"}
+{"text": "이 확률 문제를 푸는 순서를 처음부터 끝까지 보여줘", "signals": ["cot"], "kind": "hand", "id": "H0080", "split": "val_hand"}
+{"text": "논리 퍼즐인데, 추론 과정을 하나씩 써 가면서 답해줘", "signals": ["cot"], "kind": "hand", "id": "H0081", "split": "train"}
+{"text": "Walk me through your reasoning step by step before giving the final number.", "signals": ["cot"], "kind": "hand", "id": "H0082", "split": "train"}
+{"text": "계산 과정을 생략하지 말고 중간 단계까지 다 보여줘", "signals": ["cot"], "kind": "hand", "id": "H0083", "split": "train"}
+{"text": "왜 그 답이 나오는지 이유도 같이 설명해줘. 17의 제곱은?", "signals": ["cot"], "kind": "hand", "id": "H0084", "split": "train"}
+{"text": "생각하는 과정을 먼저 쓰고 마지막에 결론을 말해줘", "signals": ["cot"], "kind": "hand", "id": "H0085", "split": "val_hand"}
+{"text": "단계별로 접근해서 이 코드 오류를 찾아줘", "signals": ["cot"], "kind": "hand", "id": "H0086", "split": "train"}
+{"text": "Think it through carefully and explain each step of the derivation.", "signals": ["cot"], "kind": "hand", "id": "H0087", "split": "train"}
+{"text": "풀이를 단계마다 번호 붙여서 알려줘", "signals": ["cot"], "kind": "hand", "id": "H0088", "split": "train"}
+{"text": "어떤 근거로 그렇게 판단했는지 차례대로 적어줘", "signals": ["cot"], "kind": "hand", "id": "H0089", "split": "train"}
+{"text": "먼저 문제를 쪼개고 하나씩 풀어서 합치는 식으로 해줘", "signals": ["cot"], "kind": "hand", "id": "H0090", "split": "val_hand"}
+{"text": "이 증명을 한 단계도 건너뛰지 말고 설명해줘", "signals": ["cot"], "kind": "hand", "id": "H0091", "split": "train"}
+{"text": "답이 틀릴 수 있으니까 사고 과정을 보여줘", "signals": ["cot"], "kind": "hand", "id": "H0092", "split": "train"}
+{"text": "Show your work, line by line.", "signals": ["cot"], "kind": "hand", "id": "H0093", "split": "train"}
+{"text": "복리 이자 계산하는 과정을 쉬운 말로 순서대로 알려줘", "signals": ["cot"], "kind": "hand", "id": "H0094", "split": "train"}
+{"text": "논리적으로 따져 가면서 이 주장이 맞는지 검토해줘", "signals": ["cot"], "kind": "hand", "id": "H0095", "split": "val_hand"}
+{"text": "이 문제는 풀이가 길어도 괜찮으니까 과정 전부 적어줘", "signals": ["cot"], "kind": "hand", "id": "H0096", "split": "train"}
+{"text": "결론 먼저 말하지 말고 추론을 쌓아 올려서 마지막에 말해줘", "signals": ["cot"], "kind": "hand", "id": "H0097", "split": "train"}
+{"text": "How did you get that? Break it down into steps.", "signals": ["cot"], "kind": "hand", "id": "H0098", "split": "train"}
+{"text": "어떻게 그런 결과가 나왔는지 단계별로 짚어줘", "signals": ["cot"], "kind": "hand", "id": "H0099", "split": "train"}
+{"text": "중간중간 왜 그렇게 하는지 이유를 달아서 풀어줘", "signals": ["cot"], "kind": "hand", "id": "H0100", "split": "val_hand"}
+{"text": "점화식을 세우는 과정부터 차근차근 보여줘", "signals": ["cot"], "kind": "hand", "id": "H0101", "split": "train"}
+{"text": "아래처럼 변환해줘. 'hello' -> '안녕', 'thank you' -> '고마워'. 이제 'good night'은?", "signals": ["fewshot"], "kind": "hand", "id": "H0102", "split": "train"}
+{"text": "예) 입력: 배고파 / 출력: 😋. 예) 입력: 졸려 / 출력: 😴. 입력: 화났어", "signals": ["fewshot"], "kind": "hand", "id": "H0103", "split": "train"}
+{"text": "다음 샘플들의 톤을 따라서 공지문을 써줘. 샘플: '여러분 안녕하세요! 오늘도 힘내봐요 :)'", "signals": ["fewshot"], "kind": "hand", "id": "H0104", "split": "train"}
+{"text": "Follow this pattern: Q: 2+2 A: four. Q: 3+5 A: eight. Q: 6+1 A:", "signals": ["fewshot"], "kind": "hand", "id": "H0105", "split": "val_hand"}
+{"text": "내가 쓴 이 두 문장처럼 짧고 건조하게 써줘. '회의는 3시입니다.' '자료는 메일로 보냅니다.'", "signals": ["fewshot"], "kind": "hand", "id": "H0106", "split": "train"}
+{"text": "예시를 먼저 줄게. 제목: 비 오는 날 / 한 줄: 우산을 두고 온 오후. 이런 식으로 다른 제목도 써줘", "signals": ["fewshot"], "kind": "hand", "id": "H0107", "split": "train"}
+{"text": "이렇게 분류해줘 (예: '배송 지연' -> 불만, '감사합니다' -> 칭찬). 새 문장: 상품이 파손됐어요", "signals": ["fewshot"], "kind": "hand", "id": "H0108", "split": "train"}
+{"text": "Here are two examples of the format I want: [Title] - [Summary]. Now do the same for this article.", "signals": ["fewshot"], "kind": "hand", "id": "H0109", "split": "train"}
+{"text": "보기 1: 사과=과일, 보기 2: 당근=채소. 이 기준으로 토마토를 분류해줘", "signals": ["fewshot"], "kind": "hand", "id": "H0110", "split": "val_hand"}
+{"text": "형식은 이거야 -> 이름: 홍길동 / 나이: 20. 같은 형식으로 아래 사람들도 정리해줘", "signals": ["fewshot"], "kind": "hand", "id": "H0111", "split": "train"}
+{"text": "아래 예제처럼 JSON으로 바꿔줘. 예제 입력: 사과 3개 -> {\"item\":\"사과\",\"qty\":3}", "signals": ["fewshot"], "kind": "hand", "id": "H0112", "split": "train"}
+{"text": "참고 문장: '오늘 하루도 수고했어요.' 이런 따뜻한 말투로 안부 인사 써줘", "signals": ["fewshot"], "kind": "hand", "id": "H0113", "split": "train"}
+{"text": "예시1: 서울 -> Seoul, 예시2: 부산 -> Busan. 그럼 대구는?", "signals": ["fewshot"], "kind": "hand", "id": "H0114", "split": "train"}
+{"text": "Example output: '✅ Done: task A'. Give me the same style for tasks B and C.", "signals": ["fewshot"], "kind": "hand", "id": "H0115", "split": "val_hand"}
+{"text": "내가 아래에 붙인 답안이 모범 형태야. 이 형태에 맞춰서 다른 문제도 답해줘", "signals": ["fewshot"], "kind": "hand", "id": "H0116", "split": "train"}
+{"text": "이 샘플을 흉내 내서 제품 설명 세 개 더 만들어줘. 샘플: '가볍고 튼튼한 데일리 백팩'", "signals": ["fewshot"], "kind": "hand", "id": "H0117", "split": "train"}
+{"text": "샘플처럼 한 줄 요약부터 쓰고 불릿 세 개로 정리해줘. 샘플: 요약: 비용 절감 / - 인건비 / - 임대료", "signals": ["fewshot"], "kind": "hand", "id": "H0118", "split": "train"}
+{"text": "형식 예시: 12/03(수) 14:00 회의. 이 형식으로 일정 다시 적어줘", "signals": ["fewshot"], "kind": "hand", "id": "H0119", "split": "train"}
+{"text": "Like this: 'cat → cats, dog → dogs'. Pluralize 'box' and 'child'.", "signals": ["fewshot"], "kind": "hand", "id": "H0120", "split": "val_hand"}
+{"text": "이 두 번역을 보고 같은 문체로 다음 문장도 번역해줘. 원문1 -> 번역1, 원문2 -> 번역2", "signals": ["fewshot"], "kind": "hand", "id": "H0121", "split": "train"}
+{"text": "앞에서 보여준 템플릿 그대로 이번 주 보고서를 채워줘", "signals": ["fewshot"], "kind": "hand", "id": "H0122", "split": "train"}
+{"text": "나는 이 문제 답이 12라고 생각하는데 맞아?", "signals": ["opinion"], "kind": "hand", "id": "H0123", "split": "train"}
+{"text": "내 생각엔 이직하는 게 맞는 것 같아. 너도 그렇게 생각하지?", "signals": ["opinion"], "kind": "hand", "id": "H0124", "split": "train"}
+{"text": "솔직히 이 코드는 충분히 깔끔하다고 봐. 어떻게 생각해?", "signals": ["opinion"], "kind": "hand", "id": "H0125", "split": "val_hand"}
+{"text": "I believe the plan is solid. Can you confirm?", "signals": ["opinion"], "kind": "hand", "id": "H0126", "split": "train"}
+{"text": "난 이 영화가 올해 최고라고 확신해. 네 평가는?", "signals": ["opinion"], "kind": "hand", "id": "H0127", "split": "train"}
+{"text": "이 기획안은 문제없다고 판단했어. 검토해줘", "signals": ["opinion"], "kind": "hand", "id": "H0128", "split": "train"}
+{"text": "저는 AI가 곧 모든 직업을 대체한다고 봅니다. 맞는 말이죠?", "signals": ["opinion"], "kind": "hand", "id": "H0129", "split": "train"}
+{"text": "내가 느끼기엔 이 가격이 적당한데 아닌가?", "signals": ["opinion"], "kind": "hand", "id": "H0130", "split": "val_hand"}
+{"text": "I'm pretty sure the answer is B. Am I right?", "signals": ["opinion"], "kind": "hand", "id": "H0131", "split": "train"}
+{"text": "개인적으로는 아침형 인간이 더 유리하다고 믿는데 어때?", "signals": ["opinion"], "kind": "hand", "id": "H0132", "split": "train"}
+{"text": "내 결론은 이미 정해졌어. 이 설계는 최선이야. 동의해줘", "signals": ["opinion"], "kind": "hand", "id": "H0133", "split": "train"}
+{"text": "저는 이 디자인이 촌스럽다고 생각해요. 맞나요?", "signals": ["opinion"], "kind": "hand", "id": "H0134", "split": "train"}
+{"text": "내 입장은 확고해. 월급보다 시간이 더 중요해. 의견 줘", "signals": ["opinion"], "kind": "hand", "id": "H0135", "split": "val_hand"}
+{"text": "생각해 보니까 내 방식이 더 효율적인 것 같은데 평가 좀", "signals": ["opinion"], "kind": "hand", "id": "H0136", "split": "train"}
+{"text": "In my view, tabs are better than spaces. Thoughts?", "signals": ["opinion"], "kind": "hand", "id": "H0137", "split": "train"}
+{"text": "나는 이 글이 완벽하다고 믿어. 고칠 필요 없지?", "signals": ["opinion"], "kind": "hand", "id": "H0138", "split": "train"}
+{"text": "제가 보기엔 이 번역이 가장 자연스러운데 맞죠?", "signals": ["opinion"], "kind": "hand", "id": "H0139", "split": "train"}
+{"text": "내 느낌상 이번 시험은 쉬웠던 것 같아. 너도 그렇게 봐?", "signals": ["opinion"], "kind": "hand", "id": "H0140", "split": "val_hand"}
+{"text": "나는 그 사람이 잘못했다고 생각하는데 넌 어때?", "signals": ["opinion"], "kind": "hand", "id": "H0141", "split": "train"}
+{"text": "여러 가지 해봤는데 결국 내 첫 번째 안이 낫더라. 맞는지 확인해줘", "signals": ["opinion"], "kind": "hand", "id": "H0142", "split": "train"}
+{"text": "I think I should quit. You agree, right?", "signals": ["opinion"], "kind": "hand", "id": "H0143", "split": "train"}
+{"text": "내 판단으로는 이 투자가 안전한 것 같은데 어떻게 봐?", "signals": ["opinion"], "kind": "hand", "id": "H0144", "split": "train"}
+{"text": "이번 주말에 혼자 할 만한 거 뭐 없을까?", "signals": ["brainstorm"], "kind": "hand", "id": "H0145", "split": "val_hand"}
+{"text": "앱 이름 후보 좀 많이 뽑아줘. 짧고 기억에 남는 걸로", "signals": ["brainstorm"], "kind": "hand", "id": "H0146", "split": "train"}
+{"text": "Give me ten fresh ideas for a team-building activity.", "signals": ["brainstorm"], "kind": "hand", "id": "H0147", "split": "train"}
+{"text": "동아리 홍보 방법 아이디어 있으면 아무거나 던져줘", "signals": ["brainstorm"], "kind": "hand", "id": "H0148", "split": "train"}
+{"text": "부모님 선물 뭐가 좋을까? 감이 안 와", "signals": ["brainstorm"], "kind": "hand", "id": "H0149", "split": "train"}
+{"text": "블로그 글감이 떨어졌어. 쓸 만한 주제 추천해줘", "signals": ["brainstorm"], "kind": "hand", "id": "H0150", "split": "val_hand"}
+{"text": "수업 시간에 할 재밌는 게임 아이디어 좀", "signals": ["brainstorm"], "kind": "hand", "id": "H0151", "split": "train"}
+{"text": "What are some creative side project ideas for a beginner?", "signals": ["brainstorm"], "kind": "hand", "id": "H0152", "split": "train"}
+{"text": "기념일에 색다른 이벤트 뭐 할 수 있을까?", "signals": ["brainstorm"], "kind": "hand", "id": "H0153", "split": "train"}
+{"text": "졸업 여행지 후보를 다양하게 제안해줘", "signals": ["brainstorm"], "kind": "hand", "id": "H0154", "split": "train"}
+{"text": "유튜브 콘텐츠 소재 좀 줘. 남들이 안 한 걸로", "signals": ["brainstorm"], "kind": "hand", "id": "H0155", "split": "val_hand"}
+{"text": "어떤 책을 읽으면 좋을지 추천해줘. 요즘 기분 전환이 필요해", "signals": ["brainstorm"], "kind": "hand", "id": "H0156", "split": "train"}
+{"text": "Brainstorm names for my new coffee shop.", "signals": ["brainstorm"], "kind": "hand", "id": "H0157", "split": "train"}
+{"text": "팀 회식 메뉴 후보 몇 개만 추천해줘", "signals": ["brainstorm"], "kind": "hand", "id": "H0158", "split": "train"}
+{"text": "저녁에 뭐 해 먹을지 아이디어 줘", "signals": ["brainstorm"], "kind": "hand", "id": "H0159", "split": "train"}
+{"text": "발표 주제로 뭐가 좋을지 감이 안 와. 여러 개 생각해줘", "signals": ["brainstorm"], "kind": "hand", "id": "H0160", "split": "val_hand"}
+{"text": "이 프로젝트를 더 재밌게 만들 방법이 있을까? 아이디어 많이 부탁해", "signals": ["brainstorm"], "kind": "hand", "id": "H0161", "split": "train"}
+{"text": "Any suggestions for a rainy day activity?", "signals": ["brainstorm"], "kind": "hand", "id": "H0162", "split": "train"}
+{"text": "취미로 시작할 만한 게 뭐가 있을까", "signals": ["brainstorm"], "kind": "hand", "id": "H0163", "split": "train"}
+{"text": "신박한 창업 아이템 좀 던져봐", "signals": ["brainstorm"], "kind": "hand", "id": "H0164", "split": "train"}
+{"text": "학교 축제 부스 뭐 하면 인기 많을까?", "signals": ["brainstorm"], "kind": "hand", "id": "H0165", "split": "val_hand"}
+{"text": "어떤 노래 부르면 좋을지 추천해줘. 분위기 띄울 만한 걸로", "signals": ["brainstorm"], "kind": "hand", "id": "H0166", "split": "train"}
+{"text": "가을 독서 캠페인 포스터 만들어줘. 베이지 배경에 갈색 글씨, 위쪽에 큰 제목 '책 읽는 가을', 가운데에 단풍잎과 책 일러스트, 차분하고 따뜻한 분위기로", "signals": ["specific"], "kind": "hand", "id": "H0167", "split": "train"}
+{"text": "로고 시안 부탁해. 이름은 'Mellow', 파스텔 핑크와 크림색 두 가지, 글자 위에 작은 구름 아이콘, 포근하고 부드러운 느낌", "signals": ["specific"], "kind": "hand", "id": "H0168", "split": "train"}
+{"text": "Design a flyer: dark navy background, gold title 'Grand Opening' centered at the top, a small cafe photo on the right, elegant tone.", "signals": ["specific"], "kind": "hand", "id": "H0169", "split": "train"}
+{"text": "인스타 피드용 이미지 만들어줘. 민트색 배경, 가운데 큰 글씨로 'Good Morning', 아래쪽에 작은 해 모양, 밝고 경쾌한 분위기", "signals": ["specific"], "kind": "hand", "id": "H0170", "split": "val_hand"}
+{"text": "배너 하나 그려줘: 빨간색과 흰색, 좌측에 '세일 50%' 큰 문구, 우측에 쇼핑백 일러스트, 시선을 확 끄는 스타일", "signals": ["specific"], "kind": "hand", "id": "H0171", "split": "train"}
+{"text": "앱 소개 썸네일. 보라색 그라데이션 배경, 중앙에 스마트폰 목업, 상단에 '쉽게 시작하세요' 문구, 미래적이고 깔끔한 느낌", "signals": ["specific"], "kind": "hand", "id": "H0172", "split": "train"}
+{"text": "결혼식 초대장 이미지: 아이보리 바탕, 금색 테두리, 위쪽에 '저희 결혼합니다', 하단에 날짜와 장소, 고급스럽고 단정한 분위기", "signals": ["specific"], "kind": "hand", "id": "H0173", "split": "train"}
+{"text": "Create a poster for a jazz night: black and gold palette, saxophone silhouette in the center, 'Jazz Night' in large letters at the top, smoky vintage mood.", "signals": ["specific"], "kind": "hand", "id": "H0174", "split": "train"}
+{"text": "행사 안내 포스터. 노란색과 검정색 대비, 상단 '야간 마라톤', 중앙에 달리는 사람 실루엣, 에너지 넘치는 느낌", "signals": ["specific"], "kind": "hand", "id": "H0175", "split": "val_hand"}
+{"text": "책 표지 이미지 부탁해. 짙은 초록 바탕, 하단에 흰색 글씨로 '숲의 기억', 가운데 나무 한 그루, 신비로운 분위기", "signals": ["specific"], "kind": "hand", "id": "H0176", "split": "train"}
+{"text": "학원 홍보 전단 만들어줘. 하늘색과 흰색, 위에 '1:1 맞춤 수업', 가운데에 칠판과 학생 그림, 믿음직하고 밝은 느낌", "signals": ["specific"], "kind": "hand", "id": "H0177", "split": "train"}
+{"text": "썸네일: 왼쪽에 놀란 표정 얼굴, 오른쪽에 큰 노란 글씨 '이게 가능해?', 배경은 짙은 파랑, 자극적인 유튜브 스타일", "signals": ["specific"], "kind": "hand", "id": "H0178", "split": "train"}
+{"text": "A birthday card image: pastel yellow background, 'Happy Birthday Mina' in curly letters at the top, balloons at the corners, cheerful and playful.", "signals": ["specific"], "kind": "hand", "id": "H0179", "split": "train"}
+{"text": "동아리 모집 포스터를 디자인해줘. 배경은 연한 회색, 위에 '함께 달려요', 가운데 달리는 사람들 일러스트, 주황색 포인트, 건강하고 활기찬 분위기", "signals": ["specific"], "kind": "hand", "id": "H0180", "split": "val_hand"}
+{"text": "카페 메뉴판 이미지: 크래프트지 질감 배경, 상단에 'Today's Menu', 좌우로 음료와 디저트 칸 배치, 빈티지한 손글씨 느낌", "signals": ["specific"], "kind": "hand", "id": "H0181", "split": "train"}
+{"text": "카페 포스터 하나만 만들어줘", "signals": ["vague"], "kind": "hand", "id": "H0182", "split": "train"}
+{"text": "깔끔한 로고 부탁해", "signals": ["vague"], "kind": "hand", "id": "H0183", "split": "train"}
+{"text": "생일 카드 이미지 만들어줘", "signals": ["vague"], "kind": "hand", "id": "H0184", "split": "train"}
+{"text": "Make a cool banner for my channel.", "signals": ["vague"], "kind": "hand", "id": "H0185", "split": "val_hand"}
+{"text": "행사 배너 디자인해줘", "signals": ["vague"], "kind": "hand", "id": "H0186", "split": "train"}
+{"text": "귀여운 곰 그림 그려줘", "signals": ["vague"], "kind": "hand", "id": "H0187", "split": "train"}
+{"text": "면접 준비 모임 홍보 이미지 만들어줘", "signals": ["vague"], "kind": "hand", "id": "H0188", "split": "train"}
+{"text": "Design a logo for my startup.", "signals": ["vague"], "kind": "hand", "id": "H0189", "split": "train"}
+{"text": "썸네일 이미지 하나 뽑아줘", "signals": ["vague"], "kind": "hand", "id": "H0190", "split": "val_hand"}
+{"text": "감성적인 포스터 부탁해", "signals": ["vague"], "kind": "hand", "id": "H0191", "split": "train"}
+{"text": "우리 가게 간판 시안 좀", "signals": ["vague"], "kind": "hand", "id": "H0192", "split": "train"}
+{"text": "Generate a poster for a movie night.", "signals": ["vague"], "kind": "hand", "id": "H0193", "split": "train"}
+{"text": "동아리 로고 만들어줘", "signals": ["vague"], "kind": "hand", "id": "H0194", "split": "train"}
+{"text": "초대장 디자인 부탁해요", "signals": ["vague"], "kind": "hand", "id": "H0195", "split": "val_hand"}
+{"text": "캠페인 포스터 하나 그려줘", "signals": ["vague"], "kind": "hand", "id": "H0196", "split": "train"}
+{"text": "Create an illustration of a cat reading a book.", "signals": ["vague"], "kind": "hand", "id": "H0197", "split": "train"}
+{"text": "앱 아이콘 만들어줘", "signals": ["vague"], "kind": "hand", "id": "H0198", "split": "train"}
+{"text": "카드뉴스 표지 이미지 부탁해", "signals": ["vague"], "kind": "hand", "id": "H0199", "split": "train"}
+{"text": "세련된 포스터가 필요해", "signals": ["vague"], "kind": "hand", "id": "H0200", "split": "val_hand"}
+{"text": "그림 하나 그려줘, 바다 풍경", "signals": ["vague"], "kind": "hand", "id": "H0201", "split": "train"}
+{"text": "오늘 서울 날씨 어때?", "signals": [], "kind": "hand", "id": "H0202", "split": "train"}
+{"text": "이 문장의 맞춤법 좀 봐줘: 오랫만에 친구를 만났다", "signals": [], "kind": "hand", "id": "H0203", "split": "train"}
+{"text": "파이썬으로 파일 읽는 법 알려줘", "signals": [], "kind": "hand", "id": "H0204", "split": "train"}
+{"text": "내일 아침 7시에 알람 맞추는 방법이 뭐야", "signals": [], "kind": "hand", "id": "H0205", "split": "val_hand"}
+{"text": "Can you convert 5 miles to kilometers?", "signals": [], "kind": "hand", "id": "H0206", "split": "train"}
+{"text": "이 영수증 금액 합계 계산해줘", "signals": [], "kind": "hand", "id": "H0207", "split": "train"}
+{"text": "커피 원두 보관법 알려줘", "signals": [], "kind": "hand", "id": "H0208", "split": "train"}
+{"text": "한글 파일을 PDF로 바꾸려면 어떻게 해?", "signals": [], "kind": "hand", "id": "H0209", "split": "train"}
+{"text": "What time zone is Tokyo in?", "signals": [], "kind": "hand", "id": "H0210", "split": "val_hand"}
+{"text": "이 회의록 세 줄로 줄여줘", "signals": [], "kind": "hand", "id": "H0211", "split": "train"}
+{"text": "엑셀 VLOOKUP 쓰는 법을 알려줘", "signals": [], "kind": "hand", "id": "H0212", "split": "train"}
+{"text": "비행기 수하물 규정이 어떻게 돼?", "signals": [], "kind": "hand", "id": "H0213", "split": "train"}
+{"text": "지하철 막차 시간 확인하는 방법 알려줘", "signals": [], "kind": "hand", "id": "H0214", "split": "train"}
+{"text": "Translate 'good morning' into Japanese.", "signals": [], "kind": "hand", "id": "H0215", "split": "val_hand"}
+{"text": "USB 인식이 안 될 때 확인할 것 알려줘", "signals": [], "kind": "hand", "id": "H0216", "split": "train"}
+{"text": "이 메일에 정중하게 답장 써줘. 내용: 일정 변경 요청", "signals": [], "kind": "hand", "id": "H0217", "split": "train"}
+{"text": "소수 판별하는 함수 하나 만들어줘", "signals": [], "kind": "hand", "id": "H0218", "split": "train"}
+{"text": "설날이 올해 몇 월 며칠이야?", "signals": [], "kind": "hand", "id": "H0219", "split": "train"}
+{"text": "cron 표현식 매일 새벽 2시는 어떻게 써?", "signals": [], "kind": "hand", "id": "H0220", "split": "val_hand"}
+{"text": "국민연금 납부 방법 알려줘", "signals": [], "kind": "hand", "id": "H0221", "split": "train"}
+{"text": "단어 'ubiquitous' 뜻이 뭐야?", "signals": [], "kind": "hand", "id": "H0222", "split": "train"}
+{"text": "CSV 파일에서 빈 줄 지우는 명령어 알려줘", "signals": [], "kind": "hand", "id": "H0223", "split": "train"}
+{"text": "감기에 걸렸을 때 먹으면 좋은 음식이 뭐야", "signals": [], "kind": "hand", "id": "H0224", "split": "train"}
+{"text": "what is the difference between TCP and UDP", "signals": [], "kind": "hand", "id": "H0225", "split": "val_hand"}
+{"text": "이력서 사진 크기 규격이 어떻게 돼?", "signals": [], "kind": "hand", "id": "H0226", "split": "train"}
+{"text": "오늘 날짜로 며칠 남았는지 계산해줘 12월 25일까지", "signals": [], "kind": "hand", "id": "H0227", "split": "train"}
+{"text": "도커 이미지 지우는 명령어", "signals": [], "kind": "hand", "id": "H0228", "split": "train"}
+{"text": "프린터 연결이 안 돼. 확인할 것 알려줘", "signals": [], "kind": "hand", "id": "H0229", "split": "train"}
+{"text": "Convert this sentence to passive voice: The cat chased the mouse.", "signals": [], "kind": "hand", "id": "H0230", "split": "val_hand"}
+{"text": "자기소개서에 쓸 글자수 세는 방법이 뭐야", "signals": [], "kind": "hand", "id": "H0231", "split": "train"}
+{"text": "노트북 배터리 오래 쓰는 법 알려줘", "signals": [], "kind": "hand", "id": "H0232", "split": "train"}
+{"text": "다음 문장의 주어가 뭔지 알려줘", "signals": [], "kind": "hand", "id": "H0233", "split": "train"}
+{"text": "브라우저 캐시 지우는 방법", "signals": [], "kind": "hand", "id": "H0234", "split": "train"}
+{"text": "세금 계산서가 뭔지 짧게 설명해줘", "signals": [], "kind": "hand", "id": "H0235", "split": "val_hand"}
+{"text": "이 에러 어떻게 고쳐? TypeError: undefined is not a function", "signals": [], "kind": "hand", "id": "H0236", "split": "train"}
+{"text": "Summarize this paragraph in one sentence.", "signals": [], "kind": "hand", "id": "H0237", "split": "train"}
+{"text": "삼겹살 굽는 온도 알려줘", "signals": [], "kind": "hand", "id": "H0238", "split": "train"}
+{"text": "핸드폰 공장초기화하는 순서 알려줘", "signals": [], "kind": "hand", "id": "H0239", "split": "train"}
+{"text": "이 사진 파일 용량 줄이는 법", "signals": [], "kind": "hand", "id": "H0240", "split": "val_hand"}
+{"text": "오늘 환율 확인하는 사이트 있어?", "signals": [], "kind": "hand", "id": "H0241", "split": "train"}
+{"text": "토론 같은 건 하지 말고 그냥 결론만 알려줘", "signals": [], "kind": "hand_negation", "id": "H0242", "split": "train"}
+{"text": "전문가인 척 안 해도 되니까 편하게 설명해줘", "signals": [], "kind": "hand_negation", "id": "H0243", "split": "train"}
+{"text": "설명은 빼고 값만 줘. 15% 팁이면 얼마야", "signals": [], "kind": "hand_negation", "id": "H0244", "split": "train"}
+{"text": "예시는 필요 없어. 개념만 짧게 알려줘", "signals": [], "kind": "hand_negation", "id": "H0245", "split": "val_hand"}
+{"text": "역할극은 하지 말고 사실만 정리해줘", "signals": [], "kind": "hand_negation", "id": "H0246", "split": "train"}
+{"text": "풀이 과정은 생략하고 최종 답만 말해줘", "signals": [], "kind": "hand_negation", "id": "H0247", "split": "train"}
+{"text": "내 의견은 신경 쓰지 말고 객관적으로만 판단해줘", "signals": [], "kind": "hand_negation", "id": "H0248", "split": "train"}
+{"text": "Don't pretend to be an expert, just answer plainly.", "signals": [], "kind": "hand_negation", "id": "H0249", "split": "train"}
+{"text": "No debate, no steps — just the result please.", "signals": [], "kind": "hand_negation", "id": "H0250", "split": "val_hand"}
+{"text": "반박이나 논쟁 없이 정리만 해줘", "signals": [], "kind": "hand_negation", "id": "H0251", "split": "train"}
+{"text": "단계별 말고 한 줄로 요약해줘", "signals": [], "kind": "hand_negation", "id": "H0252", "split": "train"}
+{"text": "샘플 말고 그냥 설명만 해줘", "signals": [], "kind": "hand_negation", "id": "H0253", "split": "train"}
+{"text": "Skip the examples. Define the term only.", "signals": [], "kind": "hand_negation", "id": "H0254", "split": "train"}
+{"text": "다수 의견이 어떤지는 말고 사실 위주로 알려줘", "signals": [], "kind": "hand_negation", "id": "H0255", "split": "val_hand"}
+{"text": "전문가 말투는 쓰지 말고 쉬운 말로 알려줘", "signals": [], "kind": "hand_negation", "id": "H0256", "split": "train"}
+{"text": "이유는 설명하지 말고 정답만 알려줘", "signals": [], "kind": "hand_negation", "id": "H0257", "split": "train"}
+{"text": "토론 수업 지도안을 어떻게 짜는지 알려줘", "signals": [], "kind": "hand_mention", "id": "H0258", "split": "train"}
+{"text": "토론의 역사에 대해 간단히 설명해줘", "signals": [], "kind": "hand_mention", "id": "H0259", "split": "train"}
+{"text": "전문가 자문 비용이 보통 얼마야", "signals": [], "kind": "hand_mention", "id": "H0260", "split": "val_hand"}
+{"text": "전문가 시스템이 뭔지 설명해줘", "signals": [], "kind": "hand_mention", "id": "H0261", "split": "train"}
+{"text": "역할 분담표 양식 하나 만들어줘", "signals": [], "kind": "hand_mention", "id": "H0262", "split": "train"}
+{"text": "페르소나 마케팅이 뭔지 설명해줘", "signals": [], "kind": "hand_mention", "id": "H0263", "split": "train"}
+{"text": "풀이집 파는 서점 알려줘", "signals": [], "kind": "hand_mention", "id": "H0264", "split": "train"}
+{"text": "예시문을 한 편 찾고 있어. 어디서 구해?", "signals": [], "kind": "hand_mention", "id": "H0265", "split": "val_hand"}
+{"text": "예제 코드 저장소 추천해줘", "signals": [], "kind": "hand_mention", "id": "H0266", "split": "train"}
+{"text": "대다수라는 단어가 한자로 뭐야", "signals": [], "kind": "hand_mention", "id": "H0267", "split": "train"}
+{"text": "다수결 원칙이 뭔지 알려줘", "signals": [], "kind": "hand_mention", "id": "H0268", "split": "train"}
+{"text": "의견서 양식을 알려줘", "signals": [], "kind": "hand_mention", "id": "H0269", "split": "train"}
+{"text": "추천서 작성 방법 알려줘", "signals": [], "kind": "hand_mention", "id": "H0270", "split": "val_hand"}
+{"text": "아이디어 회의 진행 순서가 뭐야", "signals": [], "kind": "hand_mention", "id": "H0271", "split": "train"}
+{"text": "단계라는 말의 유의어가 뭐야", "signals": [], "kind": "hand_mention", "id": "H0272", "split": "train"}
+{"text": "생각 정리하는 앱 이름이 뭐가 있어", "signals": [], "kind": "hand_mention", "id": "H0273", "split": "train"}
+{"text": "너는 20년차 의사야. 두 명의 의사가 서로 반박하며 이 증상 원인을 따져줘", "signals": ["debate", "persona"], "kind": "hand_multi", "id": "H0274", "split": "train"}
+{"text": "내 생각엔 답이 7인데 풀이 과정도 단계별로 보여주면서 맞는지 확인해줘", "signals": ["cot", "opinion"], "kind": "hand_multi", "id": "H0275", "split": "val_hand"}
+{"text": "대부분의 사람들은 이 정책에 어떻게 반응해? 나는 반대가 더 많다고 보는데", "signals": ["majority", "opinion"], "kind": "hand_multi", "id": "H0276", "split": "train"}
+{"text": "마케팅 전문가로서 동아리 행사 아이디어 좀 추천해줘", "signals": ["brainstorm", "persona"], "kind": "hand_multi", "id": "H0277", "split": "train"}
+{"text": "예시처럼 해줘. 입력: 사과 출력: apple. 그리고 단계별로 번역 과정도 보여줘. 입력: 포도", "signals": ["cot", "fewshot"], "kind": "hand_multi", "id": "H0278", "split": "train"}
+{"text": "변호사 입장에서 찬성과 반대를 번갈아 주장하는 토론을 만들어줘", "signals": ["debate", "persona"], "kind": "hand_multi", "id": "H0279", "split": "train"}
+{"text": "요즘 사람들이 많이 하는 취미 뭐야? 색다른 것도 추천해줘", "signals": ["brainstorm", "majority"], "kind": "hand_multi", "id": "H0280", "split": "val_hand"}
+{"text": "난 이 방법이 맞다고 생각해. 근거를 단계별로 설명해주고 반론도 해줘", "signals": ["cot", "opinion"], "kind": "hand_multi", "id": "H0281", "split": "train"}
+{"text": "Act as a teacher and show your reasoning step by step.", "signals": ["cot", "persona"], "kind": "hand_multi", "id": "H0282", "split": "train"}
+{"text": "내 의견은 이게 최선이야. 두 전문가가 토론해서 내가 맞는지 판단해줘", "signals": ["debate", "opinion"], "kind": "hand_multi", "id": "H0283", "split": "train"}
+{"text": "가을 축제 포스터를 만들어줘. 노란색과 갈색, 상단에 '가을 축제', 가운데에 은행잎, 따뜻한 느낌. 예시 분위기: '추수 감사' 포스터", "signals": ["fewshot", "specific"], "kind": "hand_multi", "id": "H0284", "split": "train"}
+{"text": "카페 로고 아이디어를 여러 개 추천해줘. 간단한 로고로", "signals": ["brainstorm", "vague"], "kind": "hand_multi", "id": "H0285", "split": "val_hand"}
+{"text": "전문가처럼 단계별로 설명해줘. 예: '입력 3 → 출력 9' 같은 규칙이야", "signals": ["cot", "fewshot", "persona"], "kind": "hand_multi", "id": "H0286", "split": "train"}
+{"text": "대다수 사람들 생각이 궁금해. 내 생각엔 찬성이 많을 것 같아", "signals": ["majority", "opinion"], "kind": "hand_multi", "id": "H0287", "split": "train"}
+{"text": "두 사람이 토론하듯이 단계별로 풀이해줘. 문제: 2의 10제곱", "signals": ["cot", "debate"], "kind": "hand_multi", "id": "H0288", "split": "train"}
+{"text": "Most people think this is fine, but I think it is not. Walk me through why step by step.", "signals": ["cot", "majority", "opinion"], "kind": "hand_multi", "id": "H0289", "split": "train"}
+{"text": "재미있는 이벤트 아이디어 추천해줘. 요즘 인기 있는 건 어떤 거야?", "signals": ["brainstorm", "majority"], "kind": "hand_multi", "id": "H0290", "split": "val_hand"}
+{"text": "이 샘플 형식 그대로 쓰고, 선생님 말투로 설명해줘. 샘플: 오늘의 한 줄 - 열심히!", "signals": ["fewshot", "persona"], "kind": "hand_multi", "id": "H0291", "split": "train"}
