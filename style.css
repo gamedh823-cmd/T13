@@ -192,3 +192,8 @@ textarea{min-height:150px;padding:16px 18px}
 .foot p{margin:0 0 14px}
 .note{margin-top:14px}
 body{padding-bottom:80px}
+
+.ck.weak{border-style:dotted;color:var(--accent);border-color:color-mix(in srgb,var(--accent) 55%,var(--line));background:color-mix(in srgb,var(--soft) 60%,var(--card))}
+
+.fbk{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;padding:6px 13px;border-radius:99px;border:1.5px solid var(--line);background:var(--card);cursor:pointer}
+.fbk:has(input:checked){border-color:var(--accent);background:var(--soft);color:var(--accent)}

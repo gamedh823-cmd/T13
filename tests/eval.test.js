@@ -37,5 +37,12 @@ t('채점은 같은 입력에 같은 결과를 낸다', () => {
   const run = () => execFileSync('node', [path.join(__dirname, '..', 'eval', 'score.js'), 'dev'], { encoding: 'utf8' });
   assert.strictEqual(run(), run());
 });
+t('실제 사용 문장 세트가 형식에 맞고 개발·보류용 문장과 겹치지 않는다', () => {
+  const real = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'eval', 'real_use.json'), 'utf8'));
+  assert.ok(real.length >= 1);
+  assert.ok(real.every((r) => typeof r.text === 'string' && Array.isArray(r.signals) && r.signals.every((s) => VALID.includes(s))));
+  const lab = new Set(labels.map((l) => l.text));
+  assert.ok(real.every((r) => !lab.has(r.text)));
+});
 
 console.log('\n' + n + '개 모두 통과');

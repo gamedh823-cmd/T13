@@ -1,5 +1,6 @@
 // 채점: 라벨 세트(eval/labels.json)로 core.js의 신호 감지가 얼마나 맞는지 잰다.
-// 실행: node eval/score.js [dev|holdout|all] [--engine rules|model|union|vote] [--thr 0.3] [--low 0.1] [--errors] [--md 파일경로]
+// 실행: node eval/score.js [dev|holdout|all] [--set real]   (--set real: 실제로 앱에 넣어 본 문장 eval/real_use.json)
+//   예) node eval/score.js [dev|holdout|all] [--engine rules|model|union|vote] [--thr 0.3] [--low 0.1] [--errors] [--md 파일경로]
 //   기본은 dev(개발용), 기본 엔진은 rules(기준선). holdout(보류용)은 개선을 마친 뒤 마지막에 한 번만 잰다.
 //   rules  규칙(정규식) 감지만
 //   model  학습 모델(train/model.json)만. 확률 >= thr 이면 신호로 본다
@@ -41,8 +42,9 @@ function predictSet(text) {
 const mdIdx = args.indexOf('--md');
 const mdPath = mdIdx >= 0 ? args[mdIdx + 1] : null;
 
-const labels = JSON.parse(fs.readFileSync(path.join(__dirname, 'labels.json'), 'utf8'));
-const items = labels.filter((l) => split === 'all' || l.split === split);
+const useReal = args.includes('--set') && opt('--set', 'labels') === 'real';
+const labels = JSON.parse(fs.readFileSync(path.join(__dirname, useReal ? 'real_use.json' : 'labels.json'), 'utf8'));
+const items = useReal ? labels : labels.filter((l) => split === 'all' || l.split === split);
 const SIGNALS = ['debate', 'persona', 'majority', 'specific', 'vague', 'cot', 'fewshot', 'opinion', 'brainstorm'];
 
 const stat = {};
@@ -92,7 +94,7 @@ const mr = tp + fn ? tp / (tp + fn) : NaN;
 const mf = mp + mr ? (2 * mp * mr) / (mp + mr) : NaN;
 
 const lines = [];
-lines.push(`채점 대상: ${split} ${items.length}개 · 엔진 ${engine}` + (engine === 'rules' ? '' : ` (thr ${thr}` + (engine === 'vote' ? `, low ${low}` : '') + ')'));
+lines.push(`채점 대상: ${useReal ? 'real(실제 사용 문장)' : split} ${items.length}개 · 엔진 ${engine}` + (engine === 'rules' ? '' : ` (thr ${thr}` + (engine === 'vote' ? `, low ${low}` : '') + ')'));
 lines.push('');
 lines.push('| 신호 | 정답 수 | 맞게 잡음 | 오탐 | 놓침 | 정밀도 | 재현율 | F1 |');
 lines.push('|---|---|---|---|---|---|---|---|');

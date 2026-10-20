@@ -56,5 +56,16 @@ t('모델이 찾은 신호에는 evidence가 없을 수 있고, 규칙이 찾은
 t('모든 신호 id에 논문 결과 문장이 있다(모델이 내는 id와 화면 카드가 맞음)', () => {
   for (const id of model.signals) assert.ok(C.finding(id), id);
 });
+t('확률이 낮은 신호는 약한 신호(weak)로만 나오고 확정 신호에는 들어가지 않는다', () => {
+  const a = run('이거 어떻게 하면 좋을까?');
+  assert.ok(Array.isArray(a.weak));
+  assert.ok(a.signals.every((s) => s.prob >= ML.THRESHOLD));
+  assert.ok(a.weak.every((w) => w.prob >= ML.WEAK && w.prob < ML.THRESHOLD));
+  assert.ok(a.probs && typeof a.probs.brainstorm === 'number');
+});
+t('확정 신호에는 확신도(prob)가 붙는다', () => {
+  const a = run('고양이 이름 후보 좀 지어 줘');
+  assert.ok(a.signals.length >= 1 && a.signals.every((s) => typeof s.prob === 'number'));
+});
 
 console.log('\n' + n + '개 모두 통과');

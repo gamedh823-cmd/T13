@@ -8,6 +8,7 @@
 | `labels.json` | 라벨 세트 116개(개발용 dev 96, 보류용 holdout 20). 문장마다 정답 신호 목록 |
 | `score.js` | 채점. 신호별 정밀도·재현율·F1, 문장 종류별 일치율, 틀린 사례 |
 | `baseline_dev.md` | 개선 전 기준선 결과(개발용) |
+| `real_use.json` | 실제로 앱에 넣어 본 문장(출처 표시). 합성·AI 초안 라벨과 섞지 않고 따로 잰다. `node eval/score.js --set real --engine model --thr 0.4` |
 
 ## 실행
 

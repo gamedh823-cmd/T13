@@ -46,12 +46,19 @@
       $('result').hidden = true;
       $('len-card').hidden = true;
       $('sug-card').hidden = true;
+      $('fb-card').hidden = true;
       return;
     }
     $('result').hidden = false;
     var found = {};
+    var prob = {};
     a.signals.forEach(function (s) {
       found[s.id] = true;
+      if (typeof s.prob === 'number') prob[s.id] = s.prob;
+    });
+    var weakIds = {};
+    (a.weak || []).forEach(function (w) {
+      weakIds[w.id] = w.prob;
     });
     var grid = el('div', 'check');
     var hit = 0;
@@ -61,12 +68,16 @@
         return found[i];
       });
       if (on) hit++;
-      var chip = el('span', 'ck' + (on ? ' on' : '') + (c.own ? '' : ' lit'), (on ? '✔ ' : '– ') + c.label);
+      var wk = !on && ids.some(function (i) {
+        return weakIds[i] !== undefined;
+      });
+      var chip = el('span', 'ck' + (on ? ' on' : '') + (wk ? ' weak' : '') + (c.own ? '' : ' lit'), (on ? '✔ ' : wk ? '△ ' : '– ') + c.label);
       grid.appendChild(chip);
     });
-    box.appendChild(el('p', 'sum', PSC.CHECKLIST.length + '가지 신호 중 ' + hit + '가지가 이 프롬프트에 있어요'));
+    var nWeak = Object.keys(weakIds).length;
+    box.appendChild(el('p', 'sum', PSC.CHECKLIST.length + '가지 신호 중 ' + hit + '가지가 이 프롬프트에 있어요' + (nWeak ? ' (약한 신호 ' + nWeak + '가지)' : '')));
     box.appendChild(grid);
-    box.appendChild(el('p', 'note', '진한 칸은 이번 논문이 직접 실험한 신호 4가지, 옅은 칸은 선행 연구에서 가져온 신호 4가지입니다.'));
+    box.appendChild(el('p', 'note', '진한 칸은 이번 논문이 직접 실험한 신호 4가지, 옅은 칸은 선행 연구에서 가져온 신호 4가지입니다.' + (nWeak ? ' △는 확률이 낮아 확정하지 않은 약한 신호예요(' + Object.keys(weakIds).map(function (k) { return k + ' ' + Math.round(weakIds[k] * 100) + '%'; }).join(', ') + ').' : '')));
     if (a.skipped && a.skipped.length) {
       var seen = {};
       var parts = [];
@@ -88,7 +99,7 @@
       var card = el('div', 'sig');
       if (f.lit) card.appendChild(el('span', 'tag', '선행 연구 기반 · 이번 실험 아님'));
       card.appendChild(el('h3', '', f.title));
-      card.appendChild(el('p', 'found', s.evidence ? '찾은 표현: “' + s.evidence + '”' : '문장 전체의 맥락으로 판단했어요 (학습한 모델)'));
+      card.appendChild(el('p', 'found', (s.evidence ? '찾은 표현: “' + s.evidence + '”' : '문장 전체의 맥락으로 판단했어요 (학습한 모델)') + (typeof s.prob === 'number' ? ' · 확신도 ' + Math.round(s.prob * 100) + '%' : '')));
       card.appendChild(el('p', 'verdict', f.verdict));
       var ul = el('ul');
       f.lines.forEach(function (l) {
@@ -102,6 +113,7 @@
 
     $('sug-card').hidden = false;
     renderLength();
+    renderFeedback();
     renumber();
     var ul2 = $('rules');
     clear(ul2);
@@ -117,6 +129,52 @@
       var n = c.querySelector('h2 .n');
       if (n && !c.hidden) n.textContent = String(i++);
     });
+  }
+
+  // ---- 판정 신고: 맞는 신호를 골라 JSON 한 줄로 복사한다(서버로 보내지 않음) ----
+  var FB_LABELS = {
+    debate: '토론 지시', persona: '전문가 역할', majority: '다수 의견', specific: '이미지(구체적)', vague: '이미지(막연)',
+    cot: '풀이 과정', fewshot: '예시', opinion: '내 의견', brainstorm: '열린 추천'
+  };
+
+  function renderFeedback() {
+    var a = state.analysis;
+    var card = $('fb-card');
+    var grid = $('fb-grid');
+    clear(grid);
+    $('fb-done').textContent = '';
+    card.hidden = !(a && a.ok);
+    if (!(a && a.ok)) return;
+    var now = {};
+    a.signals.forEach(function (s) {
+      now[s.id] = true;
+    });
+    Object.keys(FB_LABELS).forEach(function (id) {
+      var lab = el('label', 'fbk');
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = id;
+      cb.checked = !!now[id];
+      lab.appendChild(cb);
+      lab.appendChild(document.createTextNode(' ' + FB_LABELS[id]));
+      grid.appendChild(lab);
+    });
+  }
+
+  function copyFeedback() {
+    var a = state.analysis;
+    if (!(a && a.ok)) return;
+    var sig = [];
+    $('fb-grid').querySelectorAll('input:checked').forEach(function (cb) {
+      sig.push(cb.value);
+    });
+    var line = JSON.stringify({ text: a.text.slice(0, 300), signals: sig, 앱판정: a.signals.map(function (s) { return s.id; }) });
+    var done = function (ok) {
+      $('fb-done').textContent = ok ? '복사했어요. 개발자에게 붙여 넣어 보내 주세요.' : '복사에 실패했어요. 글자를 직접 선택해 복사해 주세요: ' + line;
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(line).then(function () { done(true); }, function () { done(false); });
+    } else done(false);
   }
 
   function renderLength() {
@@ -249,6 +307,7 @@
 
   $('run').addEventListener('click', run);
   $('ask').addEventListener('click', ask);
+  $('fb-copy').addEventListener('click', copyFeedback);
   $('prompt').addEventListener('input', function () {
     var n = this.value.length;
     $('count').textContent = n ? n + '자' : '';
