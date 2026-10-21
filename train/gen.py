@@ -299,6 +299,9 @@ eval_texts = set()
 ep = os.path.join(os.path.dirname(__file__), '..', 'eval', 'labels.json')
 if os.path.exists(ep):
     eval_texts = {x['text'].strip() for x in json.load(io.open(ep, encoding='utf-8'))}
+    rp = os.path.join(os.path.dirname(__file__), '..', 'eval', 'real_use.json')
+    if os.path.exists(rp):
+        eval_texts |= {x['text'].strip() for x in json.load(io.open(rp, encoding='utf-8'))}
 for r in rows:
     if r['text'] in seen or r['text'] in eval_texts:
         continue

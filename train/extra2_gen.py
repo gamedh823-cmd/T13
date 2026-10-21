@@ -22,6 +22,8 @@ def load(p):
 existing = load(os.path.join(DATA, 'train.jsonl')) + load(os.path.join(DATA, 'extra_handwritten.jsonl'))
 known = {norm(r['text']) for r in existing}
 eval_texts = {norm(x['text']) for x in json.load(io.open(os.path.join(HERE, '..', 'eval', 'labels.json'), encoding='utf-8'))}
+# 실제 사용 문장(eval/real_use.json)도 학습에 들어가지 않게 뺀다(공백·문장부호만 다른 것 포함).
+eval_texts |= {norm(x['text']) for x in json.load(io.open(os.path.join(HERE, '..', 'eval', 'real_use.json'), encoding='utf-8'))}
 
 TASKS = ['엑셀에서 중복값 지우기', '파이썬 코드 속도 높이기', '영어 단어 외우기', '보고서 쓰기', '이력서 작성하기', '회의 시간 줄이기', '노트북 배터리 아끼기',
          '코드 리뷰 빨리 끝내기', '공부 시간 확보하기', '이메일 빨리 쓰기', '파일 정리하기', '발표 긴장 풀기', 'git 커밋 합치기', '사진 용량 줄이기',
@@ -180,6 +182,51 @@ ADVICE_NEG = """
 면접에서 긴장하는데 어떻게 하면 좋을까
 """.strip().splitlines()
 for t in FACT_NEG + ADVICE_NEG:
+    pool.append((t.strip(), [], 'hard_hand'))
+# 줄임말·짧은 추천 요청(예: 저메추 = 저녁 메뉴 추천)과 글자만 겹치는 문장(메추리알)
+SLANG_POS = """
+저메추 좀
+저메추좀 해줘
+점메추 부탁
+점메추 해줘
+야식 메추좀
+아침 메추 좀
+간식 메추좀
+오늘 점메추
+저메추 ㅇㅇ
+메추좀
+메뉴 추천 좀
+메뉴 추천해줘
+오늘 저녁 메뉴 뭐가 좋을까
+저녁 뭐 먹지 추천해줘
+점심 뭐 먹을지 추천 좀
+야식 추천해줘
+술안주 추천 좀
+카페 메뉴 추천해줘
+노래 추천 좀
+영화 추천해줘
+책 추천 좀 해줘
+여행지 추천 좀
+선물 추천해줘
+맛집 추천 좀
+게임 추천해줘
+취미 추천 좀
+노추 부탁해
+영추 좀
+책추 해줘
+맛추 좀 해줘
+뭐 먹을까 추천 좀
+오늘 뭐 할지 추천해줘
+""".strip().splitlines()
+SLANG_NEG = """
+메추리알 삶는 시간이 얼마야?
+메추리알 장조림 레시피 알려줘
+메추리는 어떤 새야?
+추천 서버가 뭔지 설명해줘
+""".strip().splitlines()
+for t in SLANG_POS:
+    pool.append((t.strip(), ['brainstorm'], 'hard_hand'))
+for t in SLANG_NEG:
     pool.append((t.strip(), [], 'hard_hand'))
 tm = [(t, m) for t in TASKS for m in METHOD_T]
 random.shuffle(tm)

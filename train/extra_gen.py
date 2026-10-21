@@ -356,6 +356,7 @@ def norm(t):
     return re.sub(r'[\s\.,!?"\'“”‘’~·…]+', '', t).lower()
 
 eval_texts = {norm(x['text']) for x in json.load(io.open(os.path.join(HERE, '..', 'eval', 'labels.json'), encoding='utf-8'))}
+eval_texts |= {norm(x['text']) for x in json.load(io.open(os.path.join(HERE, '..', 'eval', 'real_use.json'), encoding='utf-8'))}
 seen, out = set(), []
 for t, s, k in rows:
     n = norm(t)
