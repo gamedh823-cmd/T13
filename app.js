@@ -72,6 +72,8 @@
         return weakIds[i] !== undefined;
       });
       var chip = el('span', 'ck' + (on ? ' on' : '') + (wk ? ' weak' : '') + (c.own ? '' : ' lit'), (on ? '✔ ' : wk ? '△ ' : '– ') + c.label);
+      var info = FB_INFO[(c.ids || [c.id])[0]];
+      if (info) chip.title = info[0] + ' (예: ' + info[1] + ')';
       grid.appendChild(chip);
     });
     var nWeak = Object.keys(weakIds).length;
@@ -137,12 +139,26 @@
     cot: '풀이 과정', fewshot: '예시', opinion: '내 의견', brainstorm: '열린 추천'
   };
 
+  // 각 신호의 뜻(한 줄)과 예시. eval/README.md의 라벨 기준과 같은 정의다.
+  var FB_INFO = {
+    debate: ['두 입장이나 두 전문가가 서로 주장하고 반박하게 하는 요청', '“찬성과 반대가 토론하듯 풀어 줘”'],
+    persona: ['AI에게 직업·역할을 주고 그 입장에서 답하게 하는 요청', '“너는 20년 경력 의사야”'],
+    majority: ['내 의견이 아니라 “대부분의 사람들은 어떻게 생각해?”를 묻는 질문', '“다들 이걸 어떻게 생각해?”'],
+    specific: ['색·배치·문구·분위기 중 3가지 이상을 자세히 적은 이미지 요청', '“하늘색 배경, 위에 큰 제목, 따뜻한 느낌의 포스터”'],
+    vague: ['요소를 거의 적지 않은 짧은 이미지 요청', '“카페 포스터 만들어 줘”'],
+    cot: ['답만이 아니라 풀이 과정이나 이유를 단계별로 쓰게 하는 요청', '“단계별로 풀이 과정을 보여 줘”'],
+    fewshot: ['따라 할 예시나 샘플을 같이 주는 경우', '“입력: 사과 출력: apple 이런 식으로 해 줘”'],
+    opinion: ['내 생각을 먼저 말하고 동의나 평가를 구하는 질문', '“내 생각엔 이게 맞는데 어때?”'],
+    brainstorm: ['후보·아이디어·이름·장소처럼 여러 선택지를 구하는 요청 (방법을 묻는 건 아님)', '“동아리에서 할 만한 행사 추천해 줘”']
+  };
+
   function renderFeedback() {
     var a = state.analysis;
     var card = $('fb-card');
     var grid = $('fb-grid');
     clear(grid);
     $('fb-done').textContent = '';
+    grid.className = 'fblist';
     card.hidden = !(a && a.ok);
     if (!(a && a.ok)) return;
     var now = {};
@@ -150,14 +166,18 @@
       now[s.id] = true;
     });
     Object.keys(FB_LABELS).forEach(function (id) {
-      var lab = el('label', 'fbk');
+      var row = el('label', 'fbrow');
       var cb = document.createElement('input');
       cb.type = 'checkbox';
       cb.value = id;
       cb.checked = !!now[id];
-      lab.appendChild(cb);
-      lab.appendChild(document.createTextNode(' ' + FB_LABELS[id]));
-      grid.appendChild(lab);
+      var txt = el('span', 'fbtxt');
+      txt.appendChild(el('b', '', FB_LABELS[id]));
+      txt.appendChild(el('span', 'fbdesc', FB_INFO[id][0]));
+      txt.appendChild(el('span', 'fbex', '예: ' + FB_INFO[id][1]));
+      row.appendChild(cb);
+      row.appendChild(txt);
+      grid.appendChild(row);
     });
   }
 

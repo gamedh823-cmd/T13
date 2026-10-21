@@ -205,3 +205,12 @@ details.card[open]>summary::before{content:"▾ "}
 table.rep{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px}
 table.rep th,table.rep td{border:1px solid var(--line);padding:7px 10px;text-align:left}
 table.rep th{background:var(--soft)}
+
+.fblist{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.fbrow{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;padding:10px 14px;border:1.5px solid var(--line);border-radius:14px;background:var(--card);cursor:pointer}
+.fbrow:has(input:checked){border-color:var(--accent);background:var(--soft)}
+.fbrow input{margin-top:4px;width:18px;height:18px}
+.fbtxt{display:flex;flex-direction:column;gap:2px;font-size:14px}
+.fbtxt b{font-size:15px}
+.fbdesc{color:var(--fg)}
+.fbex{color:var(--muted);font-size:13px}
