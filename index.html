@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>프롬프트 신호 점검기</title>
 <meta name="description" content="프롬프트를 붙여 넣으면 신호 8가지가 답에 주는 영향을 논문 결과로 짚어 주고, 빠진 정보는 채우고 불필요한 정보는 빼서 더 구체적인 질문으로 고치도록 돕습니다.">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <main class="wrap">
@@ -80,15 +80,21 @@
     <p class="note">복사되는 것은 입력한 문장(앞 300자)과 체크한 신호뿐이고, 자동으로 어디에도 전송하지 않아요. 이름·연락처·비밀번호 같은 개인정보가 있으면 지우고 보내 주세요.</p>
   </section>
 
+  <details class="card" id="report" hidden>
+    <summary>판정을 얼마나 믿을 수 있나요? (정확도 보고)</summary>
+    <div id="report-body"></div>
+  </details>
+
   <footer class="foot">
     <p><strong>이 수치를 믿어도 되는 범위</strong> — <span id="scope"></span></p>
     <p>만든 이: 유지원 · 코드와 사용법은 <a href="https://github.com/gamedh823-cmd/T13" target="_blank" rel="noopener">저장소</a>에 있습니다. 입력한 프롬프트는 저장하지 않으며, “AI에게 고친 프롬프트 받기” 버튼을 누를 때만 서버로 보냅니다.</p>
   </footer>
 </main>
 <noscript><p class="err">자바스크립트가 꺼져 있어 점검 기능이 동작하지 않아요. 브라우저 설정에서 켜 주세요.</p></noscript>
-<script src="core.js?v=4"></script>
-<script src="ml.js?v=4"></script>
-<script src="train/model.js?v=4" async></script>
-<script src="app.js?v=4"></script>
+<script src="core.js?v=5"></script>
+<script src="ml.js?v=5"></script>
+<script src="train/model.js?v=5" async></script>
+<script src="eval/report_data.js?v=5" async></script>
+<script src="app.js?v=5"></script>
 </body>
 </html>

@@ -34,18 +34,18 @@ AI에게 어떻게 묻느냐에 따라 얻는 정보의 질이 달라집니다. 
 | `index.html`, `style.css`, `app.js` | 화면 |
 | `core.js` | 신호 감지 규칙(기준선)과 **논문 수치**(표 번호 주석). 수치는 여기에만 있음 |
 | `ml.js`, `train/model.js` | 학습한 신호 분류기를 브라우저에서 돌리는 코드와 가중치. 앱은 이것으로 신호를 판단하고 실패하면 규칙을 쓴다 |
-| `train/`, `eval/` | 학습 데이터 2000개와 학습 스크립트, 정확도를 재는 라벨 세트와 채점 도구 |
+| `train/`, `eval/` | 학습 데이터 2000개와 학습 스크립트, 정확도를 재는 라벨 세트·채점 도구·정확도 보고(`eval/report.js`가 화면의 "판정을 얼마나 믿을 수 있나요?" 절의 숫자를 계산) |
 | `api/suggest.js` | 3번 기능용 Vercel 서버리스 프록시(Gemini 호출) |
-| `tests/*.test.js` | 논문 수치·잘못된 입력(core 31개), 라벨 세트·채점(eval 6개), 학습 모델 연결·약한 신호(ml 10개) 테스트 |
+| `tests/*.test.js` | 논문 수치·잘못된 입력(core 31개), 라벨 세트·채점(eval 6개), 학습 모델 연결·약한 신호(ml 10개), 정확도 보고(report 4개) 테스트 |
 | `docs/제출문.md` | 확인 방법, AI와 나의 판단 |
 
 ## 테스트
 
 ```bash
-node tests/core.test.js && node tests/eval.test.js && node tests/ml.test.js
+node tests/core.test.js && node tests/eval.test.js && node tests/ml.test.js && node tests/report.test.js
 ```
 
-Node 18 이상만 있으면 됩니다. 세 파일이 각각 `31개`, `6개`, `10개 모두 통과`를 내면 통과입니다.
+Node 18 이상만 있으면 됩니다. 네 파일이 각각 `31개`, `6개`, `10개`, `4개 모두 통과`를 내면 통과입니다.
 
 ## 환경 변수 (3번 기능을 직접 배포할 때만)
 

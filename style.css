@@ -197,3 +197,11 @@ body{padding-bottom:80px}
 
 .fbk{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;padding:6px 13px;border-radius:99px;border:1.5px solid var(--line);background:var(--card);cursor:pointer}
 .fbk:has(input:checked){border-color:var(--accent);background:var(--soft);color:var(--accent)}
+
+details.card>summary{cursor:pointer;font-weight:800;font-size:16px;list-style:none}
+details.card>summary::-webkit-details-marker{display:none}
+details.card>summary::before{content:"▸ ";color:var(--accent)}
+details.card[open]>summary::before{content:"▾ "}
+table.rep{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px}
+table.rep th,table.rep td{border:1px solid var(--line);padding:7px 10px;text-align:left}
+table.rep th{background:var(--soft)}

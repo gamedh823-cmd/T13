@@ -177,6 +177,61 @@
     } else done(false);
   }
 
+  // ---- 정확도 보고: eval/report.js가 계산한 숫자를 그대로 보여 준다 ----
+  function renderReport() {
+    var R = window.PSC_REPORT;
+    var box = $('report');
+    var body = $('report-body');
+    if (!R || !box || !body) return;
+    clear(body);
+    function pct(x) {
+      return Math.round(x * 100) + '%';
+    }
+    body.appendChild(el('p', 'lead', '신호 판정은 학습한 모델이 합니다. 아래 숫자는 학습에 쓰지 않은 문장으로 잰 것이고, 신호 하나 단위(문장 속 신호가 맞게 잡혔는지)로 셉니다.'));
+    var t1 = el('table', 'rep');
+    var head = el('tr');
+    ['기준', '문장 수', '정밀도', '재현율', 'F1'].forEach(function (h) {
+      head.appendChild(el('th', '', h));
+    });
+    t1.appendChild(head);
+    [
+      ['개발용 라벨 · 예전 규칙(비교용)', R.dev.rules],
+      ['개발용 라벨 · 학습 모델(지금 앱)', R.dev.model],
+      ['처음 보는 표현(합성)', R.valUnseen],
+      ['직접 쓴 새 말투', R.valHand],
+      ['실제 사용 문장', R.real]
+    ].forEach(function (row) {
+      var tr = el('tr');
+      tr.appendChild(el('td', '', row[0]));
+      tr.appendChild(el('td', '', String(row[1].n)));
+      tr.appendChild(el('td', '', pct(row[1].precision)));
+      tr.appendChild(el('td', '', pct(row[1].recall)));
+      tr.appendChild(el('td', '', pct(row[1].f1)));
+      t1.appendChild(tr);
+    });
+    body.appendChild(t1);
+    body.appendChild(el('p', 'note', '정밀도 = 앱이 잡은 신호 중 맞은 비율, 재현율 = 실제 신호 중 앱이 잡은 비율. 실제 사용 문장은 4개뿐이라 참고용입니다.'));
+    body.appendChild(el('h3', 'mini', '확신도별로 실제 얼마나 맞았나'));
+    var t2 = el('table', 'rep');
+    var h2 = el('tr');
+    ['확신도 구간', '판정 수', '맞은 수', '맞은 비율'].forEach(function (h) {
+      h2.appendChild(el('th', '', h));
+    });
+    t2.appendChild(h2);
+    R.calibration.forEach(function (c) {
+      var tr = el('tr');
+      tr.appendChild(el('td', '', c.label));
+      tr.appendChild(el('td', '', String(c.n)));
+      tr.appendChild(el('td', '', String(c.right)));
+      tr.appendChild(el('td', '', c.rate === null ? '-' : c.rate + '%'));
+      t2.appendChild(tr);
+    });
+    body.appendChild(t2);
+    body.appendChild(el('p', 'note', '확신도 ' + Math.round(R.threshold * 100) + '% 이상이면 신호로 확정하고, ' + Math.round(R.weak * 100) + '~' + Math.round(R.threshold * 100) + '%는 △ 약한 신호로만 보여 줍니다. 약한 신호는 절반 정도만 맞으니 참고만 하세요.'));
+    body.appendChild(el('p', 'note', R.note));
+    box.hidden = false;
+  }
+
   function renderLength() {
     var a = state.analysis;
     var out = $('len-out');
@@ -305,6 +360,10 @@
       });
   }
 
+  window.addEventListener('load', function () {
+    renderReport();
+    setTimeout(renderReport, 800);
+  });
   $('run').addEventListener('click', run);
   $('ask').addEventListener('click', ask);
   $('fb-copy').addEventListener('click', copyFeedback);

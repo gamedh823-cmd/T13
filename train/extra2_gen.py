@@ -83,6 +83,104 @@ for t in POS_HAND:
     pool.append((t.strip(), ['brainstorm'], 'hard_hand'))
 for t in HAND_NEG:
     pool.append((t.strip(), [], 'hard_hand'))
+# 영어 일반 질문(신호 없음)과 영어 신호 문장 보강: 영어 일반 질문이 다수 의견 등으로 잘못 잡히던 문제를 줄이려고 추가
+ENG_NEG = """
+What is the tallest mountain in Africa?
+How many days are there in a leap year?
+Who wrote the novel Pride and Prejudice?
+Explain what an API is in two sentences.
+What is the boiling point of water in Fahrenheit?
+Write a function that reverses a string in JavaScript.
+How do I center a div with CSS?
+What does the acronym HTTP stand for?
+Convert 100 degrees Celsius to Fahrenheit.
+Which planet is closest to the sun?
+Fix the grammar in this sentence: She go to school yesterday.
+Give me the synonyms for the word happy.
+How long does it take to fly from Seoul to Tokyo?
+What is the difference between a list and a tuple in Python?
+Translate this sentence into Korean: The meeting starts at nine.
+What is the square root of 144?
+Where is the Eiffel Tower located?
+How do I undo the last git commit?
+Summarize the plot of Romeo and Juliet in three sentences.
+What year did the Berlin Wall fall?
+Write a SQL query that counts rows in a table.
+What is the capital city of Canada?
+How many players are on a soccer team?
+List the primary colors.
+What does a CPU do?
+How do I install Node.js on Windows?
+Rewrite this email to sound more polite: Send me the file now.
+What is the population of Australia?
+Define photosynthesis in one sentence.
+How do you say thank you in Spanish?
+When was the first iPhone released?
+What is the chemical symbol for gold?
+Can you explain what recursion means?
+How many ounces are in a pound?
+What is the largest ocean on Earth?
+Please proofread the following paragraph.
+What time does the sun set in London in June?
+How do I reset my router?
+Show me how to read a file in Python.
+What is the main idea of this paragraph?
+""".strip().splitlines()
+ENG_POS = [
+    ('Do most Americans support a four-day work week?', ['majority']),
+    ('What do most people think about electric cars these days?', ['majority']),
+    ('Is it true that the majority of people prefer cats over dogs?', ['majority']),
+    ('How do people in general feel about working from the office?', ['majority']),
+    ('Suggest three names for a small bakery.', ['brainstorm']),
+    ('Give me some fun ideas for a rainy weekend.', ['brainstorm']),
+    ('I need a few gift ideas for my sister, any suggestions?', ['brainstorm']),
+    ('You are a professional chef. Explain how to cook risotto.', ['persona']),
+    ('Pretend you are a travel guide and plan a day in Rome.', ['persona']),
+    ('Think step by step and tell me what 18 times 27 is.', ['cot']),
+    ('I believe my essay is excellent already. Do you agree?', ['opinion']),
+    ('In my opinion this plan is perfect, so just confirm it.', ['opinion']),
+    ('Let two experts argue for and against nuclear power, then summarize.', ['debate']),
+    ('Here is an example: apple -> fruit, carrot -> vegetable. Now classify potato.', ['fewshot']),
+]
+for t in ENG_NEG:
+    pool.append((t.strip(), [], 'hard_hand'))
+for t, sg in ENG_POS:
+    pool.append((t, sg, 'hard_hand'))
+# "평균·일반적으로·보통" 같은 단어가 들어간 사실 질문과, 조언을 구하는 "어떻게 하면 좋을까"는 신호가 아니다.
+FACT_NEG = """
+목성의 평균 기온은 얼마야?
+서울의 연평균 강수량이 얼마인지 알려줘
+이 반 학생들의 평균 점수를 계산해줘
+시속 평균 속도를 구하는 공식을 알려줘
+대한민국의 평균 수명이 몇 살이야?
+평균과 분산이 뭔지 설명해줘
+일반적으로 물은 몇 도에서 끓어?
+보통 계란은 몇 분 삶아야 완숙이야?
+성인의 하루 평균 수면 시간은 얼마야?
+일반적인 A4 용지 크기가 몇 mm야?
+지구의 평균 반지름을 알려줘
+보통 비행기는 몇 미터 상공을 날아?
+이 데이터의 평균값과 중앙값을 구해줘
+달의 평균 표면 온도가 얼마야?
+한국의 연평균 기온이 몇 도야?
+일반적으로 USB 3.0의 전송 속도는 얼마야?
+""".strip().splitlines()
+ADVICE_NEG = """
+이 코드가 너무 느려졌어. 어떻게 하면 좋을까?
+친구랑 싸웠는데 어떻게 하면 좋을까?
+시험이 내일인데 준비를 못 했어. 어떻게 하면 좋지?
+이거 어떻게 하면 좋을까? 컴퓨터가 부팅이 안 돼
+이 상황에서는 어떻게 하는 게 좋을까요? 계약서에 오타가 있어요
+방이 너무 추운데 어떻게 하면 좋을까
+이 에러는 어떻게 하면 해결할 수 있을까? 서버가 계속 죽어
+발표 자료가 너무 길어요. 어떻게 줄이면 좋을까요?
+돈이 모자라는데 어떻게 하면 좋을까
+상사한테 뭐라고 말해야 할지 모르겠어. 어떻게 하면 좋을까?
+이 파일이 안 열리는데 어떻게 하면 좋을까?
+면접에서 긴장하는데 어떻게 하면 좋을까
+""".strip().splitlines()
+for t in FACT_NEG + ADVICE_NEG:
+    pool.append((t.strip(), [], 'hard_hand'))
 tm = [(t, m) for t in TASKS for m in METHOD_T]
 random.shuffle(tm)
 for t, m in tm[:125]:
