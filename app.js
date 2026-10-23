@@ -294,7 +294,7 @@
       var c = S.compare[p[0]];
       if (!c) return;
       var tr = el('tr');
-      [p[1], pp(c.mean), '[' + pp(c.lo) + ', ' + pp(c.hi) + ']', c.pos + ' / ' + c.neg, c.p.toFixed(3)].forEach(function (v) {
+      [p[1], pp(c.mean), '[' + pp(c.lo) + ', ' + pp(c.hi) + ']', c.pos + ' / ' + c.neg, (c.p < 0.001 ? '<0.001' : c.p.toFixed(3))].forEach(function (v) {
         tr.appendChild(el('td', '', v));
       });
       t2.appendChild(tr);

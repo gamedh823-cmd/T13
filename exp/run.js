@@ -42,7 +42,7 @@ async function main() {
   }
   const key = L.loadKey();
   if (!key) throw new Error('GEMINI_API_KEY가 없습니다. 환경변수나 exp/.env 에 넣어 주세요.');
-  const model = opt('--model', null) || (mode === 'judge' ? 'gemini-3.1-flash-lite' : 'gemini-3.5-flash');
+  const model = opt('--model', null) || (mode === 'judge' ? 'gemini-3.1-flash-lite' : 'gemini-3.5-flash-lite');
   console.log('모델:', model);
 
   if (mode === 'answers') {

@@ -1,0 +1,658 @@
+{
+ "n": 24,
+ "nQuestions": 24,
+ "runsPerCell": 2,
+ "cond": {
+  "A": {
+   "name": "A 원문",
+   "fulfil": 0.2166666666666667,
+   "score": 1.4166666666666667,
+   "chars": 1233.7291666666667,
+   "promptChars": 9.333333333333334
+  },
+  "B": {
+   "name": "B 육하원칙 정보",
+   "fulfil": 0.9833333333333334,
+   "score": 4.916666666666667,
+   "chars": 1559.7916666666667,
+   "promptChars": 181.54166666666666
+  },
+  "C": {
+   "name": "C 논문의 신호만",
+   "fulfil": 0.2625,
+   "score": 1.4375,
+   "chars": 2396.9791666666665,
+   "promptChars": 149.33333333333334
+  }
+ },
+ "compare": {
+  "fulfil:B-A": {
+   "metric": "fulfil",
+   "x": "B",
+   "y": "A",
+   "n": 24,
+   "mean": 0.7666666666666667,
+   "lo": 0.6666666666666665,
+   "hi": 0.8583333333333333,
+   "pos": 24,
+   "neg": 0,
+   "p": 1.1920928955078144e-7
+  },
+  "fulfil:B-C": {
+   "metric": "fulfil",
+   "x": "B",
+   "y": "C",
+   "n": 24,
+   "mean": 0.7208333333333333,
+   "lo": 0.6249999999999998,
+   "hi": 0.8125,
+   "pos": 24,
+   "neg": 0,
+   "p": 1.1920928955078144e-7
+  },
+  "fulfil:C-A": {
+   "metric": "fulfil",
+   "x": "C",
+   "y": "A",
+   "n": 15,
+   "mean": 0.04583333333333336,
+   "lo": -0.020833333333333332,
+   "hi": 0.11250000000000003,
+   "pos": 11,
+   "neg": 4,
+   "p": 0.11846923828125006
+  },
+  "score:B-A": {
+   "metric": "score",
+   "x": "B",
+   "y": "A",
+   "n": 24,
+   "mean": 3.5,
+   "lo": 3.2916666666666665,
+   "hi": 3.6875,
+   "pos": 24,
+   "neg": 0,
+   "p": 1.1920928955078144e-7
+  },
+  "score:B-C": {
+   "metric": "score",
+   "x": "B",
+   "y": "C",
+   "n": 24,
+   "mean": 3.4791666666666665,
+   "lo": 3.1875,
+   "hi": 3.7291666666666665,
+   "pos": 24,
+   "neg": 0,
+   "p": 1.1920928955078144e-7
+  },
+  "score:C-A": {
+   "metric": "score",
+   "x": "C",
+   "y": "A",
+   "n": 12,
+   "mean": 0.020833333333333332,
+   "lo": -0.20833333333333334,
+   "hi": 0.2708333333333333,
+   "pos": 6,
+   "neg": 6,
+   "p": 1
+  }
+ },
+ "byType": {
+  "추천": {
+   "n": 6,
+   "A": 0.46666666666666673,
+   "B": 1,
+   "C": 0.46666666666666673
+  },
+  "기획": {
+   "n": 6,
+   "A": 0.11666666666666668,
+   "B": 0.9833333333333334,
+   "C": 0.23333333333333336
+  },
+  "글쓰기": {
+   "n": 6,
+   "A": 0.11666666666666665,
+   "B": 0.9500000000000001,
+   "C": 0.18333333333333335
+  },
+  "조언": {
+   "n": 6,
+   "A": 0.16666666666666666,
+   "B": 1,
+   "C": 0.16666666666666666
+  }
+ },
+ "perQ": [
+  {
+   "id": "Q01",
+   "type": "추천",
+   "A": {
+    "fulfil": 0.1,
+    "score": 1,
+    "chars": 695,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 1365.5,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.1,
+    "score": 1,
+    "chars": 2406.5,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q02",
+   "type": "추천",
+   "A": {
+    "fulfil": 0.8,
+    "score": 2,
+    "chars": 1395,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 2373,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.9,
+    "score": 4,
+    "chars": 2502.5,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q03",
+   "type": "추천",
+   "A": {
+    "fulfil": 0.8,
+    "score": 2.5,
+    "chars": 981.5,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 1372.5,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.8,
+    "score": 2.5,
+    "chars": 2370.5,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q04",
+   "type": "추천",
+   "A": {
+    "fulfil": 0.3,
+    "score": 1.5,
+    "chars": 1322.5,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 1181,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.2,
+    "score": 1,
+    "chars": 2264.5,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q05",
+   "type": "추천",
+   "A": {
+    "fulfil": 0.6,
+    "score": 2,
+    "chars": 1229.5,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 2297,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.2,
+    "score": 1,
+    "chars": 2295,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q06",
+   "type": "추천",
+   "A": {
+    "fulfil": 0.2,
+    "score": 2,
+    "chars": 1730,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 1865.5,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.6000000000000001,
+    "score": 2.5,
+    "chars": 3009.5,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q07",
+   "type": "기획",
+   "A": {
+    "fulfil": 0.1,
+    "score": 1.5,
+    "chars": 1670.5,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 1919,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.4,
+    "score": 2,
+    "chars": 2769,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q08",
+   "type": "기획",
+   "A": {
+    "fulfil": 0,
+    "score": 1,
+    "chars": 1497.5,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 2335,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0,
+    "score": 1,
+    "chars": 2672.5,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q09",
+   "type": "기획",
+   "A": {
+    "fulfil": 0,
+    "score": 1,
+    "chars": 1714,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 0.9,
+    "score": 4.5,
+    "chars": 1855.5,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.2,
+    "score": 1.5,
+    "chars": 2522.5,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q10",
+   "type": "기획",
+   "A": {
+    "fulfil": 0,
+    "score": 1,
+    "chars": 898.5,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 2438,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0,
+    "score": 1,
+    "chars": 2958.5,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q11",
+   "type": "기획",
+   "A": {
+    "fulfil": 0.2,
+    "score": 1.5,
+    "chars": 1910.5,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 2265,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.30000000000000004,
+    "score": 1.5,
+    "chars": 2657,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q12",
+   "type": "기획",
+   "A": {
+    "fulfil": 0.4,
+    "score": 2,
+    "chars": 1943,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 2320.5,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.5,
+    "score": 1.5,
+    "chars": 2991.5,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q13",
+   "type": "글쓰기",
+   "A": {
+    "fulfil": 0.30000000000000004,
+    "score": 1,
+    "chars": 1158,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 222,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.4,
+    "score": 1,
+    "chars": 2239,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q14",
+   "type": "글쓰기",
+   "A": {
+    "fulfil": 0.2,
+    "score": 1.5,
+    "chars": 1084,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 96,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.2,
+    "score": 1,
+    "chars": 1917.5,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q15",
+   "type": "글쓰기",
+   "A": {
+    "fulfil": 0,
+    "score": 1,
+    "chars": 487.5,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 0.9,
+    "score": 4.5,
+    "chars": 341.5,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0,
+    "score": 1,
+    "chars": 1744,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q16",
+   "type": "글쓰기",
+   "A": {
+    "fulfil": 0,
+    "score": 1,
+    "chars": 260,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 0.9,
+    "score": 4.5,
+    "chars": 274,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.30000000000000004,
+    "score": 1,
+    "chars": 1903,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q17",
+   "type": "글쓰기",
+   "A": {
+    "fulfil": 0.2,
+    "score": 1,
+    "chars": 854.5,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 0.9,
+    "score": 4.5,
+    "chars": 226.5,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.2,
+    "score": 1,
+    "chars": 1765,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q18",
+   "type": "글쓰기",
+   "A": {
+    "fulfil": 0,
+    "score": 1,
+    "chars": 876.5,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 184.5,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0,
+    "score": 1,
+    "chars": 910,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q19",
+   "type": "조언",
+   "A": {
+    "fulfil": 0.1,
+    "score": 1,
+    "chars": 1137,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 2212,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.30000000000000004,
+    "score": 1.5,
+    "chars": 2701.5,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q20",
+   "type": "조언",
+   "A": {
+    "fulfil": 0,
+    "score": 1,
+    "chars": 1259.5,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 2261.5,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.1,
+    "score": 1.5,
+    "chars": 2661,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q21",
+   "type": "조언",
+   "A": {
+    "fulfil": 0,
+    "score": 1,
+    "chars": 1288,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 1558,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.1,
+    "score": 1,
+    "chars": 2283,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q22",
+   "type": "조언",
+   "A": {
+    "fulfil": 0.5,
+    "score": 2.5,
+    "chars": 1573.5,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 1551,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.30000000000000004,
+    "score": 2,
+    "chars": 2675.5,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q23",
+   "type": "조언",
+   "A": {
+    "fulfil": 0.4,
+    "score": 2,
+    "chars": 1310,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 2916,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0.2,
+    "score": 1,
+    "chars": 2532,
+    "runs": 2
+   }
+  },
+  {
+   "id": "Q24",
+   "type": "조언",
+   "A": {
+    "fulfil": 0,
+    "score": 1,
+    "chars": 1333.5,
+    "runs": 2
+   },
+   "B": {
+    "fulfil": 1,
+    "score": 5,
+    "chars": 2004.5,
+    "runs": 2
+   },
+   "C": {
+    "fulfil": 0,
+    "score": 1,
+    "chars": 2776.5,
+    "runs": 2
+   }
+  }
+ ]
+}
