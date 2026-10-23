@@ -18,6 +18,10 @@ const opt = (n, d) => {
 const RUNS = parseInt(opt('--runs', '2'), 10);
 const DELAY = parseInt(opt('--delay', '6500'), 10);
 const CONDS = ['A', 'B', 'C'];
+// --shard 1/3 처럼 주면 전체 작업 중 1/3만 맡는다(여러 창에서 나눠 돌릴 때). 번호는 1부터.
+const [SHARD_I, SHARD_N] = (opt('--shard', '1/1').split('/').map(Number));
+let idx = 0;
+const mine = () => (idx++ % SHARD_N) === SHARD_I - 1;
 
 const dir = __dirname;
 const resDir = path.join(dir, 'results');
@@ -38,7 +42,7 @@ async function main() {
   }
   const key = L.loadKey();
   if (!key) throw new Error('GEMINI_API_KEY가 없습니다. 환경변수나 exp/.env 에 넣어 주세요.');
-  const model = opt('--model', null) || (await L.listModel(key, false));
+  const model = opt('--model', null) || (mode === 'judge' ? 'gemini-3.1-flash-lite' : 'gemini-3.5-flash');
   console.log('모델:', model);
 
   if (mode === 'answers') {
@@ -48,10 +52,13 @@ async function main() {
       for (const q of questions) {
         for (const cond of CONDS) {
           const id = q.id + '|' + cond + '|' + run;
+          if (!mine()) continue;
           if (done.has(id)) continue;
           const prompt = L.buildPrompt(q, cond);
-          const answer = await L.generate(key, model, prompt);
-          fs.appendFileSync(ansFile, JSON.stringify({ qid: q.id, cond, run, model, prompt, answer, chars: answer.length }) + '\n');
+          const g = await L.generateFull(key, model, prompt);
+          const answer = g.text;
+          // finish가 STOP이 아니면(예: MAX_TOKENS) 답이 잘린 것이므로 집계에서 따로 센다.
+          fs.appendFileSync(ansFile, JSON.stringify({ qid: q.id, cond, run, model, prompt, answer, chars: answer.length, finish: g.finishReason }) + '\n');
           n++;
           process.stdout.write('\r답변 ' + n + '개 저장 (' + id + ')    ');
           await L.sleep(DELAY);
@@ -69,6 +76,7 @@ async function main() {
     let n = 0, bad = 0;
     for (const a of answers) {
       const id = a.qid + '|' + a.cond + '|' + a.run;
+      if (!mine()) continue;
       if (done.has(id)) continue;
       const q = byId[a.qid];
       let parsed = null;

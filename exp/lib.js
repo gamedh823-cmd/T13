@@ -127,29 +127,46 @@ async function listModel(key, wantLite) {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-async function generate(key, model, prompt, opts) {
+/** 답변 한 개를 받고 {text, finishReason}을 돌려준다. 생각 토큰이 출력 한도를 쓰므로 기본 한도를 넉넉히(8192) 둔다. */
+async function generateFull(key, model, prompt, opts) {
   const body = {
     contents: [{ role: 'user', parts: [{ text: prompt }] }],
-    generationConfig: Object.assign({ temperature: 0.7, maxOutputTokens: 2000 }, opts && opts.generationConfig)
+    generationConfig: Object.assign({ temperature: 0.7, maxOutputTokens: 8192 }, opts && opts.generationConfig)
   };
   for (let attempt = 0; attempt < 6; attempt++) {
-    const r = await fetch(API + 'models/' + encodeURIComponent(model) + ':generateContent', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
-      body: JSON.stringify(body)
-    });
+    const ac = new AbortController();
+    const to = setTimeout(() => ac.abort(), 90000);
+    let r;
+    try {
+      r = await fetch(API + 'models/' + encodeURIComponent(model) + ':generateContent', {
+        method: 'POST',
+        signal: ac.signal,
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
+        body: JSON.stringify(body)
+      });
+    } catch (e) {
+      clearTimeout(to);
+      await sleep(5000 * (attempt + 1));
+      continue;
+    }
+    clearTimeout(to);
     if (r.status === 429 || r.status >= 500) {
       await sleep(15000 * (attempt + 1));
       continue;
     }
     if (!r.ok) throw new Error('Gemini ' + r.status);
     const data = await r.json();
-    const parts = data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts;
+    const c = data && data.candidates && data.candidates[0];
+    const parts = c && c.content && c.content.parts;
     const text = Array.isArray(parts) ? parts.map((p) => p.text || '').join('').trim() : '';
-    if (text) return text;
+    if (text) return { text, finishReason: (c && c.finishReason) || null };
     await sleep(3000);
   }
   throw new Error('응답을 받지 못했습니다');
 }
 
-module.exports = { FACT_KEYS, SIGNAL_TEXT, buildPrompt, buildJudgePrompt, parseJudge, mean, rng, pairedBootstrap, signTest, loadKey, listModel, generate, sleep };
+async function generate(key, model, prompt, opts) {
+  return (await generateFull(key, model, prompt, opts)).text;
+}
+
+module.exports = { FACT_KEYS, SIGNAL_TEXT, buildPrompt, buildJudgePrompt, parseJudge, mean, rng, pairedBootstrap, signTest, loadKey, listModel, generate, generateFull, sleep };

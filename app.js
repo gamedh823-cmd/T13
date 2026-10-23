@@ -254,6 +254,56 @@
     box.hidden = false;
   }
 
+  // ---- 가설 검증 실험 결과: exp/analyze.js가 계산한 숫자를 그대로 보여 준다(파일이 없으면 숨김) ----
+  function renderExperiment() {
+    var S = window.PSC_EXPERIMENT;
+    var box = $('exp');
+    var body = $('exp-body');
+    if (!S || !box || !body || !S.cond) return;
+    clear(body);
+    function pct(x) {
+      return isFinite(x) ? Math.round(x * 100) + '%' : '-';
+    }
+    function pp(x) {
+      return (x * 100).toFixed(1) + '%p';
+    }
+    body.appendChild(el('p', 'lead', '답이 정해져 있지 않은 질문(추천·기획·글쓰기·조언) ' + S.n + '개를 세 가지 방식으로 Gemini에게 물었습니다. A 원문, B 원문 + 육하원칙 정보, C 원문 + 논문이 실험한 신호만(전문가 역할·토론·단계별, 정보 없음). 답은 조건을 가린 채 의도 체크리스트로 채점했습니다.'));
+    var t1 = el('table', 'rep');
+    var head = el('tr');
+    ['조건', '체크리스트 충족률', '의도 근접 점수(1~5)', '답변 길이(자)', '프롬프트 길이(자)'].forEach(function (h) {
+      head.appendChild(el('th', '', h));
+    });
+    t1.appendChild(head);
+    ['A', 'B', 'C'].forEach(function (c) {
+      var r = S.cond[c];
+      var tr = el('tr');
+      [r.name, pct(r.fulfil), r.score.toFixed(2), String(Math.round(r.chars)), String(Math.round(r.promptChars))].forEach(function (v) {
+        tr.appendChild(el('td', '', v));
+      });
+      t1.appendChild(tr);
+    });
+    body.appendChild(t1);
+    body.appendChild(el('h3', 'mini', '조건 비교 (질문별 짝지은 차이, 95% 신뢰구간)'));
+    var t2 = el('table', 'rep');
+    var h2 = el('tr');
+    ['비교', '평균 차이(충족률)', '95% 신뢰구간', '개선 / 악화 질문', '부호검정 p'].forEach(function (h) {
+      h2.appendChild(el('th', '', h));
+    });
+    t2.appendChild(h2);
+    [['fulfil:B-A', 'B − A'], ['fulfil:B-C', 'B − C'], ['fulfil:C-A', 'C − A']].forEach(function (p) {
+      var c = S.compare[p[0]];
+      if (!c) return;
+      var tr = el('tr');
+      [p[1], pp(c.mean), '[' + pp(c.lo) + ', ' + pp(c.hi) + ']', c.pos + ' / ' + c.neg, c.p.toFixed(3)].forEach(function (v) {
+        tr.appendChild(el('td', '', v));
+      });
+      t2.appendChild(tr);
+    });
+    body.appendChild(t2);
+    body.appendChild(el('p', 'note', '체크리스트는 사용자 의도(육하원칙 정보)에서 만들어서 B에 유리한 구조입니다. 그래서 정보 없이 신호만 붙인 C와 비교해, 같은 길이의 말이라도 정보가 있어야 의도에 맞는지를 봅니다. 질문 ' + S.n + '개, 한 AI(Gemini), 의도는 제가 정한 가상 상황, 채점은 Gemini라서 경향으로만 읽어 주세요. 자세한 설계와 한계는 저장소의 docs와 exp/results를 보세요.'));
+    box.hidden = false;
+  }
+
   function renderLength() {
     var a = state.analysis;
     var out = $('len-out');
@@ -384,7 +434,11 @@
 
   window.addEventListener('load', function () {
     renderReport();
-    setTimeout(renderReport, 800);
+    renderExperiment();
+    setTimeout(function () {
+      renderReport();
+      renderExperiment();
+    }, 800);
   });
   $('run').addEventListener('click', run);
   $('ask').addEventListener('click', ask);
