@@ -18,7 +18,7 @@ const per = Math.max(1, Math.floor(n / types.length));
 const chosen = [];
 for (const t of types) chosen.push(...questions.filter((q) => q.type === t).slice(0, per));
 
-const rand = L.rng(2026);
+const rand = L.rng(4242);
 const key = {};
 const md = ['# 답변 평가 부탁드려요', '', '질문마다 "사용자의 상황"과 AI 답변 3개(X·Y·Z)가 있어요. **이 사용자가 원하던 답에 얼마나 가까운지** 각 답변에 1~5점을 주고, 가장 좋은 답변 하나를 골라 주세요. (1 = 전혀 아님, 5 = 매우 가까움)', '', '- 답변이 길다고 점수를 더 주지 말고, 상황에 맞는지만 봐 주세요.', '- 어떤 조건으로 만든 답인지는 알려 드리지 않아요.', ''];
 const csv = ['rater,qid,score_X,score_Y,score_Z,best'];
