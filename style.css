@@ -214,3 +214,21 @@ table.rep th{background:var(--soft)}
 .fbtxt b{font-size:15px}
 .fbdesc{color:var(--fg)}
 .fbex{color:var(--muted);font-size:13px}
+
+/* 첫 화면 압축: 스크롤 없이 입력창과 점검하기 버튼이 보이게 (동료 반응 반영) */
+.hero{padding:16px 0 10px;margin-bottom:10px;border-bottom:0}
+.hero .badge{font-size:12px;padding:4px 12px}
+h1{font-size:clamp(28px,4.6vw,42px);margin:10px 0 10px;letter-spacing:-.045em}
+.hero .who{font-size:clamp(13.5px,2vw,14.5px);line-height:1.6}
+.hero .who strong{font-size:clamp(16px,2.4vw,19px);margin-bottom:4px}
+.hero a.paper{margin-top:12px;padding:8px 12px;gap:10px;border-radius:12px;box-shadow:none}
+.paper .pi{width:32px;height:32px;padding:7px;border-radius:9px}
+.paper .pl,.paper .ps{display:none}
+.paper .pn{font-size:14px}
+.paper .pa{padding:4px 10px;font-size:12px}
+.steps{display:none}
+.card.entry{margin:10px 0}
+.card{margin:16px 0;padding:20px}
+.card h2{margin-bottom:12px}
+textarea{min-height:92px;padding:12px 14px}
+.row{margin-top:12px}
