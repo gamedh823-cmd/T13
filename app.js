@@ -202,20 +202,47 @@
     });
   }
 
-  function copyFeedback() {
+  var FEEDBACK_URL = 'https://formsubmit.co/ajax/gamedh823@gmail.com';
+
+  function sendFeedback() {
     var a = state.analysis;
     if (!(a && a.ok)) return;
     var sig = [];
     $('fb-grid').querySelectorAll('input:checked').forEach(function (cb) {
-      sig.push(cb.value);
+      sig.push(FB_LABELS[cb.value] || cb.value);
     });
-    var line = JSON.stringify({ text: a.text.slice(0, 300), signals: sig, 앱판정: a.signals.map(function (s) { return s.id; }) });
-    var done = function (ok) {
-      $('fb-done').textContent = ok ? '복사했어요. 개발자에게 붙여 넣어 보내 주세요.' : '복사에 실패했어요. 글자를 직접 선택해 복사해 주세요: ' + line;
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(line).then(function () { done(true); }, function () { done(false); });
-    } else done(false);
+    var btn = $('fb-send');
+    var done = $('fb-done');
+    btn.disabled = true;
+    done.textContent = '보내는 중…';
+    fetch(FEEDBACK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        _subject: '[프롬프트 신호 점검기] 판정 신고',
+        _captcha: 'false',
+        문장_앞300자: a.text.slice(0, 300),
+        사용자가_체크한_신호: sig.join(', ') || '(없음)',
+        앱이_잡은_신호: a.signals.map(function (s) { return FB_LABELS[s.id] || s.id; }).join(', ') || '(없음)'
+      })
+    })
+      .then(function (r) {
+        return r.json().then(function (j) {
+          return { ok: r.ok, body: j };
+        });
+      })
+      .then(function (r) {
+        var ok = r.ok && r.body && String(r.body.success) === 'true';
+        done.textContent = ok ? '보냈어요. 고마워요!' : '전송하지 못했어요. 잠시 뒤에 다시 눌러 주세요.';
+      })
+      .catch(function () {
+        done.textContent = '서버에 연결하지 못했어요. 인터넷 연결을 확인해 주세요.';
+      })
+      .then(function () {
+        setTimeout(function () {
+          btn.disabled = false;
+        }, 8000);
+      });
   }
 
   // ---- 정확도 보고: eval/report.js가 계산한 숫자를 그대로 보여 준다 ----
@@ -485,7 +512,7 @@
     $('tab-fb').hidden = false;
     setPane('fb');
   });
-  $('fb-copy').addEventListener('click', copyFeedback);
+  $('fb-send').addEventListener('click', sendFeedback);
   $('prompt').addEventListener('input', function () {
     var n = this.value.length;
     $('count').textContent = n ? n + '자' : '';

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>프롬프트 신호 점검기</title>
 <meta name="description" content="프롬프트를 붙여 넣으면 신호 8가지가 답에 주는 영향을 논문 결과로 짚어 주고, 빠진 정보는 채우고 불필요한 정보는 빼서 더 구체적인 질문으로 고치도록 돕습니다.">
-<link rel="stylesheet" href="style.css?v=14">
+<link rel="stylesheet" href="style.css?v=15">
 </head>
 <body>
 <main class="wrap">
@@ -107,10 +107,10 @@
     <p class="lead">처음 체크는 앱이 판정한 결과예요. <strong>잘못 잡힌 신호가 있거나 빠진 신호가 있을 때만</strong> 이 문장에 실제로 들어 있는 신호로 고쳐 체크하고 복사해서 개발자에게 보내 주세요. 판정이 맞으면 복사하지 않아도 돼요(맞게 나온 문장을 보내 주면 정확도를 재는 데 도움이 되니 참고로만 보내 주셔도 좋아요).</p>
     <div id="fb-grid" class="fblist"></div>
     <div class="row">
-      <button class="btn" id="fb-copy" type="button">이 문장과 체크한 신호 복사</button>
+      <button class="btn" id="fb-send" type="button">전송하기</button>
       <span class="hint" id="fb-done" aria-live="polite"></span>
     </div>
-    <p class="note">복사되는 것은 입력한 문장(앞 300자)과 체크한 신호뿐이고, 자동으로 어디에도 전송하지 않아요. 이름·연락처·비밀번호 같은 개인정보가 있으면 지우고 보내 주세요.</p>
+    <p class="note">전송하기를 누르면 입력한 문장(앞 300자)과 체크한 신호만 개발자에게 메일로 가요(메일 전달 서비스 FormSubmit을 거쳐요). 누르기 전에는 어디에도 보내지 않아요. 이름·연락처·비밀번호 같은 개인정보가 있으면 지우고 보내 주세요.</p>
   </section>
     </div>
   </div>
@@ -127,7 +127,7 @@
 
   <footer class="foot">
     <p><strong>이 수치를 믿어도 되는 범위</strong> — <span id="scope"></span></p>
-    <p>만든 이: 유지원 · 코드와 사용법은 <a href="https://github.com/gamedh823-cmd/T13" target="_blank" rel="noopener">저장소</a>에 있습니다. 입력한 프롬프트는 저장하지 않으며, “AI에게 고친 프롬프트 받기” 버튼을 누를 때만 서버로 보냅니다.</p>
+    <p>만든 이: 유지원 · 코드와 사용법은 <a href="https://github.com/gamedh823-cmd/T13" target="_blank" rel="noopener">저장소</a>에 있습니다. 입력한 프롬프트는 저장하지 않으며, “AI에게 고친 프롬프트 받기”와 판정 신고의 “전송하기” 버튼을 누를 때만 밖으로 보냅니다.</p>
   </footer>
 </main>
 <noscript><p class="err">자바스크립트가 꺼져 있어 점검 기능이 동작하지 않아요. 브라우저 설정에서 켜 주세요.</p></noscript>
@@ -136,6 +136,6 @@
 <script src="train/model.js?v=5" async></script>
 <script src="eval/report_data.js?v=5" async></script>
 <script src="exp/results/summary_data.js?v=2" async></script>
-<script src="app.js?v=14"></script>
+<script src="app.js?v=15"></script>
 </body>
 </html>
