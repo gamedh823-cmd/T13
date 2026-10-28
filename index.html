@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>프롬프트 신호 점검기</title>
 <meta name="description" content="프롬프트를 붙여 넣으면 신호 8가지가 답에 주는 영향을 논문 결과로 짚어 주고, 빠진 정보는 채우고 불필요한 정보는 빼서 더 구체적인 질문으로 고치도록 돕습니다.">
-<link rel="stylesheet" href="style.css?v=19">
+<link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
 <main class="wrap">
@@ -104,7 +104,7 @@
   <section class="card" id="fb-card" hidden aria-labelledby="s-fb">
     <button type="button" class="back" data-back>← 점검 결과 보기</button>
     <h2 id="s-fb">판정이 틀렸나요? 체크해서 알려 주세요</h2>
-    <p class="lead">처음 체크는 앱이 판정한 결과예요. <strong>잘못 잡힌 신호가 있거나 빠진 신호가 있을 때만</strong> 이 문장에 실제로 들어 있는 신호로 고쳐 체크하고 복사해서 개발자에게 보내 주세요. 판정이 맞으면 복사하지 않아도 돼요(맞게 나온 문장을 보내 주면 정확도를 재는 데 도움이 되니 참고로만 보내 주셔도 좋아요).</p>
+    <p class="lead">처음 체크는 앱이 판정한 결과예요. <strong>잘못 잡힌 신호가 있거나 빠진 신호가 있을 때만</strong> 이 문장에 실제로 들어 있는 신호로 고쳐 체크하고 전송하기를 눌러 주세요.</strong> 판정이 맞으면 보내지 않아도 돼요(맞게 나온 문장을 보내 주면 정확도를 재는 데 도움이 되니 참고로 보내 주셔도 좋아요).</p>
     <div id="fb-grid" class="fblist"></div>
     <div class="row">
       <button class="btn" id="fb-send" type="button">전송하기</button>
@@ -136,6 +136,6 @@
 <script src="train/model.js?v=5" async></script>
 <script src="eval/report_data.js?v=6" async></script>
 <script src="exp/results/summary_data.js?v=2" async></script>
-<script src="app.js?v=23"></script>
+<script src="app.js?v=24"></script>
 </body>
 </html>
