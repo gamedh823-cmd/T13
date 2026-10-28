@@ -466,6 +466,11 @@
   });
   $('run').addEventListener('click', run);
   $('ask').addEventListener('click', ask);
+  document.querySelectorAll('[data-back]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      setPane('check');
+    });
+  });
   $('tab-check').addEventListener('click', function () {
     setPane('check');
   });

@@ -257,3 +257,8 @@ main:has(#result:not([hidden])) .card.empty{display:none}
   .wrap>details.card{order:6}
   .wrap>.foot{order:7}
 }
+
+/* 탭 줄은 쓰지 않고, 각 창 안의 작은 링크로 점검 결과로 돌아간다 */
+.tabs{display:none!important}
+.back{font:inherit;font-size:13.5px;font-weight:700;color:var(--accent);background:none;border:0;padding:0;margin:0 0 12px;cursor:pointer}
+.back:hover{text-decoration:underline}
