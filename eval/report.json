@@ -13,35 +13,35 @@
   },
   "model": {
    "n": 96,
-   "tp": 66,
+   "tp": 67,
    "fp": 1,
-   "fn": 5,
+   "fn": 4,
    "precision": 0.99,
-   "recall": 0.93,
+   "recall": 0.94,
    "f1": 0.96
   }
  },
  "valUnseen": {
   "n": 253,
-  "tp": 289,
+  "tp": 287,
   "fp": 8,
-  "fn": 45,
+  "fn": 47,
   "precision": 0.97,
-  "recall": 0.87,
-  "f1": 0.92
+  "recall": 0.86,
+  "f1": 0.91
  },
  "valHand": {
   "n": 113,
-  "tp": 59,
-  "fp": 3,
-  "fn": 12,
-  "precision": 0.95,
-  "recall": 0.83,
+  "tp": 60,
+  "fp": 4,
+  "fn": 11,
+  "precision": 0.94,
+  "recall": 0.85,
   "f1": 0.89
  },
  "real": {
-  "n": 5,
-  "tp": 4,
+  "n": 6,
+  "tp": 5,
   "fp": 0,
   "fn": 0,
   "precision": 1,
@@ -51,20 +51,20 @@
  "calibration": [
   {
    "label": "약한 신호 (30~40%)",
-   "n": 36,
-   "right": 21,
-   "rate": 58
+   "n": 38,
+   "right": 23,
+   "rate": 61
   },
   {
    "label": "확정, 보통 (40~70%)",
-   "n": 100,
-   "right": 88,
-   "rate": 88
+   "n": 97,
+   "right": 84,
+   "rate": 87
   },
   {
    "label": "확정, 높음 (70% 이상)",
-   "n": 326,
-   "right": 326,
+   "n": 330,
+   "right": 330,
    "rate": 100
   }
  ],

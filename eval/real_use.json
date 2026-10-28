@@ -46,5 +46,15 @@
   "signals": [
    "brainstorm"
   ]
+ },
+ {
+  "id": "R006",
+  "split": "real",
+  "kind": "real",
+  "source": "판정 신고로 들어온 문장(2026-10-28, 디스코드)",
+  "text": "떡볶이 대신 먹을 거 없나",
+  "signals": [
+   "brainstorm"
+  ]
  }
 ]
