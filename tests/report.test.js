@@ -32,7 +32,7 @@ t('확신도 구간 기준이 ml.js의 임계값과 같고, 구간마다 맞은 
   for (const c of fresh.calibration) assert.ok(c.right <= c.n && c.n > 0, c.label);
 });
 t('보고서 지표가 0~1 범위이고 개발용 학습 모델이 예전 규칙보다 낮지 않다', () => {
-  for (const m of [fresh.dev.rules, fresh.dev.model, fresh.valUnseen, fresh.valHand, fresh.real]) {
+  for (const m of [fresh.dev.rules, fresh.dev.model, fresh.valUnseen, fresh.valHand, fresh.real, fresh.holdout]) {
     assert.ok(m.precision >= 0 && m.precision <= 1 && m.recall >= 0 && m.recall <= 1 && m.f1 >= 0 && m.f1 <= 1);
   }
   assert.ok(fresh.dev.model.f1 >= fresh.dev.rules.f1);

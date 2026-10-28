@@ -270,7 +270,8 @@
       ['개발용 라벨 · 학습 모델(지금 앱)', R.dev.model],
       ['처음 보는 표현(합성)', R.valUnseen],
       ['직접 쓴 새 말투', R.valHand],
-      ['실제 사용 문장', R.real]
+      ['실제 사용 문장', R.real],
+      ['보류용 라벨 (모델 수정 뒤 한 번만 쟀음)', R.holdout]
     ].forEach(function (row) {
       var tr = el('tr');
       tr.appendChild(el('td', '', row[0]));
@@ -281,7 +282,7 @@
       t1.appendChild(tr);
     });
     body.appendChild(t1);
-    body.appendChild(el('p', 'note', '정밀도 = 앱이 잡은 신호 중 맞은 비율, 재현율 = 실제 신호 중 앱이 잡은 비율. 실제 사용 문장은 4개뿐이라 참고용입니다.'));
+    body.appendChild(el('p', 'note', '정밀도 = 앱이 잡은 신호 중 맞은 비율, 재현율 = 실제 신호 중 앱이 잡은 비율. 실제 사용 문장(6개)과 보류용(20개)은 문장이 적어 참고용입니다.'));
     body.appendChild(el('h3', 'mini', '확신도별로 실제 얼마나 맞았나'));
     var t2 = el('table', 'rep');
     var h2 = el('tr');

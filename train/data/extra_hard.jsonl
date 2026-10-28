@@ -1,13 +1,13 @@
 {"text": "How many ounces are in a pound?", "signals": [], "kind": "hard_hand", "id": "X0001", "split": "train"}
-{"text": "발표 주제 좀 추천해줘. 여러 개 부탁해", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0002", "split": "train"}
+{"text": "아이디어 노트 사용법 알려줘", "signals": [], "kind": "hard_mention", "id": "X0002", "split": "train"}
 {"text": "What does a CPU do?", "signals": [], "kind": "hard_hand", "id": "X0003", "split": "train"}
 {"text": "발표 자료가 너무 길어요. 어떻게 줄이면 좋을까요?", "signals": [], "kind": "hard_hand", "id": "X0004", "split": "train"}
-{"text": "체력 기르기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0005", "split": "val_hand"}
+{"text": "발표 긴장 풀기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0005", "split": "val_hand"}
 {"text": "How do people in general feel about working from the office?", "signals": ["majority"], "kind": "hard_hand", "id": "X0006", "split": "train"}
-{"text": "프로그램 설치하기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0007", "split": "train"}
-{"text": "자소서 쓰기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0008", "split": "train"}
-{"text": "노트북이 자꾸 꺼져 이럴 땐 어떻게 해야 해?", "signals": [], "kind": "hard_advice", "id": "X0009", "split": "train"}
-{"text": "코드 리뷰 빨리 끝내기 쉬운 방법 있을까요", "signals": [], "kind": "hard_method", "id": "X0010", "split": "val_hand"}
+{"text": "추천 검색어 기능의 뜻이 뭐야?", "signals": [], "kind": "hard_mention", "id": "X0007", "split": "train"}
+{"text": "추천 알고리즘이 뭐야", "signals": [], "kind": "hard_hand", "id": "X0008", "split": "train"}
+{"text": "아이디어 공모전가 뭔지 설명해줘", "signals": [], "kind": "hard_mention", "id": "X0009", "split": "train"}
+{"text": "추천 시스템이 뭐야?", "signals": [], "kind": "hard_hand", "id": "X0010", "split": "val_hand"}
 {"text": "Which planet is closest to the sun?", "signals": [], "kind": "hard_hand", "id": "X0011", "split": "train"}
 {"text": "Write a SQL query that counts rows in a table.", "signals": [], "kind": "hard_hand", "id": "X0012", "split": "train"}
 {"text": "When was the first iPhone released?", "signals": [], "kind": "hard_hand", "id": "X0013", "split": "train"}
@@ -15,130 +15,130 @@
 {"text": "I need a few gift ideas for my sister, any suggestions?", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0015", "split": "val_hand"}
 {"text": "이 파일이 안 열리는데 어떻게 하면 좋을까?", "signals": [], "kind": "hard_hand", "id": "X0016", "split": "train"}
 {"text": "How do you say thank you in Spanish?", "signals": [], "kind": "hard_hand", "id": "X0017", "split": "train"}
-{"text": "자소서 쓰기에 대한 새로운 접근법 같은 게 있을까?", "signals": [], "kind": "hard_method", "id": "X0018", "split": "train"}
-{"text": "브레인스토밍 도구가 뭔지 설명해줘", "signals": [], "kind": "hard_mention", "id": "X0019", "split": "train"}
+{"text": "가게 이름 후보 5개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0018", "split": "train"}
+{"text": "추천서가 뭔지 설명해줘", "signals": [], "kind": "hard_mention", "id": "X0019", "split": "train"}
 {"text": "일반적인 A4 용지 크기가 몇 mm야?", "signals": [], "kind": "hard_hand", "id": "X0020", "split": "val_hand"}
-{"text": "주말 활동 뭐가 좋을까? 7개 정도 골라줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0021", "split": "train"}
+{"text": "와이파이 속도 높이기 새로운 방법 있어?", "signals": [], "kind": "hard_method", "id": "X0021", "split": "train"}
 {"text": "맛추 좀 해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0022", "split": "train"}
 {"text": "방 꾸미기 아이디어 여러 개 알려줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0023", "split": "train"}
-{"text": "돈 모으기 새로운 방법 있어?", "signals": [], "kind": "hard_method", "id": "X0024", "split": "train"}
-{"text": "파이썬 코드 속도 높이기 좋은 방법이 뭐가 있어?", "signals": [], "kind": "hard_method", "id": "X0025", "split": "val_hand"}
+{"text": "자소서 쓰기 좋은 방법이 뭐가 있어?", "signals": [], "kind": "hard_method", "id": "X0024", "split": "train"}
+{"text": "주말 활동 뭐가 좋을까? 7개 정도 골라줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0025", "split": "val_hand"}
 {"text": "이번 학기에 도전해 볼 만한 활동 몇 개만 추천해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0026", "split": "train"}
-{"text": "프로젝트 주제 뭐 있을까?", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0027", "split": "train"}
+{"text": "노션 정리하기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0027", "split": "train"}
 {"text": "Give me some fun ideas for a rainy weekend.", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0028", "split": "train"}
 {"text": "성인의 하루 평균 수면 시간은 얼마야?", "signals": [], "kind": "hard_hand", "id": "X0029", "split": "train"}
 {"text": "유튜브 채널 이름 아이디어 좀 던져봐", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0030", "split": "val_hand"}
 {"text": "Convert 100 degrees Celsius to Fahrenheit.", "signals": [], "kind": "hard_hand", "id": "X0031", "split": "train"}
 {"text": "동아리 신입생 환영회에서 할 만한 게임 뭐가 있을까?", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0032", "split": "train"}
 {"text": "술안주 추천 좀", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0033", "split": "train"}
-{"text": "점심 메뉴 아이디어 5가지만 던져줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0034", "split": "train"}
-{"text": "아이디어 노트 어떻게 만드는지 알려줘", "signals": [], "kind": "hard_mention", "id": "X0035", "split": "val_hand"}
+{"text": "노트북이 자꾸 꺼져 이럴 땐 어떻게 해야 해?", "signals": [], "kind": "hard_advice", "id": "X0034", "split": "train"}
+{"text": "추천 시스템 사용법 알려줘", "signals": [], "kind": "hard_mention", "id": "X0035", "split": "val_hand"}
 {"text": "What are some good names for a podcast about cooking?", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0036", "split": "train"}
-{"text": "추천 시스템가 뭔지 설명해줘", "signals": [], "kind": "hard_mention", "id": "X0037", "split": "train"}
+{"text": "추천 검색어 기능가 뭔지 설명해줘", "signals": [], "kind": "hard_mention", "id": "X0037", "split": "train"}
 {"text": "치킨 질렸는데 다른 먹을 거 없나", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0038", "split": "train"}
-{"text": "발표 긴장 풀기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0039", "split": "train"}
+{"text": "메일을 잘못 보냈어, 어떡하지", "signals": [], "kind": "hard_advice", "id": "X0039", "split": "train"}
 {"text": "보통 계란은 몇 분 삶아야 완숙이야?", "signals": [], "kind": "hard_hand", "id": "X0040", "split": "val_hand"}
-{"text": "체력 기르기 다른 방법은 없어?", "signals": [], "kind": "hard_method", "id": "X0041", "split": "train"}
+{"text": "추천 알고리즘은 어떻게 동작해?", "signals": [], "kind": "hard_hand", "id": "X0041", "split": "train"}
 {"text": "목성의 평균 기온은 얼마야?", "signals": [], "kind": "hard_hand", "id": "X0042", "split": "train"}
 {"text": "점심 뭐 먹을지 추천 좀", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0043", "split": "train"}
-{"text": "주말 활동 뭐 있을까?", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0044", "split": "train"}
-{"text": "파이썬 코드 속도 높이기 쉬운 방법 있을까요", "signals": [], "kind": "hard_method", "id": "X0045", "split": "val_hand"}
+{"text": "와이파이 속도 높이기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0044", "split": "train"}
+{"text": "브레인스토밍 도구 관련 자료를 찾는 방법 알려줘", "signals": [], "kind": "hard_mention", "id": "X0045", "split": "val_hand"}
 {"text": "노추 부탁해", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0046", "split": "train"}
 {"text": "다른 방법으로 풀어줘. 문제: x+2=5", "signals": [], "kind": "hard_hand", "id": "X0047", "split": "train"}
 {"text": "취미 추천 좀", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0048", "split": "train"}
 {"text": "점심 먹을 만한 데 몇 군데만 추천해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0049", "split": "train"}
 {"text": "야식 추천해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0050", "split": "val_hand"}
 {"text": "야식 메추좀", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0051", "split": "train"}
-{"text": "추천 시스템 어떻게 만드는지 알려줘", "signals": [], "kind": "hard_mention", "id": "X0052", "split": "train"}
+{"text": "노트북이 자꾸 꺼져. 어떻게 하면 좋을까?", "signals": [], "kind": "hard_advice", "id": "X0052", "split": "train"}
 {"text": "What is the population of Australia?", "signals": [], "kind": "hard_hand", "id": "X0053", "split": "train"}
-{"text": "이력서 작성하기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0054", "split": "train"}
+{"text": "취미 후보 5개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0054", "split": "train"}
 {"text": "영추 좀", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0055", "split": "val_hand"}
-{"text": "코드 리뷰 빨리 끝내기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0056", "split": "train"}
-{"text": "면접 준비하기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0057", "split": "train"}
+{"text": "팀 이름 뭐 있을까?", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0056", "split": "train"}
+{"text": "생일선물 좀 추천해줘. 여러 개 부탁해", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0057", "split": "train"}
 {"text": "점메추 해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0058", "split": "train"}
-{"text": "밤에 잠이 안 와. 어쩌면 좋아?", "signals": [], "kind": "hard_advice", "id": "X0059", "split": "train"}
+{"text": "체력 기르기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0059", "split": "train"}
 {"text": "카페 신메뉴 이름 후보를 열 개만 뽑아줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0060", "split": "val_hand"}
 {"text": "생일 서프라이즈 이벤트 아이디어 몇 개만 알려줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0061", "split": "train"}
 {"text": "치킨 대신 먹을 거 없나", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0062", "split": "train"}
 {"text": "How many players are on a soccer team?", "signals": [], "kind": "hard_hand", "id": "X0063", "split": "train"}
-{"text": "자소서 쓰기 좋은 방법이 뭐가 있어?", "signals": [], "kind": "hard_method", "id": "X0064", "split": "train"}
-{"text": "메일을 잘못 보냈어. 어쩌면 좋아?", "signals": [], "kind": "hard_advice", "id": "X0065", "split": "val_hand"}
+{"text": "와이파이 속도 높이기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0064", "split": "train"}
+{"text": "회의 시간 줄이기 다른 방법은 없어?", "signals": [], "kind": "hard_method", "id": "X0065", "split": "val_hand"}
 {"text": "이 에러는 어떻게 하면 해결할 수 있을까? 서버가 계속 죽어", "signals": [], "kind": "hard_hand", "id": "X0066", "split": "train"}
 {"text": "What does the acronym HTTP stand for?", "signals": [], "kind": "hard_hand", "id": "X0067", "split": "train"}
 {"text": "이 데이터의 평균값과 중앙값을 구해줘", "signals": [], "kind": "hard_hand", "id": "X0068", "split": "train"}
-{"text": "파일이 안 열려. 어떻게 하면 좋을까?", "signals": [], "kind": "hard_advice", "id": "X0069", "split": "train"}
+{"text": "공부 시간 확보하기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0069", "split": "train"}
 {"text": "Can you give me five fun ideas for a weekend with friends?", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0070", "split": "val_hand"}
 {"text": "노래 추천 좀", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0071", "split": "train"}
-{"text": "파일이 안 열려. 해결 방법 좀 알려줘", "signals": [], "kind": "hard_advice", "id": "X0072", "split": "train"}
-{"text": "제안서 양식가 뭔지 설명해줘", "signals": [], "kind": "hard_mention", "id": "X0073", "split": "train"}
+{"text": "집중력 높이기 쉬운 방법 있을까요", "signals": [], "kind": "hard_method", "id": "X0072", "split": "train"}
+{"text": "돈 모으기 새로운 방법 있어?", "signals": [], "kind": "hard_method", "id": "X0073", "split": "train"}
 {"text": "I believe my essay is excellent already. Do you agree?", "signals": ["opinion"], "kind": "hard_hand", "id": "X0074", "split": "train"}
 {"text": "카페 메뉴 추천해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0075", "split": "val_hand"}
 {"text": "Here is an example: apple -> fruit, carrot -> vegetable. Now classify potato.", "signals": ["fewshot"], "kind": "hard_hand", "id": "X0076", "split": "train"}
 {"text": "독서 모임에서 읽을 책 후보를 다섯 권 추천해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0077", "split": "train"}
 {"text": "한국의 연평균 기온이 몇 도야?", "signals": [], "kind": "hard_hand", "id": "X0078", "split": "train"}
-{"text": "와이파이 속도 높이기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0079", "split": "train"}
+{"text": "프로그램 설치하기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0079", "split": "train"}
 {"text": "여행지 추천 좀", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0080", "split": "val_hand"}
-{"text": "수학 문제 빨리 풀기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0081", "split": "train"}
-{"text": "이력서 작성하기 새로운 방법 있어?", "signals": [], "kind": "hard_method", "id": "X0082", "split": "train"}
+{"text": "와이파이 속도 높이기 좋은 방법이 뭐가 있어?", "signals": [], "kind": "hard_method", "id": "X0081", "split": "train"}
+{"text": "점심 메뉴 아이디어 5가지만 던져줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0082", "split": "train"}
 {"text": "회사 송년회 때 할 만한 이벤트 뭐 있어?", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0083", "split": "train"}
-{"text": "친구랑 약속이 겹쳤어. 해결 방법 좀 알려줘", "signals": [], "kind": "hard_advice", "id": "X0084", "split": "train"}
-{"text": "데이트 코스 후보 7개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0085", "split": "val_hand"}
-{"text": "발표 긴장 풀기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0086", "split": "train"}
+{"text": "돈 모으기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0084", "split": "train"}
+{"text": "아침에 일찍 일어나기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0085", "split": "val_hand"}
+{"text": "영어 말하기 늘리기 더 나은 방법 알려줘", "signals": [], "kind": "hard_method", "id": "X0086", "split": "train"}
 {"text": "Do most Americans support a four-day work week?", "signals": ["majority"], "kind": "hard_hand", "id": "X0087", "split": "train"}
 {"text": "책 추천 좀 해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0088", "split": "train"}
-{"text": "파일 정리하기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0089", "split": "train"}
+{"text": "이력서 작성하기 새로운 방법 있어?", "signals": [], "kind": "hard_method", "id": "X0089", "split": "train"}
 {"text": "일반적으로 USB 3.0의 전송 속도는 얼마야?", "signals": [], "kind": "hard_hand", "id": "X0090", "split": "val_hand"}
 {"text": "커피 대신 마실 거 추천해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0091", "split": "train"}
 {"text": "아침 메추 좀", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0092", "split": "train"}
 {"text": "오늘 뭐 할지 추천해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0093", "split": "train"}
 {"text": "Translate this sentence into Korean: The meeting starts at nine.", "signals": [], "kind": "hard_hand", "id": "X0094", "split": "train"}
 {"text": "김치찌개 대신 먹을 거 뭐 있어?", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0095", "split": "val_hand"}
-{"text": "여행지 좀 추천해줘. 여러 개 부탁해", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0096", "split": "train"}
-{"text": "와이파이 속도 높이기 좋은 방법이 뭐가 있어?", "signals": [], "kind": "hard_method", "id": "X0097", "split": "train"}
+{"text": "코드 리뷰 빨리 끝내기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0096", "split": "train"}
+{"text": "노트북 배터리 아끼기 좋은 방법이 뭐가 있어?", "signals": [], "kind": "hard_method", "id": "X0097", "split": "train"}
 {"text": "심심한데 할 만한 거 없나", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0098", "split": "train"}
 {"text": "다음 팀 워크숍 장소 후보 알려줘. 서울 근교로", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0099", "split": "train"}
 {"text": "보통 비행기는 몇 미터 상공을 날아?", "signals": [], "kind": "hard_hand", "id": "X0100", "split": "val_hand"}
-{"text": "팀 이름 뭐 있을까?", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0101", "split": "train"}
-{"text": "추천인 코드 관련 자료를 찾는 방법 알려줘", "signals": [], "kind": "hard_mention", "id": "X0102", "split": "train"}
-{"text": "팀 이름 후보 10개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0103", "split": "train"}
-{"text": "엑셀에서 중복값 지우기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0104", "split": "train"}
-{"text": "노트북 배터리 아끼기 좋은 방법이 뭐가 있어?", "signals": [], "kind": "hard_method", "id": "X0105", "split": "val_hand"}
+{"text": "체력 기르기 다른 방법은 없어?", "signals": [], "kind": "hard_method", "id": "X0101", "split": "train"}
+{"text": "집중력 높이기 새로운 방법 있어?", "signals": [], "kind": "hard_method", "id": "X0102", "split": "train"}
+{"text": "엑셀에서 중복값 지우기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0103", "split": "train"}
+{"text": "수학 문제 빨리 풀기 새로운 방법 있어?", "signals": [], "kind": "hard_method", "id": "X0104", "split": "train"}
+{"text": "엑셀 함수 익히기에 대한 새로운 접근법 같은 게 있을까?", "signals": [], "kind": "hard_method", "id": "X0105", "split": "val_hand"}
 {"text": "Where is the Eiffel Tower located?", "signals": [], "kind": "hard_hand", "id": "X0106", "split": "train"}
 {"text": "아이디어 회의 때 쓰는 포스트잇 사이즈가 뭐야", "signals": [], "kind": "hard_hand", "id": "X0107", "split": "train"}
 {"text": "Write a function that reverses a string in JavaScript.", "signals": [], "kind": "hard_hand", "id": "X0108", "split": "train"}
-{"text": "사진 용량 줄이기 다른 방법은 없어?", "signals": [], "kind": "hard_method", "id": "X0109", "split": "train"}
+{"text": "집중력 높이기 더 나은 방법 알려줘", "signals": [], "kind": "hard_method", "id": "X0109", "split": "train"}
 {"text": "콜라 대신 마실 만한 거 없나", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0110", "split": "val_hand"}
 {"text": "달의 평균 표면 온도가 얼마야?", "signals": [], "kind": "hard_hand", "id": "X0111", "split": "train"}
-{"text": "여행지 후보 10개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0112", "split": "train"}
+{"text": "수학 문제 빨리 풀기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0112", "split": "train"}
 {"text": "저메추좀 해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0113", "split": "train"}
-{"text": "수학 문제 빨리 풀기 새로운 방법 있어?", "signals": [], "kind": "hard_method", "id": "X0114", "split": "train"}
-{"text": "엑셀에서 중복값 지우기에 대한 새로운 접근법 같은 게 있을까?", "signals": [], "kind": "hard_method", "id": "X0115", "split": "val_hand"}
-{"text": "노션 정리하기 다른 방법은 없어?", "signals": [], "kind": "hard_method", "id": "X0116", "split": "train"}
-{"text": "발표 주제 후보 3개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0117", "split": "train"}
+{"text": "동아리 이름 좀 추천해줘. 여러 개 부탁해", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0114", "split": "train"}
+{"text": "아이디어 노트가 뭐야?", "signals": [], "kind": "hard_hand", "id": "X0115", "split": "val_hand"}
+{"text": "파일 정리하기 좋은 방법이 뭐가 있어?", "signals": [], "kind": "hard_method", "id": "X0116", "split": "train"}
+{"text": "사진 용량 줄이기 다른 방법은 없어?", "signals": [], "kind": "hard_method", "id": "X0117", "split": "train"}
 {"text": "메뉴 추천해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0118", "split": "train"}
-{"text": "아침에 일찍 일어나기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0119", "split": "train"}
-{"text": "메일을 잘못 보냈어. 해결 방법 좀 알려줘", "signals": [], "kind": "hard_advice", "id": "X0120", "split": "val_hand"}
-{"text": "동아리 이름 후보 7개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0121", "split": "train"}
-{"text": "브레인스토밍 도구 어떻게 만드는지 알려줘", "signals": [], "kind": "hard_mention", "id": "X0122", "split": "train"}
+{"text": "아이디어 공모전이 뭐야", "signals": [], "kind": "hard_hand", "id": "X0119", "split": "train"}
+{"text": "돈 모으기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0120", "split": "val_hand"}
+{"text": "프로그램 설치하기에 대한 새로운 접근법 같은 게 있을까?", "signals": [], "kind": "hard_method", "id": "X0121", "split": "train"}
+{"text": "사진 용량 줄이기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0122", "split": "train"}
 {"text": "Give me the synonyms for the word happy.", "signals": [], "kind": "hard_hand", "id": "X0123", "split": "train"}
-{"text": "발표 긴장 풀기 다른 방법은 없어?", "signals": [], "kind": "hard_method", "id": "X0124", "split": "train"}
+{"text": "시험 공부하기 다른 방법은 없어?", "signals": [], "kind": "hard_method", "id": "X0124", "split": "train"}
 {"text": "시속 평균 속도를 구하는 공식을 알려줘", "signals": [], "kind": "hard_hand", "id": "X0125", "split": "val_hand"}
 {"text": "Think step by step and tell me what 18 times 27 is.", "signals": ["cot"], "kind": "hard_hand", "id": "X0126", "split": "train"}
 {"text": "Fix the grammar in this sentence: She go to school yesterday.", "signals": [], "kind": "hard_hand", "id": "X0127", "split": "train"}
-{"text": "코드가 계속 에러가 나 이럴 땐 어떻게 해야 해?", "signals": [], "kind": "hard_advice", "id": "X0128", "split": "train"}
+{"text": "프로젝트 주제 뭐 있을까?", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0128", "split": "train"}
 {"text": "How many days are there in a leap year?", "signals": [], "kind": "hard_hand", "id": "X0129", "split": "train"}
 {"text": "How do I reset my router?", "signals": [], "kind": "hard_hand", "id": "X0130", "split": "val_hand"}
-{"text": "파일 정리하기 새로운 방법 있어?", "signals": [], "kind": "hard_method", "id": "X0131", "split": "train"}
-{"text": "아이디어 공모전가 뭔지 설명해줘", "signals": [], "kind": "hard_mention", "id": "X0132", "split": "train"}
+{"text": "파일이 안 열려. 해결 방법 좀 알려줘", "signals": [], "kind": "hard_advice", "id": "X0131", "split": "train"}
+{"text": "브레인스토밍이 뭐야", "signals": [], "kind": "hard_hand", "id": "X0132", "split": "train"}
 {"text": "Is it true that the majority of people prefer cats over dogs?", "signals": ["majority"], "kind": "hard_hand", "id": "X0133", "split": "train"}
-{"text": "파일이 안 열려, 어떡하지", "signals": [], "kind": "hard_advice", "id": "X0134", "split": "train"}
-{"text": "메일을 잘못 보냈어, 어떡하지", "signals": [], "kind": "hard_advice", "id": "X0135", "split": "val_hand"}
-{"text": "아이디어 노트 사용법 알려줘", "signals": [], "kind": "hard_mention", "id": "X0136", "split": "train"}
-{"text": "고양이 이름 좀 추천해줘. 여러 개 부탁해", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0137", "split": "train"}
-{"text": "노션 정리하기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0138", "split": "train"}
+{"text": "브레인스토밍 도구가 뭔지 설명해줘", "signals": [], "kind": "hard_mention", "id": "X0134", "split": "train"}
+{"text": "메일을 잘못 보냈어. 해결 방법 좀 알려줘", "signals": [], "kind": "hard_advice", "id": "X0135", "split": "val_hand"}
+{"text": "프로그램 설치하기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0136", "split": "train"}
+{"text": "추천서가 뭐야", "signals": [], "kind": "hard_hand", "id": "X0137", "split": "train"}
+{"text": "노션 정리하기 다른 방법은 없어?", "signals": [], "kind": "hard_method", "id": "X0138", "split": "train"}
 {"text": "What do most people think about electric cars these days?", "signals": ["majority"], "kind": "hard_hand", "id": "X0139", "split": "train"}
 {"text": "뭐 먹을까 추천 좀", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0140", "split": "val_hand"}
-{"text": "git 커밋 합치기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0141", "split": "train"}
+{"text": "추천 시스템가 뭔지 설명해줘", "signals": [], "kind": "hard_mention", "id": "X0141", "split": "train"}
 {"text": "방이 너무 추운데 어떻게 하면 좋을까", "signals": [], "kind": "hard_hand", "id": "X0142", "split": "train"}
 {"text": "커피를 덜 마시는 방법 좀 알려줘", "signals": [], "kind": "hard_hand", "id": "X0143", "split": "train"}
 {"text": "맛집 추천 좀", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0144", "split": "train"}
@@ -146,24 +146,24 @@
 {"text": "You are a professional chef. Explain how to cook risotto.", "signals": ["persona"], "kind": "hard_hand", "id": "X0146", "split": "train"}
 {"text": "점메추 부탁", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0147", "split": "train"}
 {"text": "Is there a way to merge two PDFs without installing anything?", "signals": [], "kind": "hard_hand", "id": "X0148", "split": "train"}
-{"text": "프로젝트 주제 뭐가 좋을까? 5개 정도 골라줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0149", "split": "train"}
+{"text": "팀 이름 후보 10개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0149", "split": "train"}
 {"text": "이 상황에서는 어떻게 하는 게 좋을까요? 계약서에 오타가 있어요", "signals": [], "kind": "hard_hand", "id": "X0150", "split": "val_hand"}
 {"text": "How long does it take to fly from Seoul to Tokyo?", "signals": [], "kind": "hard_hand", "id": "X0151", "split": "train"}
-{"text": "주말 활동 아이디어 7가지만 던져줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0152", "split": "train"}
-{"text": "공부 시간 확보하기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0153", "split": "train"}
+{"text": "발표 주제 후보 3개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0152", "split": "train"}
+{"text": "취미 아이디어 10가지만 던져줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0153", "split": "train"}
 {"text": "Pretend you are a travel guide and plan a day in Rome.", "signals": ["persona"], "kind": "hard_hand", "id": "X0154", "split": "train"}
 {"text": "주말에 갈 만한 데 없나", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0155", "split": "val_hand"}
-{"text": "와이파이 속도 높이기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0156", "split": "train"}
+{"text": "노트북이 자꾸 꺼져. 해결 방법 좀 알려줘", "signals": [], "kind": "hard_advice", "id": "X0156", "split": "train"}
 {"text": "평균과 분산이 뭔지 설명해줘", "signals": [], "kind": "hard_hand", "id": "X0157", "split": "train"}
 {"text": "Explain what an API is in two sentences.", "signals": [], "kind": "hard_hand", "id": "X0158", "split": "train"}
 {"text": "지구의 평균 반지름을 알려줘", "signals": [], "kind": "hard_hand", "id": "X0159", "split": "train"}
-{"text": "동아리 이름 뭐가 좋을까? 3개 정도 골라줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0160", "split": "val_hand"}
-{"text": "사진 용량 줄이기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0161", "split": "train"}
-{"text": "새로운 방법이라는 표현 어떻게 만드는지 알려줘", "signals": [], "kind": "hard_mention", "id": "X0162", "split": "train"}
+{"text": "자소서 쓰기에 대한 새로운 접근법 같은 게 있을까?", "signals": [], "kind": "hard_method", "id": "X0160", "split": "val_hand"}
+{"text": "파이썬 코드 속도 높이기 쉬운 방법 있을까요", "signals": [], "kind": "hard_method", "id": "X0161", "split": "train"}
+{"text": "추천인 코드의 뜻이 뭐야?", "signals": [], "kind": "hard_mention", "id": "X0162", "split": "train"}
 {"text": "What year did the Berlin Wall fall?", "signals": [], "kind": "hard_hand", "id": "X0163", "split": "train"}
-{"text": "돈 모으기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0164", "split": "train"}
-{"text": "노션 정리하기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0165", "split": "val_hand"}
-{"text": "와이파이 속도 높이기 새로운 방법 있어?", "signals": [], "kind": "hard_method", "id": "X0166", "split": "train"}
+{"text": "발표 긴장 풀기 다른 방법은 없어?", "signals": [], "kind": "hard_method", "id": "X0164", "split": "train"}
+{"text": "친구랑 약속이 겹쳤어. 해결 방법 좀 알려줘", "signals": [], "kind": "hard_advice", "id": "X0165", "split": "val_hand"}
+{"text": "새로운 방법이라는 표현 어떻게 만드는지 알려줘", "signals": [], "kind": "hard_mention", "id": "X0166", "split": "train"}
 {"text": "앱 이름 좀 지어줘. 후보 여러 개로", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0167", "split": "train"}
 {"text": "이 상황에서 어떻게 대처하면 좋을까? 상사가 갑자기 화를 내", "signals": [], "kind": "hard_hand", "id": "X0168", "split": "train"}
 {"text": "메뉴 추천 좀", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0169", "split": "train"}
@@ -172,76 +172,76 @@
 {"text": "Summarize the plot of Romeo and Juliet in three sentences.", "signals": [], "kind": "hard_hand", "id": "X0172", "split": "train"}
 {"text": "서울의 연평균 강수량이 얼마인지 알려줘", "signals": [], "kind": "hard_hand", "id": "X0173", "split": "train"}
 {"text": "간식 메추좀", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0174", "split": "train"}
-{"text": "노트북 배터리 아끼기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0175", "split": "val_hand"}
+{"text": "발표 긴장 풀기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0175", "split": "val_hand"}
 {"text": "일반적으로 물은 몇 도에서 끓어?", "signals": [], "kind": "hard_hand", "id": "X0176", "split": "train"}
-{"text": "이력서 작성하기 쉬운 방법 있을까요", "signals": [], "kind": "hard_method", "id": "X0177", "split": "train"}
+{"text": "git 커밋 합치기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0177", "split": "train"}
 {"text": "How do I install Node.js on Windows?", "signals": [], "kind": "hard_hand", "id": "X0178", "split": "train"}
 {"text": "게임 추천해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0179", "split": "train"}
 {"text": "How do I center a div with CSS?", "signals": [], "kind": "hard_hand", "id": "X0180", "split": "val_hand"}
-{"text": "가게 이름 후보 5개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0181", "split": "train"}
+{"text": "자소서 쓰기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0181", "split": "train"}
 {"text": "스트레스 푸는 방법이 뭐가 있어?", "signals": [], "kind": "hard_hand", "id": "X0182", "split": "train"}
 {"text": "캠핑 때 할 만한 놀이가 뭐 있을까?", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0183", "split": "train"}
-{"text": "사진 용량 줄이기 쉬운 방법 있을까요", "signals": [], "kind": "hard_method", "id": "X0184", "split": "train"}
+{"text": "추천인 코드 관련 자료를 찾는 방법 알려줘", "signals": [], "kind": "hard_mention", "id": "X0184", "split": "train"}
 {"text": "선물 추천해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0185", "split": "val_hand"}
 {"text": "What is the capital city of Canada?", "signals": [], "kind": "hard_hand", "id": "X0186", "split": "train"}
 {"text": "이거 어떻게 하는 게 좋을까? 프린터 용지가 계속 걸려", "signals": [], "kind": "hard_hand", "id": "X0187", "split": "train"}
 {"text": "새 프로젝트 이름을 지어야 하는데 후보 좀 줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0188", "split": "train"}
-{"text": "생일선물 좀 추천해줘. 여러 개 부탁해", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0189", "split": "train"}
+{"text": "회의 때 말이 안 나와. 해결 방법 좀 알려줘", "signals": [], "kind": "hard_advice", "id": "X0189", "split": "train"}
 {"text": "졸업 선물로 뭐가 좋을지 감이 안 와 여러 개 골라줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0190", "split": "val_hand"}
 {"text": "이거 어떻게 하면 좋을까? 컴퓨터가 부팅이 안 돼", "signals": [], "kind": "hard_hand", "id": "X0191", "split": "train"}
 {"text": "What is the chemical symbol for gold?", "signals": [], "kind": "hard_hand", "id": "X0192", "split": "train"}
-{"text": "브레인스토밍 도구 관련 자료를 찾는 방법 알려줘", "signals": [], "kind": "hard_mention", "id": "X0193", "split": "train"}
+{"text": "사진 용량 줄이기 쉬운 방법 있을까요", "signals": [], "kind": "hard_method", "id": "X0193", "split": "train"}
 {"text": "퇴근하고 할 만한 새로운 취미 추천해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0194", "split": "train"}
 {"text": "Suggest a few unique gift options for a coworker.", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0195", "split": "val_hand"}
 {"text": "메추리알 삶는 시간이 얼마야?", "signals": [], "kind": "hard_hand", "id": "X0196", "split": "train"}
 {"text": "아이랑 주말에 갈 만한 곳 뭐 있을까", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0197", "split": "train"}
-{"text": "추천인 코드의 뜻이 뭐야?", "signals": [], "kind": "hard_mention", "id": "X0198", "split": "train"}
-{"text": "팀 이름 뭐가 좋을까? 10개 정도 골라줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0199", "split": "train"}
-{"text": "회의 시간 줄이기 다른 방법은 없어?", "signals": [], "kind": "hard_method", "id": "X0200", "split": "val_hand"}
-{"text": "집중력 높이기 쉬운 방법 있을까요", "signals": [], "kind": "hard_method", "id": "X0201", "split": "train"}
+{"text": "면접 준비하기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0198", "split": "train"}
+{"text": "이력서 작성하기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0199", "split": "train"}
+{"text": "추천인 코드가 뭐야", "signals": [], "kind": "hard_hand", "id": "X0200", "split": "val_hand"}
+{"text": "주말 활동 후보 5개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0201", "split": "train"}
 {"text": "Define photosynthesis in one sentence.", "signals": [], "kind": "hard_hand", "id": "X0202", "split": "train"}
-{"text": "이력서 작성하기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0203", "split": "train"}
-{"text": "엑셀 함수 익히기에 대한 새로운 접근법 같은 게 있을까?", "signals": [], "kind": "hard_method", "id": "X0204", "split": "train"}
-{"text": "추천서가 뭔지 설명해줘", "signals": [], "kind": "hard_mention", "id": "X0205", "split": "val_hand"}
+{"text": "여행지 좀 추천해줘. 여러 개 부탁해", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0203", "split": "train"}
+{"text": "영어 말하기 늘리기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0204", "split": "train"}
+{"text": "아이디어 노트 어떻게 만드는지 알려줘", "signals": [], "kind": "hard_mention", "id": "X0205", "split": "val_hand"}
 {"text": "What time does the sun set in London in June?", "signals": [], "kind": "hard_hand", "id": "X0206", "split": "train"}
 {"text": "메추리는 어떤 새야?", "signals": [], "kind": "hard_hand", "id": "X0207", "split": "train"}
 {"text": "What is the difference between a list and a tuple in Python?", "signals": [], "kind": "hard_hand", "id": "X0208", "split": "train"}
 {"text": "피자 대신 뭐 먹을 만한 거 없어?", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0209", "split": "train"}
-{"text": "코드 리뷰 빨리 끝내기 더 나은 방법 알려줘", "signals": [], "kind": "hard_method", "id": "X0210", "split": "val_hand"}
+{"text": "엑셀에서 중복값 지우기에 대한 새로운 접근법 같은 게 있을까?", "signals": [], "kind": "hard_method", "id": "X0210", "split": "val_hand"}
 {"text": "책추 해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0211", "split": "train"}
-{"text": "프로그램 설치하기에 대한 새로운 접근법 같은 게 있을까?", "signals": [], "kind": "hard_method", "id": "X0212", "split": "train"}
-{"text": "파일 정리하기 좋은 방법이 뭐가 있어?", "signals": [], "kind": "hard_method", "id": "X0213", "split": "train"}
+{"text": "메일을 잘못 보냈어. 어쩌면 좋아?", "signals": [], "kind": "hard_advice", "id": "X0212", "split": "train"}
+{"text": "고양이 이름 좀 추천해줘. 여러 개 부탁해", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0213", "split": "train"}
 {"text": "햄버거 말고 점심으로 뭐 먹지", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0214", "split": "train"}
 {"text": "What is the largest ocean on Earth?", "signals": [], "kind": "hard_hand", "id": "X0215", "split": "val_hand"}
 {"text": "Please proofread the following paragraph.", "signals": [], "kind": "hard_hand", "id": "X0216", "split": "train"}
-{"text": "돈 모으기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0217", "split": "train"}
-{"text": "영어 말하기 늘리기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0218", "split": "train"}
+{"text": "브레인스토밍 도구 어떻게 만드는지 알려줘", "signals": [], "kind": "hard_mention", "id": "X0217", "split": "train"}
+{"text": "이력서 작성하기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0218", "split": "train"}
 {"text": "볼 만한 영화 없나", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0219", "split": "train"}
 {"text": "저녁 뭐 먹지 추천해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0220", "split": "val_hand"}
-{"text": "이메일 빨리 쓰기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0221", "split": "train"}
+{"text": "동아리 이름 뭐가 좋을까? 3개 정도 골라줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0221", "split": "train"}
 {"text": "Suggest three names for a small bakery.", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0222", "split": "train"}
-{"text": "노트북이 자꾸 꺼져. 어떻게 하면 좋을까?", "signals": [], "kind": "hard_advice", "id": "X0223", "split": "train"}
+{"text": "프로젝트 주제 뭐가 좋을까? 5개 정도 골라줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0223", "split": "train"}
 {"text": "What is the best way to learn SQL?", "signals": [], "kind": "hard_hand", "id": "X0224", "split": "train"}
 {"text": "오늘 점메추", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0225", "split": "val_hand"}
 {"text": "Rewrite this email to sound more polite: Send me the file now.", "signals": [], "kind": "hard_hand", "id": "X0226", "split": "train"}
 {"text": "효율적인 방법을 찾고 있어. 이 반복문 최적화하는 법", "signals": [], "kind": "hard_hand", "id": "X0227", "split": "train"}
-{"text": "집중력 높이기 새로운 방법 있어?", "signals": [], "kind": "hard_method", "id": "X0228", "split": "train"}
+{"text": "코드 리뷰 빨리 끝내기 더 나은 방법 알려줘", "signals": [], "kind": "hard_method", "id": "X0228", "split": "train"}
 {"text": "What is the main idea of this paragraph?", "signals": [], "kind": "hard_hand", "id": "X0229", "split": "train"}
-{"text": "이메일 정리하기 더 나은 방법 알려줘", "signals": [], "kind": "hard_method", "id": "X0230", "split": "val_hand"}
-{"text": "영어 말하기 늘리기 더 나은 방법 알려줘", "signals": [], "kind": "hard_method", "id": "X0231", "split": "train"}
-{"text": "집중력 높이기 더 나은 방법 알려줘", "signals": [], "kind": "hard_method", "id": "X0232", "split": "train"}
-{"text": "밤에 잠이 안 와. 어떻게 하면 좋을까?", "signals": [], "kind": "hard_advice", "id": "X0233", "split": "train"}
-{"text": "돈 모으기에 대한 새로운 접근법 같은 게 있을까?", "signals": [], "kind": "hard_method", "id": "X0234", "split": "train"}
-{"text": "추천 검색어 기능가 뭔지 설명해줘", "signals": [], "kind": "hard_mention", "id": "X0235", "split": "val_hand"}
+{"text": "주말 활동 뭐 있을까?", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0230", "split": "val_hand"}
+{"text": "영어 단어 외우기에 대한 새로운 접근법 같은 게 있을까?", "signals": [], "kind": "hard_method", "id": "X0231", "split": "train"}
+{"text": "파일 정리하기 새로운 방법 있어?", "signals": [], "kind": "hard_method", "id": "X0232", "split": "train"}
+{"text": "데이트 코스 후보 7개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0233", "split": "train"}
+{"text": "이메일 정리하기 더 나은 방법 알려줘", "signals": [], "kind": "hard_method", "id": "X0234", "split": "train"}
+{"text": "파일이 안 열려. 어떻게 하면 좋을까?", "signals": [], "kind": "hard_advice", "id": "X0235", "split": "val_hand"}
 {"text": "시험이 내일인데 준비를 못 했어. 어떻게 하면 좋지?", "signals": [], "kind": "hard_hand", "id": "X0236", "split": "train"}
-{"text": "추천 시스템 사용법 알려줘", "signals": [], "kind": "hard_mention", "id": "X0237", "split": "train"}
+{"text": "코드 리뷰 빨리 끝내기 쉬운 방법 있을까요", "signals": [], "kind": "hard_method", "id": "X0237", "split": "train"}
 {"text": "라면 말고 먹을 만한 거 없을까?", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0238", "split": "train"}
-{"text": "프로젝트 주제 좀 추천해줘. 여러 개 부탁해", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0239", "split": "train"}
+{"text": "여행지 후보 10개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0239", "split": "train"}
 {"text": "Can you explain what recursion means?", "signals": [], "kind": "hard_hand", "id": "X0240", "split": "val_hand"}
 {"text": "운동 말고 할 만한 취미 없을까?", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0241", "split": "train"}
 {"text": "면접에서 긴장하는데 어떻게 하면 좋을까", "signals": [], "kind": "hard_hand", "id": "X0242", "split": "train"}
 {"text": "친구랑 싸웠는데 어떻게 하면 좋을까?", "signals": [], "kind": "hard_hand", "id": "X0243", "split": "train"}
-{"text": "시험 공부하기 다른 방법은 없어?", "signals": [], "kind": "hard_method", "id": "X0244", "split": "train"}
+{"text": "추천 검색어가 뭐야", "signals": [], "kind": "hard_hand", "id": "X0244", "split": "train"}
 {"text": "What is the tallest mountain in Africa?", "signals": [], "kind": "hard_hand", "id": "X0245", "split": "val_hand"}
 {"text": "돈이 모자라는데 어떻게 하면 좋을까", "signals": [], "kind": "hard_hand", "id": "X0246", "split": "train"}
 {"text": "대한민국의 평균 수명이 몇 살이야?", "signals": [], "kind": "hard_hand", "id": "X0247", "split": "train"}
@@ -250,28 +250,28 @@
 {"text": "영화 추천해줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0250", "split": "val_hand"}
 {"text": "이 반 학생들의 평균 점수를 계산해줘", "signals": [], "kind": "hard_hand", "id": "X0251", "split": "train"}
 {"text": "발표 마무리 멘트 후보를 세 가지만 줘", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0252", "split": "train"}
-{"text": "동아리 이름 좀 추천해줘. 여러 개 부탁해", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0253", "split": "train"}
+{"text": "코드가 계속 에러가 나 이럴 땐 어떻게 해야 해?", "signals": [], "kind": "hard_advice", "id": "X0253", "split": "train"}
 {"text": "How do I undo the last git commit?", "signals": [], "kind": "hard_hand", "id": "X0254", "split": "train"}
 {"text": "엑셀 파일 합치는 방법이 있을까?", "signals": [], "kind": "hard_hand", "id": "X0255", "split": "val_hand"}
-{"text": "프로그램 설치하기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0256", "split": "train"}
-{"text": "주말 활동 후보 5개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0257", "split": "train"}
-{"text": "회의 때 말이 안 나와, 어떡하지", "signals": [], "kind": "hard_advice", "id": "X0258", "split": "train"}
+{"text": "노트북 배터리 아끼기 효율적인 방법을 알려줘", "signals": [], "kind": "hard_method", "id": "X0256", "split": "train"}
+{"text": "파일 정리하기 방법이 없을까?", "signals": [], "kind": "hard_method", "id": "X0257", "split": "train"}
+{"text": "팀 이름 뭐가 좋을까? 10개 정도 골라줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0258", "split": "train"}
 {"text": "List the primary colors.", "signals": [], "kind": "hard_hand", "id": "X0259", "split": "train"}
 {"text": "메추좀", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0260", "split": "val_hand"}
 {"text": "Show me how to read a file in Python.", "signals": [], "kind": "hard_hand", "id": "X0261", "split": "train"}
-{"text": "노트북이 자꾸 꺼져. 해결 방법 좀 알려줘", "signals": [], "kind": "hard_advice", "id": "X0262", "split": "train"}
+{"text": "발표 주제 좀 추천해줘. 여러 개 부탁해", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0262", "split": "train"}
 {"text": "What is the square root of 144?", "signals": [], "kind": "hard_hand", "id": "X0263", "split": "train"}
 {"text": "이 문서 용량 줄일 방법 있어?", "signals": [], "kind": "hard_hand", "id": "X0264", "split": "train"}
 {"text": "저메추 ㅇㅇ", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0265", "split": "val_hand"}
 {"text": "오늘 저녁 메뉴 뭐가 좋을까", "signals": ["brainstorm"], "kind": "hard_hand", "id": "X0266", "split": "train"}
-{"text": "취미 후보 5개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0267", "split": "train"}
-{"text": "취미 아이디어 10가지만 던져줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0268", "split": "train"}
+{"text": "밤에 잠이 안 와. 어쩌면 좋아?", "signals": [], "kind": "hard_advice", "id": "X0267", "split": "train"}
+{"text": "파일이 안 열려, 어떡하지", "signals": [], "kind": "hard_advice", "id": "X0268", "split": "train"}
 {"text": "상사한테 뭐라고 말해야 할지 모르겠어. 어떻게 하면 좋을까?", "signals": [], "kind": "hard_hand", "id": "X0269", "split": "train"}
 {"text": "Who wrote the novel Pride and Prejudice?", "signals": [], "kind": "hard_hand", "id": "X0270", "split": "val_hand"}
 {"text": "추천 서버가 뭔지 설명해줘", "signals": [], "kind": "hard_hand", "id": "X0271", "split": "train"}
 {"text": "영어 공부 새로운 방법 있으면 알려줘", "signals": [], "kind": "hard_hand", "id": "X0272", "split": "train"}
-{"text": "추천 검색어 기능의 뜻이 뭐야?", "signals": [], "kind": "hard_mention", "id": "X0273", "split": "train"}
+{"text": "동아리 이름 후보 7개만 알려줘", "signals": ["brainstorm"], "kind": "hard_pos", "id": "X0273", "split": "train"}
 {"text": "메추리알 장조림 레시피 알려줘", "signals": [], "kind": "hard_hand", "id": "X0274", "split": "train"}
 {"text": "추천 영화가 아니라 이 영화 줄거리를 알려줘", "signals": [], "kind": "hard_hand", "id": "X0275", "split": "val_hand"}
-{"text": "영어 단어 외우기에 대한 새로운 접근법 같은 게 있을까?", "signals": [], "kind": "hard_method", "id": "X0276", "split": "train"}
-{"text": "회의 때 말이 안 나와. 해결 방법 좀 알려줘", "signals": [], "kind": "hard_advice", "id": "X0277", "split": "train"}
+{"text": "밤에 잠이 안 와. 어떻게 하면 좋을까?", "signals": [], "kind": "hard_advice", "id": "X0276", "split": "train"}
+{"text": "이메일 빨리 쓰기 가장 빠른 방법이 뭐야?", "signals": [], "kind": "hard_method", "id": "X0277", "split": "train"}

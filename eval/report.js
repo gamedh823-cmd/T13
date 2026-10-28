@@ -76,8 +76,9 @@ function compute() {
     valUnseen: round(metrics(valUnseen, mod)),
     valHand: round(metrics(valHand, mod)),
     real: round(metrics(real, mod)),
+    holdout: round(metrics(labels.filter((l) => l.split === 'holdout'), mod)),
     calibration: bins.map((b) => ({ label: b.label, n: b.n, right: b.right, rate: b.n ? Math.round((b.right / b.n) * 100) : null })),
-    note: '임계값은 개발용 라벨과 오탐 사례를 보고 정했고, 오탐 사례를 보고 학습 문장을 보강했기 때문에 개발용 점수는 실제보다 높을 수 있다. 보류용(holdout) 20개는 아직 재지 않았다.'
+    note: '임계값은 개발용 라벨과 오탐 사례를 보고 정했고, 오탐 사례를 보고 학습 문장을 보강했기 때문에 개발용 점수는 실제보다 높을 수 있다. 보류용 20문장은 모델 수정을 마친 뒤 한 번 쟀고(표의 맨 아래 줄), 문장이 적어 참고용이다.'
   };
 }
 
