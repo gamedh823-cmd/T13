@@ -215,24 +215,6 @@ table.rep th{background:var(--soft)}
 .fbdesc{color:var(--fg)}
 .fbex{color:var(--muted);font-size:13px}
 
-/* 첫 화면 압축: 스크롤 없이 입력창과 점검하기 버튼이 보이게 (동료 반응 반영) */
-.hero{padding:16px 0 10px;margin-bottom:10px;border-bottom:0}
-.hero .badge{font-size:12px;padding:4px 12px}
-h1{font-size:clamp(28px,4.6vw,42px);margin:10px 0 10px;letter-spacing:-.045em}
-.hero .who{font-size:clamp(13.5px,2vw,14.5px);line-height:1.6}
-.hero .who strong{font-size:clamp(16px,2.4vw,19px);margin-bottom:4px}
-.hero a.paper{margin-top:12px;padding:8px 12px;gap:10px;border-radius:12px;box-shadow:none}
-.paper .pi{width:32px;height:32px;padding:7px;border-radius:9px}
-.paper .pl,.paper .ps{display:none}
-.paper .pn{font-size:14px}
-.paper .pa{padding:4px 10px;font-size:12px}
-.steps{display:none}
-.card.entry{margin:10px 0}
-.card{margin:16px 0;padding:20px}
-.card h2{margin-bottom:12px}
-textarea{min-height:92px;padding:12px 14px}
-.row{margin-top:12px}
-
 /* 넓은 화면: 왼쪽에 입력, 오른쪽에 결과를 나란히 (세로로 길게 스크롤하지 않도록) */
 .emptylist{margin:0;padding-left:22px;color:var(--muted);font-size:15px;line-height:1.8}
 .emptylist b{color:var(--fg)}
@@ -242,7 +224,6 @@ main:has(#result:not([hidden])) .card.empty{display:none}
   body{padding-left:28px;padding-right:28px}
   .wrap{max-width:1240px;display:grid;grid-template-columns:minmax(360px,440px) minmax(0,1fr);column-gap:28px;align-items:start}
   .wrap>.hero,.wrap>details.card,.wrap>.foot{grid-column:1/-1}
-  .wrap>.hero{padding:14px 0 8px}
   .wrap>.hero .who{max-width:none}
   .wrap>.card.entry{grid-column:1;grid-row:2/span 12;position:sticky;top:16px;margin:0 0 16px}
   .wrap>.card.empty,.wrap>#result,.wrap>#len-card,.wrap>#sug-card,.wrap>#fb-card{grid-column:2;margin-top:0}
