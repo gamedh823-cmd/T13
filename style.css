@@ -232,3 +232,20 @@ h1{font-size:clamp(28px,4.6vw,42px);margin:10px 0 10px;letter-spacing:-.045em}
 .card h2{margin-bottom:12px}
 textarea{min-height:92px;padding:12px 14px}
 .row{margin-top:12px}
+
+/* 넓은 화면: 왼쪽에 입력, 오른쪽에 결과를 나란히 (세로로 길게 스크롤하지 않도록) */
+.emptylist{margin:0;padding-left:22px;color:var(--muted);font-size:15px;line-height:1.8}
+.emptylist b{color:var(--fg)}
+.card.empty h2.sec{margin:0 0 12px;color:var(--fg);font-size:18px}
+main:has(#result:not([hidden])) .card.empty{display:none}
+@media (min-width:1000px){
+  body{padding-left:28px;padding-right:28px}
+  .wrap{max-width:1240px;display:grid;grid-template-columns:minmax(360px,440px) minmax(0,1fr);column-gap:28px;align-items:start}
+  .wrap>.hero,.wrap>details.card,.wrap>.foot{grid-column:1/-1}
+  .wrap>.hero{padding:14px 0 8px}
+  .wrap>.hero .who{max-width:none}
+  .wrap>.card.entry{grid-column:1;grid-row:2/span 12;position:sticky;top:16px;margin:0 0 16px}
+  .wrap>.card.empty,.wrap>#result,.wrap>#len-card,.wrap>#sug-card,.wrap>#fb-card{grid-column:2;margin-top:0}
+  .wrap>.card.entry textarea{min-height:230px}
+  h2.sec{margin-top:0}
+}

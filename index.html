@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>프롬프트 신호 점검기</title>
 <meta name="description" content="프롬프트를 붙여 넣으면 신호 8가지가 답에 주는 영향을 논문 결과로 짚어 주고, 빠진 정보는 채우고 불필요한 정보는 빼서 더 구체적인 질문으로 고치도록 돕습니다.">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 <main class="wrap">
@@ -47,6 +47,15 @@
     </div>
     <p class="err" id="err" role="alert" hidden></p>
   </section>
+
+  <aside class="card empty" id="empty">
+    <h2 class="sec">여기에 점검 결과가 나와요</h2>
+    <ol class="emptylist">
+      <li>왼쪽에 AI에게 보내려던 프롬프트를 붙여 넣고 <b>점검하기</b>를 누르세요.</li>
+      <li>들어 있는 신호 8가지와, 논문에서 그 신호가 답에 준 영향이 보여요.</li>
+      <li>빠진 정보를 채운 <b>고친 프롬프트</b>를 AI에게 받을 수 있어요.</li>
+    </ol>
+  </aside>
 
   <section id="result" hidden aria-live="polite">
     <h2 class="sec">점검 결과 — 신호 8가지 체크</h2>
