@@ -47,6 +47,10 @@
       $('len-card').hidden = true;
       $('sug-card').hidden = true;
       $('fb-card').hidden = true;
+      $('tabs').hidden = true;
+      $('pane-fix').hidden = true;
+      $('tab-fix').hidden = true;
+      setPane('check');
       return;
     }
     $('result').hidden = false;
@@ -125,6 +129,17 @@
       ul2.appendChild(el('li', '', t));
     });
     $('llm').hidden = true;
+    $('tabs').hidden = true;
+    $('pane-fix').hidden = true;
+    $('tab-fix').hidden = true;
+    setPane('check');
+  }
+
+  function setPane(name) {
+    var fix = name === 'fix';
+    document.querySelector('.wrap').classList.toggle('showfix', fix);
+    $('tab-check').classList.toggle('on', !fix);
+    $('tab-fix').classList.toggle('on', fix);
   }
 
   function renumber() {
@@ -390,6 +405,10 @@
     if (!a || !a.ok) return;
     btn.disabled = true;
     out.hidden = false;
+    $('pane-fix').hidden = false;
+    $('tabs').hidden = false;
+    $('tab-fix').hidden = false;
+    setPane('fix');
     clear(out);
     out.appendChild(el('p', 'dx', '묻는 중… (최대 20초)'));
     var ctrl = new AbortController();
@@ -442,6 +461,12 @@
   });
   $('run').addEventListener('click', run);
   $('ask').addEventListener('click', ask);
+  $('tab-check').addEventListener('click', function () {
+    setPane('check');
+  });
+  $('tab-fix').addEventListener('click', function () {
+    setPane('fix');
+  });
   $('fb-copy').addEventListener('click', copyFeedback);
   $('prompt').addEventListener('input', function () {
     var n = this.value.length;

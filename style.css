@@ -220,27 +220,35 @@ table.rep th{background:var(--soft)}
 .emptylist b{color:var(--fg)}
 .card.empty h2.sec{margin:0 0 12px;color:var(--fg);font-size:18px}
 main:has(#result:not([hidden])) .card.empty{display:none}
+.tabs{display:flex;gap:8px;margin:0 0 14px}
+.tab{font:inherit;font-weight:800;font-size:15px;padding:9px 20px;border-radius:99px;border:1.5px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer}
+.tab.on{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent;color:var(--on-accent)}
+.card#fix-card h2.sec{margin:0 0 14px;color:var(--fg);font-size:18px}
 @media (min-width:1000px){
   body{padding-left:28px;padding-right:28px}
   .wrap{max-width:1240px;display:grid;grid-template-columns:minmax(360px,440px) minmax(0,1fr);column-gap:28px;align-items:start}
   .wrap>.hero,.wrap>details.card,.wrap>.foot{grid-column:1/-1}
   .wrap>.hero .who{max-width:none}
-  .colL{grid-column:1;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto;padding:2px}
+  .colL{grid-column:1}
   .colR{grid-column:2}
-  .colL>.card,.colR>.card{margin-top:0}
+  .colL>.card,.colR .card{margin-top:0}
   .colL>.card{margin-bottom:16px}
   .colL textarea{min-height:200px}
   h2.sec{margin-top:0}
+  .wrap.showfix #pane-check{display:none}
 }
-/* 좁은 화면: 예전처럼 한 줄로, 순서는 입력 → 결과 → 제안 → 신고 */
+/* 좁은 화면: 한 줄로, 순서는 입력 → 결과 → 제안 → 고친 프롬프트 → 신고 */
 @media (max-width:999px){
+  .tabs{display:none}
   .wrap{display:flex;flex-direction:column}
-  .colL,.colR{display:contents}
+  .colL,.colR,#pane-check,#pane-fix{display:contents}
+  #pane-fix[hidden]{display:none}
   .wrap>.hero{order:0}
   .colL>.entry{order:1}
-  .colR>.empty,.colR>#result,.colR>#len-card{order:2}
+  #pane-check>.empty,#pane-check>#result,#pane-check>#len-card{order:2}
   .colL>#sug-card{order:3}
-  .colR>#fb-card{order:4}
-  .wrap>details.card{order:5}
-  .wrap>.foot{order:6}
+  #pane-fix>#fix-card{order:4}
+  #pane-check>#fb-card{order:5}
+  .wrap>details.card{order:6}
+  .wrap>.foot{order:7}
 }
