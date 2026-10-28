@@ -219,7 +219,7 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        text: a.text.slice(0, 300),
+        text: a.text.slice(0, 3000),
         mine: mine,
         app: a.signals.map(function (s) {
           return s.id;

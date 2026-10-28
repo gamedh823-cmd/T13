@@ -39,19 +39,19 @@ function call(opts) {
     const r = await call({ body: { text: '   ' }, ip: '9.0.0.3' });
     assert.strictEqual(r.code, 400);
   });
-  await t('디스코드로 보낼 때 멘션을 막고 문장을 300자로 자른다', async () => {
+  await t('디스코드로 보낼 때 멘션을 막고 문장을 3000자로 자른다', async () => {
     let sent = null;
     global.fetch = async (url, init) => {
       sent = { url, body: JSON.parse(init.body) };
       return { ok: true };
     };
-    const r = await call({ body: { text: '@everyone ' + 'ㅁ'.repeat(500), mine: ['persona'], app: ['persona', 'cot'] }, ip: '9.0.0.4' });
+    const r = await call({ body: { text: '@everyone ' + 'ㅁ'.repeat(4000), mine: ['persona'], app: ['persona', 'cot'] }, ip: '9.0.0.4' });
     assert.strictEqual(r.code, 200);
     assert.deepStrictEqual(sent.body.allowed_mentions, { parse: [] });
-    assert.ok(sent.body.embeds[0].description.length <= 330);
-    assert.ok(sent.body.embeds[0].title.includes('다름'));
-    assert.ok(sent.body.embeds[0].fields[2].value.includes('풀이 과정'));
-    assert.ok(sent.body.embeds[0].fields[0].value.includes('전문가 역할'));
+    assert.ok(sent.body.embeds[0].description.length < 3300);
+    assert.ok(sent.body.embeds[0].title.includes('달라요'));
+    assert.ok(sent.body.embeds[0].description.includes('`풀이 과정`'));
+    assert.ok(sent.body.embeds[0].description.includes('`전문가 역할`'));
   });
   await t('같은 IP는 분당 3회까지만 받는다', async () => {
     global.fetch = async () => ({ ok: true });
