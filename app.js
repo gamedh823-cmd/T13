@@ -50,6 +50,8 @@
       $('tabs').hidden = true;
       $('pane-fix').hidden = true;
       $('tab-fix').hidden = true;
+      $('tab-fb').hidden = true;
+      $('fb-open-card').hidden = true;
       setPane('check');
       return;
     }
@@ -132,14 +134,16 @@
     $('tabs').hidden = true;
     $('pane-fix').hidden = true;
     $('tab-fix').hidden = true;
+    $('tab-fb').hidden = true;
+    $('fb-open-card').hidden = false;
     setPane('check');
   }
 
   function setPane(name) {
-    var fix = name === 'fix';
-    document.querySelector('.wrap').classList.toggle('showfix', fix);
-    $('tab-check').classList.toggle('on', !fix);
-    $('tab-fix').classList.toggle('on', fix);
+    document.querySelector('.wrap').setAttribute('data-view', name);
+    ['check', 'fix', 'fb'].forEach(function (k) {
+      $('tab-' + k).classList.toggle('on', k === name);
+    });
   }
 
   function renumber() {
@@ -408,6 +412,7 @@
     $('pane-fix').hidden = false;
     $('tabs').hidden = false;
     $('tab-fix').hidden = false;
+    $('tab-fb').hidden = false;
     setPane('fix');
     clear(out);
     out.appendChild(el('p', 'dx', '묻는 중… (최대 20초)'));
@@ -466,6 +471,14 @@
   });
   $('tab-fix').addEventListener('click', function () {
     setPane('fix');
+  });
+  $('tab-fb').addEventListener('click', function () {
+    setPane('fb');
+  });
+  $('fb-open').addEventListener('click', function () {
+    $('tabs').hidden = false;
+    $('tab-fb').hidden = false;
+    setPane('fb');
   });
   $('fb-copy').addEventListener('click', copyFeedback);
   $('prompt').addEventListener('input', function () {

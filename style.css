@@ -235,20 +235,25 @@ main:has(#result:not([hidden])) .card.empty{display:none}
   .colL>.card{margin-bottom:16px}
   .colL textarea{min-height:200px}
   h2.sec{margin-top:0}
-  .wrap.showfix #pane-check{display:none}
+  .wrap[data-view=fix] #pane-check,.wrap[data-view=fb] #pane-check{display:none}
+  #pane-fix{display:none}
+  .wrap[data-view=fix] #pane-fix{display:block}
+  #pane-fb{display:none}
+  .wrap[data-view=fb] #pane-fb{display:block}
 }
 /* 좁은 화면: 한 줄로, 순서는 입력 → 결과 → 제안 → 고친 프롬프트 → 신고 */
 @media (max-width:999px){
   .tabs{display:none}
   .wrap{display:flex;flex-direction:column}
-  .colL,.colR,#pane-check,#pane-fix{display:contents}
+  .colL,.colR,#pane-check,#pane-fix,#pane-fb{display:contents}
   #pane-fix[hidden]{display:none}
+  #fb-open-card{display:none}
   .wrap>.hero{order:0}
   .colL>.entry{order:1}
   #pane-check>.empty,#pane-check>#result,#pane-check>#len-card{order:2}
   .colL>#sug-card{order:3}
   #pane-fix>#fix-card{order:4}
-  #pane-check>#fb-card{order:5}
+  #pane-fb>#fb-card{order:5}
   .wrap>details.card{order:6}
   .wrap>.foot{order:7}
 }
