@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>프롬프트 신호 점검기</title>
 <meta name="description" content="프롬프트를 붙여 넣으면 신호 8가지가 답에 주는 영향을 논문 결과로 짚어 주고, 빠진 정보는 채우고 불필요한 정보는 빼서 더 구체적인 질문으로 고치도록 돕습니다.">
-<link rel="stylesheet" href="style.css?v=17">
+<link rel="stylesheet" href="style.css?v=18">
 </head>
 <body>
 <main class="wrap">
@@ -60,8 +60,8 @@
   </section>
 
     <section class="card" id="fb-open-card" hidden aria-labelledby="s-fbo">
-      <h2 id="s-fbo">판정이 틀렸나요?</h2>
-      <p class="lead">잘못 잡힌 신호나 빠진 신호가 있으면 알려 주세요.</p>
+      <h2 id="s-fbo"><span class="oops">앗!</span> 판정이 틀렸나요?</h2>
+      <p class="lead">엉뚱한 신호가 잡혔거나, 있는데 놓쳤다면 알려 주세요. 앱을 더 똑똑하게 만드는 데 바로 쓰여요.</p>
       <div class="row"><button class="btn" id="fb-open" type="button">틀린 판정 신고하기</button><span class="hint">누르면 오른쪽 창에 체크 목록이 나와요.</span></div>
     </section>
   </div>
@@ -136,6 +136,6 @@
 <script src="train/model.js?v=5" async></script>
 <script src="eval/report_data.js?v=6" async></script>
 <script src="exp/results/summary_data.js?v=2" async></script>
-<script src="app.js?v=21"></script>
+<script src="app.js?v=22"></script>
 </body>
 </html>

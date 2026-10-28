@@ -278,3 +278,14 @@ main:has(#result:not([hidden])) .card.empty{display:none}
 .fbtxt b{font-size:16px}
 .fbex{font-size:14px}
 #len-out .big,.big{font-size:18px;line-height:1.6}
+
+/* 판정 신고 카드: 밋밋하지 않게 살짝 강조 */
+#fb-open-card{background:linear-gradient(135deg,color-mix(in srgb,#f59e0b 12%,var(--card)),color-mix(in srgb,#ef4444 8%,var(--card)));border-color:color-mix(in srgb,#f59e0b 35%,var(--line))}
+#fb-open-card h2{font-size:21px;margin-bottom:10px}
+.oops{display:inline-block;margin-right:4px;padding:2px 12px;border-radius:99px;background:#f59e0b;color:#1f1300;font-weight:900;font-size:.85em;transform:rotate(-3deg)}
+#fb-open-card .btn{border-color:#d97706;color:#b45309}
+@media (prefers-color-scheme:dark){#fb-open-card .btn{color:#fbbf24;border-color:#f59e0b}}
+
+/* 아래 접이식 두 카드는 서로 붙여서 */
+.wrap>details.card{margin:0 0 12px}
+#report{margin-top:32px!important}
