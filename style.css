@@ -225,8 +225,22 @@ main:has(#result:not([hidden])) .card.empty{display:none}
   .wrap{max-width:1240px;display:grid;grid-template-columns:minmax(360px,440px) minmax(0,1fr);column-gap:28px;align-items:start}
   .wrap>.hero,.wrap>details.card,.wrap>.foot{grid-column:1/-1}
   .wrap>.hero .who{max-width:none}
-  .wrap>.card.entry{grid-column:1;grid-row:2/span 12;position:sticky;top:16px;margin:0 0 16px}
-  .wrap>.card.empty,.wrap>#result,.wrap>#len-card,.wrap>#sug-card,.wrap>#fb-card{grid-column:2;margin-top:0}
-  .wrap>.card.entry textarea{min-height:230px}
+  .colL{grid-column:1;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto;padding:2px}
+  .colR{grid-column:2}
+  .colL>.card,.colR>.card{margin-top:0}
+  .colL>.card{margin-bottom:16px}
+  .colL textarea{min-height:200px}
   h2.sec{margin-top:0}
+}
+/* 좁은 화면: 예전처럼 한 줄로, 순서는 입력 → 결과 → 제안 → 신고 */
+@media (max-width:999px){
+  .wrap{display:flex;flex-direction:column}
+  .colL,.colR{display:contents}
+  .wrap>.hero{order:0}
+  .colL>.entry{order:1}
+  .colR>.empty,.colR>#result,.colR>#len-card{order:2}
+  .colL>#sug-card{order:3}
+  .colR>#fb-card{order:4}
+  .wrap>details.card{order:5}
+  .wrap>.foot{order:6}
 }
