@@ -202,14 +202,14 @@
     });
   }
 
-  var FEEDBACK_URL = 'https://formsubmit.co/ajax/gamedh823@gmail.com';
+  var FEEDBACK_URL = 'https://t13real.vercel.app/api/feedback';
 
   function sendFeedback() {
     var a = state.analysis;
     if (!(a && a.ok)) return;
-    var sig = [];
+    var mine = [];
     $('fb-grid').querySelectorAll('input:checked').forEach(function (cb) {
-      sig.push(FB_LABELS[cb.value] || cb.value);
+      mine.push(cb.value);
     });
     var btn = $('fb-send');
     var done = $('fb-done');
@@ -217,13 +217,13 @@
     done.textContent = '보내는 중…';
     fetch(FEEDBACK_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        _subject: '[프롬프트 신호 점검기] 판정 신고',
-        _captcha: 'false',
-        문장_앞300자: a.text.slice(0, 300),
-        사용자가_체크한_신호: sig.join(', ') || '(없음)',
-        앱이_잡은_신호: a.signals.map(function (s) { return FB_LABELS[s.id] || s.id; }).join(', ') || '(없음)'
+        text: a.text.slice(0, 300),
+        mine: mine,
+        app: a.signals.map(function (s) {
+          return s.id;
+        })
       })
     })
       .then(function (r) {
@@ -232,8 +232,11 @@
         });
       })
       .then(function (r) {
-        var ok = r.ok && r.body && String(r.body.success) === 'true';
-        done.textContent = ok ? '보냈어요. 고마워요!' : '전송하지 못했어요. 잠시 뒤에 다시 눌러 주세요.';
+        var why = (r.body && r.body.error) || '';
+        done.textContent = r.ok ? '보냈어요. 고마워요!'
+          : why === 'rate_limited' ? '너무 잦아요. 1분 뒤에 다시 눌러 주세요.'
+          : why === 'no_hook' ? '전송 기능이 아직 켜져 있지 않아요.'
+          : '전송하지 못했어요. 잠시 뒤에 다시 눌러 주세요.';
       })
       .catch(function () {
         done.textContent = '서버에 연결하지 못했어요. 인터넷 연결을 확인해 주세요.';

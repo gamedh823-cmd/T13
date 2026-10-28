@@ -262,3 +262,19 @@ main:has(#result:not([hidden])) .card.empty{display:none}
 .tabs{display:none!important}
 .back{font:inherit;font-size:13.5px;font-weight:700;color:var(--accent);background:none;border:0;padding:0;margin:0 0 12px;cursor:pointer}
 .back:hover{text-decoration:underline}
+
+/* 읽기 편하게: 결과 카드 글씨와 줄 간격을 키운다 */
+.sig h3{font-size:19px}
+.sig .found{font-size:14px}
+.sig .verdict{font-size:16px}
+.sig ul{font-size:16px;line-height:1.75}
+.sig .advice{font-size:16px;line-height:1.7}
+.bar{font-size:15.5px}
+.bar .v{font-size:16px;font-weight:800}
+.note{font-size:14.5px;line-height:1.75}
+.lead{font-size:16px;line-height:1.75}
+.rules{font-size:16px;line-height:1.75}
+.fbtxt{font-size:15px}
+.fbtxt b{font-size:16px}
+.fbex{font-size:14px}
+#len-out .big,.big{font-size:18px;line-height:1.6}
