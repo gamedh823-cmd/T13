@@ -48,8 +48,10 @@ function call(opts) {
     const r = await call({ body: { text: '@everyone ' + 'ㅁ'.repeat(500), mine: ['persona'], app: ['persona', 'cot'] }, ip: '9.0.0.4' });
     assert.strictEqual(r.code, 200);
     assert.deepStrictEqual(sent.body.allowed_mentions, { parse: [] });
-    assert.strictEqual(sent.body.embeds[0].fields[0].value.length, 300);
-    assert.strictEqual(sent.body.embeds[0].fields[3].value, '다름');
+    assert.ok(sent.body.embeds[0].description.length <= 330);
+    assert.ok(sent.body.embeds[0].title.includes('다름'));
+    assert.ok(sent.body.embeds[0].fields[2].value.includes('풀이 과정'));
+    assert.ok(sent.body.embeds[0].fields[0].value.includes('전문가 역할'));
   });
   await t('같은 IP는 분당 3회까지만 받는다', async () => {
     global.fetch = async () => ({ ok: true });

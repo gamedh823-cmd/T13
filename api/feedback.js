@@ -10,6 +10,17 @@ const MAX_TEXT = 300;
 const WINDOW_MS = 60 * 1000;
 const MAX_PER_WINDOW = 3; // IP당 분당 3회 (서버가 살아 있는 동안만 세는 대략적 제한)
 const hits = new Map();
+const LABELS = {
+  debate: '토론 지시',
+  persona: '전문가 역할',
+  majority: '다수 의견',
+  specific: '이미지(구체적)',
+  vague: '이미지(막연)',
+  cot: '풀이 과정',
+  fewshot: '예시',
+  opinion: '내 의견',
+  brainstorm: '열린 추천'
+};
 
 function rateLimited(ip) {
   const now = Date.now();
@@ -62,20 +73,31 @@ module.exports = async function handler(req, res) {
   const mine = list(body.mine);
   const app = list(body.app);
 
+  const name = (id) => LABELS[id] || id;
   const same = mine.length === app.length && mine.every((s) => app.includes(s));
+  const onlyApp = app.filter((s) => !mine.includes(s)).map(name);
+  const onlyMine = mine.filter((s) => !app.includes(s)).map(name);
+  const NL = String.fromCharCode(10);
+  const quote = text.split(/\r?\n/).map((l) => '> ' + l).join(NL);
+  const compare = same
+    ? '✅ 앱 판정이 맞다고 확인했어요'
+    : [onlyApp.length ? '➖ 앱만 잡음: ' + onlyApp.join(', ') + ' (잘못 잡힘?)' : '', onlyMine.length ? '➕ 사용자만 체크: ' + onlyMine.join(', ') + ' (놓침?)' : '']
+        .filter(Boolean)
+        .join(NL);
   const payload = {
     username: '프롬프트 신호 점검기',
     allowed_mentions: { parse: [] }, // 입력 문장 속 @everyone 등이 알림을 울리지 않게
     embeds: [
       {
-        title: '판정 신고',
-        color: same ? 0x16a34a : 0xdc2626,
+        title: same ? '📝 판정 신고 · 앱 판정과 같음' : '⚠️ 판정 신고 · 앱 판정과 다름',
+        description: '**입력한 문장 (앞 300자)**' + NL + quote,
+        color: same ? 0x22c55e : 0xf97316,
         fields: [
-          { name: '입력한 문장 (앞 300자)', value: text.slice(0, 300) },
-          { name: '앱이 잡은 신호', value: app.join(', ') || '(없음)', inline: true },
-          { name: '사용자가 체크한 신호', value: mine.join(', ') || '(없음)', inline: true },
-          { name: '앱 판정과', value: same ? '같음' : '다름', inline: true }
+          { name: '🤖 앱이 잡은 신호', value: app.map(name).join(', ') || '(없음)', inline: true },
+          { name: '🙋 사용자가 체크한 신호', value: mine.map(name).join(', ') || '(없음)', inline: true },
+          { name: '🔎 비교', value: compare, inline: false }
         ],
+        footer: { text: '프롬프트 신호 점검기 · 판정 신고' },
         timestamp: new Date().toISOString()
       }
     ]
