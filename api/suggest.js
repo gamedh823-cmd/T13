@@ -18,7 +18,7 @@ let cachedModel = null;
 async function pickModel(key) {
   if (process.env.GEMINI_MODEL) return process.env.GEMINI_MODEL;
   if (cachedModel) return cachedModel;
-  const r = await fetch(API + 'models?pageSize=200', { headers: { 'x-goog-api-key': key } });
+  const r = await fetch(API + 'models?pageSize=200', { headers: { 'x-goog-api-key': key }, signal: AbortSignal.timeout(8000) });
   if (!r.ok) throw new Error('list_' + r.status);
   const data = await r.json();
   const ok = (data.models || [])
@@ -36,7 +36,8 @@ async function callGemini(key, model, payload) {
   return fetch(API + 'models/' + encodeURIComponent(model) + ':generateContent', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(payload),
+    signal: AbortSignal.timeout(22000) // 플랫폼이 먼저 끊으면 CORS 헤더 없는 오류가 가므로 직접 끊는다
   });
 }
 

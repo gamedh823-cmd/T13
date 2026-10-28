@@ -445,11 +445,11 @@
     $('tab-fb').hidden = false;
     setPane('fix');
     clear(out);
-    out.appendChild(el('p', 'dx', '묻는 중… (최대 20초)'));
+    out.appendChild(el('p', 'dx', '묻는 중… (최대 30초)'));
     var ctrl = new AbortController();
     var timer = setTimeout(function () {
       ctrl.abort();
-    }, 20000);
+    }, 30000);
     fetch(PROXY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -477,8 +477,10 @@
           : why === 'no_key' ? 'AI 제안 기능이 아직 켜져 있지 않아요. 위 규칙 제안을 참고하세요.'
           : '지금은 AI 제안을 받지 못했어요(' + (why || '알 수 없는 오류') + '). 위 규칙 제안을 참고하세요.';
       })
-      .catch(function () {
-        out.textContent = '서버에 연결하지 못했어요. 인터넷 연결이나 이 파일을 내 컴퓨터에서 연 경우일 수 있어요. 위 규칙 제안을 참고하세요.';
+      .catch(function (e) {
+        out.textContent = e && e.name === 'AbortError'
+          ? '응답이 너무 늦어요(30초 넘음). 잠시 뒤에 다시 눌러 주세요. 위 규칙 제안은 그대로 쓸 수 있어요.'
+          : '서버에 연결하지 못했어요. 인터넷 연결이나 이 파일을 내 컴퓨터에서 연 경우일 수 있어요. 위 규칙 제안을 참고하세요.';
       })
       .then(function () {
         clearTimeout(timer);
