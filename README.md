@@ -12,13 +12,22 @@ AI에게 질문을 쓰는 사람이 프롬프트를 붙여 넣으면, 그 안의
 
 ## 화면
 
-| 첫 화면 (넓은 화면: 입력은 왼쪽, 결과는 오른쪽) | 점검 결과 (오른쪽 창) |
+배포된 앱(https://gamedh823-cmd.github.io/T13/)에서 직접 캡처한 화면입니다.
+
+| 점검 결과 (입력은 왼쪽, 결과는 오른쪽 창) | 고친 프롬프트 (오른쪽 창이 바뀜) |
 |---|---|
-| ![첫 화면](docs/screens/03_%EC%B2%AB%ED%99%94%EB%A9%B4_%EA%B0%80%EB%A1%9C%EB%B0%B0%EC%B9%98.png) | ![점검 결과](docs/screens/04_%EC%A0%90%EA%B2%80%EA%B2%B0%EA%B3%BC_%EC%98%A4%EB%A5%B8%EC%AA%BD%EC%B0%BD.png) |
+| ![점검 결과](docs/screens/07_%EC%A0%90%EA%B2%80%EA%B2%B0%EA%B3%BC_%EC%8B%A4%EC%A0%9C%ED%99%94%EB%A9%B4.png) | ![고친 프롬프트](docs/screens/08_%EA%B3%A0%EC%B9%9C%ED%94%84%EB%A1%AC%ED%94%84%ED%8A%B8.png) |
 
 | 판정 신고 (오른쪽 창에 체크 목록) | 디스코드에 도착한 신고 카드 |
 |---|---|
-| ![판정 신고](docs/screens/05_%ED%8C%90%EC%A0%95%EC%8B%A0%EA%B3%A0_%EC%98%A4%EB%A5%B8%EC%AA%BD%EC%B0%BD.png) | ![디스코드](docs/screens/06_%EB%94%94%EC%8A%A4%EC%BD%94%EB%93%9C_%ED%8C%90%EC%A0%95%EC%8B%A0%EA%B3%A0.png) |
+| ![판정 신고](docs/screens/09_%ED%8C%90%EC%A0%95%EC%8B%A0%EA%B3%A0_%EC%B2%B4%ED%81%AC%EB%AA%A9%EB%A1%9D.png) | ![디스코드 신고 카드](docs/screens/10_%EB%94%94%EC%8A%A4%EC%BD%94%EB%93%9C_%EC%8B%A0%EA%B3%A0%EC%B9%B4%EB%93%9C_%EC%B5%9C%EC%8B%A0.png) |
+
+앱 맨 아래의 "판정을 얼마나 믿을 수 있나요?"와 "가설 검증 실험" 절(접으면 한 줄, 펼치면 아래 표):
+
+![정확도 보고와 가설 검증 실험](docs/screens/11_%EC%A0%95%ED%99%95%EB%8F%84%EB%B3%B4%EA%B3%A0_%EC%8B%A4%ED%97%98%EA%B2%B0%EA%B3%BC.png)
+
+- 공개 URL: https://gamedh823-cmd.github.io/T13/ (로그인 없음)
+- 대체 URL: https://t13real.vercel.app/
 
 ### 화면 배치 (넓은 화면은 가로로)
 
@@ -29,8 +38,6 @@ AI에게 질문을 쓰는 사람이 프롬프트를 붙여 넣으면, 그 안의
 - **좁은 화면(폰):** 창 전환 없이 한 줄로 쌓이고, 순서는 입력 → 점검 결과 → 제안 → 고친 프롬프트 → 신고입니다.
 - 제목 영역(큰 제목·근거 논문 카드·3단계 안내)은 처음 모양을 그대로 둡니다. 신호·확신도 설명 같은 결과 카드의 글씨는 16px로 키우고 줄 간격을 넓혔습니다.
 
-- 공개 URL: https://gamedh823-cmd.github.io/T13/ (로그인 없음)
-- 대체 URL: https://t13real.vercel.app/
 
 ## 내 컴퓨터에서 실행 (3단계, 설치 없음)
 
